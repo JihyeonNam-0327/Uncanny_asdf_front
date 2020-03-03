@@ -2,10 +2,8 @@
   <div class="input-box-outer">
     <input class="input-box" 
     :placeholder="placeHolder"
-    v-model="text"/>
-    <button @click="changeFunc">
-      button
-    </button>
+    v-model="text"
+    :type="inputType"/>
   </div>
 </template>
 
@@ -15,6 +13,10 @@
       placeHolder: {
         type: String,
         default: '이메일'
+      },
+      inputType: {
+        type: String,
+        default: 'text'
       }
     },
     data() {
@@ -27,11 +29,6 @@
         this.$emit('inputValue', newValue)
       }
     },
-    methods: {
-      changeFunc() {
-        this.text = this.text + '1'
-      }
-    }
   }
 </script>
 
@@ -40,6 +37,7 @@
     .input-box {
       width:100%;
       height:40px;
+      font-size: 17px;
       border:0;
       border-bottom:1px solid #707070;
       padding-left:9.5px;
