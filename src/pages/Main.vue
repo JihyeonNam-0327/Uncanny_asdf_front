@@ -13,12 +13,17 @@
       <img class="slide" src="https://images.unsplash.com/photo-1529815481058-55e5b656f6d6?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
     </agile>
     <div class="line"></div>
+
+    <heart-button class="heart-button" :totalCount="150"></heart-button>
   </div>
 </template>
 
 <script>
+  import HeartButton from '@/components/HeartButton.vue'
   export default {
-
+    components: {
+      HeartButton
+    }
   }
 </script>
 
@@ -101,6 +106,10 @@
       height: 0px;
       border: 1px solid #707070;
       opacity: 1;
+    }
+    .heart-button {
+      width: 65px;
+      
     }
   }
 </style>
