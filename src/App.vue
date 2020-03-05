@@ -7,14 +7,10 @@
 <script>
 export default {
   name: 'App',
-  components: {
-  },
-  methods: {
-    alertFnc() {
-      alert('asdf')
-    }
-  }
-}
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style>
