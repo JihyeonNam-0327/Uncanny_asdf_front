@@ -1,6 +1,6 @@
 <template>
   <div>
-    mapview
+    mypage
   </div>
 </template>
 
