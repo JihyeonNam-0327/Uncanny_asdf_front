@@ -27,8 +27,12 @@
     </div>
     <div class="horizontal-line-none"></div>
     <div class="input-gender">
-      <p>성별</p>
-      </div>
+      <p class="input-gender-text">성별</p>
+      <v-btn-toggle class="input-gender-radio-button" v-model="text" group mandatory color="#37ABDA">
+        <v-btn value="woman">WOMAN</v-btn>
+        <v-btn value="man">MAN</v-btn>
+      </v-btn-toggle>      
+    </div>
     <div class="horizontal-line"></div>
     <div class="input-birthdate">
       <p>생년월일</p>
@@ -48,8 +52,13 @@
     components: {
       HeaderComponent,
       InputBox,
-      BasicButton
-    }
+      BasicButton,
+    },
+    data () {
+      return {
+        mandatory: 'true',
+      }
+    },  
   }
 </script>
 
@@ -116,6 +125,13 @@
     }
     .input-gender {
       width: calc(100% - 86px);
+      display: flex;
+      .input-gender-text {
+        margin: auto auto auto 0;
+      }
+      .input-gender-radio-button {
+        margin: auto 0 auto auto;
+      }
     }
     .input-birthdate {
       width: calc(100% - 86px);
@@ -123,6 +139,7 @@
     .sign-up-button {
       width: calc(100% - 86px);
       margin-top: 44px;
+      margin-bottom: 40px;
     }
   }
 </style>
