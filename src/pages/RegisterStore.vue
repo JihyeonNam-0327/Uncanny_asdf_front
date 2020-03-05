@@ -6,28 +6,28 @@
       <p class="page-desc">아래의 매장 정보로 등록을 요청하게 됩니다.</p>
 
       <p>상호명(한글)</p>
-      <input-box placeHolder="상호명(한글)"></input-box>
+      <input-box placeHolder="상호명(한글)" @inputValue="getNameKor"></input-box>
 
       <p>상호명(영문)</p>
-      <input-box placeHolder="상호명(영문)"></input-box>
+      <input-box placeHolder="상호명(영문)" @inputValue="getNameEng"></input-box>
 
       <p>주소</p>
-      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요."></input-box>
+      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." @inputValue="getAddress"></input-box>
 
       <p>전화번호</p>
       <div class="call-info">
-        <input-box placeHolder="02"></input-box>
+        <input-box placeHolder="02" @inputValue="getCountryNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="1234"></input-box>
+        <input-box placeHolder="1234" @inputValue="getMiddleNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="5678"></input-box>
+        <input-box placeHolder="5678" @inputValue="getEndNum"></input-box>
       </div>
       
       <p>아메리카노 지수</p>
-      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요."></input-box>
+      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요." @inputValue="getAmericanoIndex"></input-box>
 
       <p>주차 정보</p>
-      <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요."></input-box>
+      <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요." @inputValue="getParking"></input-box>
 
       <div class="toggle-container">
         <p>대관 가능 여부</p>
@@ -50,7 +50,7 @@
       </div>
 
       <p>휴무일</p>
-      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요."></input-box>
+      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." @inputValue="getHoliday"></input-box>
 
       <p>운영 시간</p>
 
@@ -58,19 +58,28 @@
         <p>매일 동일</p>
         <toggle-button class="toggle" v-model="sameOperationgTime" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
 
-        <div v-if="sameOperationgTime">
+      </div>
 
+      <div class="operation-time" v-if="sameOperationgTime">
+        <div class="am">
+          <vue-timepicker class="time-picker" :minute-interval="10" format="HH:mm"></vue-timepicker>
         </div>
-        <div v-else>
+        <div class="bar">
+          -
+        </div>
+        <div class="pm">
+          <vue-timepicker class="time-picker" :minute-interval="10" format="HH:mm"></vue-timepicker>
+        </div>
+      </div>
+      <div v-else>
 
-        </div>
       </div>
 
       <p>홈페이지 주소</p>
-      <input-box placeHolder="www.mycafe.me"></input-box>
+      <input-box placeHolder="www.mycafe.me" @inputValue="getURL"></input-box>
 
       <p>인스타그램 계정</p>
-      <input-box placeHolder="asdf_official"></input-box>
+      <input-box placeHolder="asdf_official" @inputValue="getInstagram"></input-box>
 
       <div class="file-input-container">
         <p>사진 업로드</p>
@@ -97,12 +106,14 @@
   import InputBox from '@/components/InputBox'
   import HeaderComponent from '@/components/HeaderComponent'
   import BasicButton from '@/components/BasicButton'
+  import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
 
   export default {
     components: {
       InputBox,
       HeaderComponent,
-      BasicButton
+      BasicButton,
+      VueTimepicker
     },
     data() {
       return {
@@ -111,7 +122,18 @@
         wifi: false,
         outlet: false,
         deskHeight: false,
-        sameOperationgTime: false
+        sameOperationgTime: false,
+        nameKor: '',
+        nameEng: '',
+        address: '',
+        countryNum: '',
+        middleNum: '',
+        endNum: '',
+        americanoIndex: '',
+        parking: '',
+        holiday: '',
+        url: '',
+        instagram: ''
       }
     },
     methods: {
@@ -126,20 +148,53 @@
         if (index !== -1) {
           this.storeImageArray.splice(index, 1)
         }
+      },
+      getNameKor(value) {
+        this.nameKor = value
+      },
+      getNameEng(value) {
+        this.nameEng = value
+      },
+      getAddress(value) {
+        this.address = value
+      },
+      getCountryNum(value) {
+        this.countryNum = value
+      },
+      getMiddleNum(value) {
+        this.middleNum = value
+      },
+      getEndNum(value) {
+        this.endNum = value
+      },
+      getAmericanoIndex(value) {
+        this.americanoIndex = value
+      },
+      getParking(value) {
+        this.parking = value
+      },
+      getHoliday(value) {
+        this.holiday = value
+      },
+      getURL(value) {
+        this.url = value
+      },
+      getInstagram(value) {
+        this.instagram = value
       }
     }
   }
 </script>
 
 <style lang="scss">
+/* @import '../../node_modules/vue2-timepicker/dist/VueTimepicker.css'; */
   .register-store-outer {
     position: relative;
     width: 100%;
     height: 100vh;
     .header-component {
       width: calc(100% - 16px);
-      position: relative;
-      padding-top: 36px;
+      margin-top: 36px;
     }
     .register-store-context {
       padding: 0 31px;
@@ -186,6 +241,28 @@
           margin-top: auto;
         }
       }
+      .operation-time {
+        width: 100%;
+        position: relative;
+        display: flex;
+        .dash {
+          width: 10px;
+          padding: 0 15px;
+          margin: auto 0;
+        }
+        .am {
+          width: 140px;
+        }
+        .pm {
+          width: 140px;
+        }
+        input {
+          border: 0;
+          outline: none;
+          width: 140px;
+          border-bottom: 1px solid #404040;
+        }
+      }
       .file-input-container {
         display: flex;
         position: relative;
@@ -211,7 +288,7 @@
             margin: auto 0;
             padding-top: 2px;
             padding-left: 8px;
-            width: 10px;
+            width: 20px;
           }
           input[type="file"] {
             outline: none;
