@@ -9,11 +9,11 @@
       </div>
       <div class="apply-store-name">
         상호명
-        <input-box class="store-name" placeHolder="상호명" inputType="text" @inputValue="getStoreName"></input-box>
+        <input-box placeHolder="상호명" inputType="text" @inputValue="getStoreName"></input-box>
       </div>
       <div class="apply-address">
         주소
-        <input-box class="address" placeHolder="도로명 주소" inputType="text" @inputValue="getAddress"></input-box>
+        <input-box placeHolder="도로명 주소" inputType="text" @inputValue="getAddress"></input-box>
       </div>
       <div class="apply-phone-number">
         전화번호
