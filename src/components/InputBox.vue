@@ -40,6 +40,7 @@
       font-size: 17px;
       border:0;
       border-bottom:1px solid #707070;
+      padding-left: 11px;
     }
     .input-box:focus{
       outline:none;
