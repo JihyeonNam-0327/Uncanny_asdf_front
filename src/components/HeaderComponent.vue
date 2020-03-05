@@ -1,24 +1,41 @@
 <template>
   <div class="header-component-outer">
-    <div class="left-historyback" v-if="leftType === 'historyback'">
+    <div 
+      class="left-historyback" 
+      v-if="leftType === 'historyback'"
+      @click="backButtonClick">
       <img src="../assets/icon/icon_arrow_back.svg" alt="">
     </div>
 
-    <div class="center-underbar" v-if="centerType === 'underbar'">
+    <div 
+      class="center-underbar" 
+      v-if="centerType === 'underbar'"
+      @click="searchButtonClick">
     </div>
-    <div class="center-none" v-else>
+    <div 
+      class="center-input" 
+      v-else-if="centerType === 'input'">
+      <input class="center-inputbox" type="text" v-model="searchString">
+    </div>
+    <div
+      class="center-none"
+      v-else>
     </div>
   
-    <div class="right-underbar" v-if="rightType === 'search'">
-      <img src="../assets/icon/icon_search.svg" alt="">
+    <div 
+      class="right-search" 
+      v-if="rightType === 'search'"
+      @click="searchButtonClick">
+       <img src="../assets/icon/icon_search.svg" alt="">
     </div>
-    <div class="right-home" v-else>
+    <div 
+      class="right-home" 
+      @click="homeButtonClick"
+      v-else>
       <img src="../assets/icon/icon_home_empty.svg" alt="">
     </div>
   </div>
-      <!-- <div :class="[header-left, toggle]">left</div> ???  -->
 </template>
-
 
 <script>
   export default {
@@ -35,6 +52,27 @@
         type: String,
         default: 'none'
       }
+    },
+    data() {
+      return {
+        searchString: ''
+      }
+    },
+    watch: {
+      searchString(newValue) {
+        this.$emit('getSearchString', newValue)
+      }
+    },
+    methods: {
+      backButtonClick() {
+        this.$emit('backButtonClick')
+      },
+      searchButtonClick() {
+        this.$emit('searchButtonClick')
+      },
+      homeButtonClick() {
+        this.$emit('homeButtonClick')
+      }
     }
   }
 </script>
@@ -44,12 +82,10 @@
   display: flex;
   margin: 8px;
   height: 30px;
-  /* border: 1px solid #707070; */
   .left-historyback {
     width: 21px;
     padding-top: 7px;
     padding-left: 11px;
-    /* border: 1px solid blue; */
     flex: 0 0 auto;
   }
   .center-underbar {
@@ -59,24 +95,34 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+  .center-input {
+    width: 100%;
+    border-bottom: 1px solid #707070;
+    flex: 1 1 auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    .center-inputbox {
+      width: 100%;
+      outline: none;
+      border: 0;
+    }
+  }
   .center-none {
     width: 100%;
     flex: 1 1 auto;
     margin-left: 5px;
     margin-right: 5px;
   }
-  .right-underbar {
+  .right-search {
     width: 25px;
     padding-top: 7px;
     padding-left: 7px;
-    /* border: 1px solid red; */
     flex: 0 0 auto;
   }
   .right-home {
     width: 25px;
     padding-top: 7px;
     padding-left: 7px;
-    /* border: 1px solid red; */
     flex: 0 0 auto;
   }
 }
