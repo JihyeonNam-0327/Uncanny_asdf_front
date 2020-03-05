@@ -13,8 +13,8 @@
       BottomMenu
     },
     methods: {
-      pageMoveFunc(pageName) {
-        this.$router.replace({name: pageName, prams: {}})
+      pageMoveFunc(routerName) {
+        this.$router.replace({name: routerName, prams: {}})
       }
     }
   }

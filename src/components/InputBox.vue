@@ -35,12 +35,11 @@
 <style lang="scss" scoped>
   .input-box-outer {
     .input-box {
-      width:100%;
+      width: calc(100% - 9.5px);
       height:40px;
       font-size: 17px;
       border:0;
       border-bottom:1px solid #707070;
-      padding-left:9.5px;
     }
     .input-box:focus{
       outline:none;

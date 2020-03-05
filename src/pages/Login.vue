@@ -1,5 +1,6 @@
 <template>
   <div class="login-page-outer">
+    <header-component class="header-component" leftType="historyback" centerType="underbar" rightType="search"></header-component>
     <div class="contents-container">
       <input-box class="email-input" placeHolder="이메일" inputType="text" @inputValue="getEmail" ></input-box>
       <input-box class="password-input"  placeHolder="비밀번호" inputType="password" @inputValue="getPassword"></input-box>
@@ -14,10 +15,6 @@
       <p class="apply-button">
         매장 등록 요청
       </p>
-
-
-
-
     </div>
   </div>
 </template>
@@ -25,11 +22,13 @@
 <script>
   import InputBox from '../components/InputBox'
   import BasicButton from '../components/BasicButton'
+  import HeaderComponent from '@/components/HeaderComponent'
 
   export default {
     components: {
       InputBox,
       BasicButton,
+      HeaderComponent
     },
     data() {
       return {
@@ -53,13 +52,19 @@
 <style lang="scss" scoped>
   .login-page-outer {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100vh;
+    .header-component {
+      width: calc(100% - 16px);
+      position: absolute;
+      top: 36px;
+      left: 0px;
+    }
     .contents-container {
-      width: 100%;
-      margin-left: 43px;
-      margin-right: 43px;
+      width: calc(100% - 86px);
       .email-input {
         margin-bottom: 10px;
       }
