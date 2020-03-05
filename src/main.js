@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import VueAgile from 'vue-agile'
-
+import ToggleButton from 'vue-js-toggle-button'
+ 
 
 // page
 import Apply from './pages/Apply.vue'
@@ -17,8 +18,10 @@ import SignUp from './pages/SignUp.vue'
 import Home from './pages/Home.vue'
 import vuetify from './plugins/vuetify';
 
+
 Vue.use(VueRouter)
 Vue.use(VueAgile)
+Vue.use(ToggleButton)
 Vue.config.productionTip = false
 
 const routes = [
@@ -33,7 +36,7 @@ const routes = [
     component: Detail 
   },
   { 
-    path: '/registerStore', 
+    path: '/registerstore', 
     name: "RegisterStore", 
     component: RegisterStore 
   },
