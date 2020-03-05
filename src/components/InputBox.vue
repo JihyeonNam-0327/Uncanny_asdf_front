@@ -28,7 +28,7 @@
       text: function(newValue) {
         this.$emit('inputValue', newValue)
       }
-    },
+    }
   }
 </script>
 
