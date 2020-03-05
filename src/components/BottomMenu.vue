@@ -41,7 +41,7 @@
         this.clickUser = !this.clickUser
         this.clickHome = false
         this.clickMap = false
-        this.$emit('userBtnClicked', 'MyPage')
+        this.$emit('userBtnClicked', 'Login')
       },
     }
   }

@@ -32,11 +32,6 @@ const routes = [
     component: Detail 
   },
   { 
-    path: '/login', 
-    name: "Login", 
-    component: Login 
-  },
-  { 
     path: '/registerStore', 
     name: "RegisterStore", 
     component: RegisterStore 
@@ -70,6 +65,11 @@ const routes = [
         path: '/mypage', 
         name: "MyPage", 
         component: MyPage 
+      },
+      { 
+        path: '/login', 
+        name: "Login", 
+        component: Login 
       }
     ]
   },
