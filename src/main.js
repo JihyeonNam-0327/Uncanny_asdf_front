@@ -15,6 +15,7 @@ import RegisterStore from './pages/RegisterStore.vue'
 import Search from './pages/Search.vue'
 import SignUp from './pages/SignUp.vue'
 import Home from './pages/Home.vue'
+import vuetify from './plugins/vuetify';
 
 Vue.use(VueRouter)
 Vue.use(VueAgile)
@@ -83,6 +84,7 @@ const router = new VueRouter({
 new Vue({
   render: h => h(App),
   router,
+  vuetify,
   components: {
 		agile: VueAgile,
 	}
