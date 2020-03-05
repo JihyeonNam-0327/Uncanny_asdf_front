@@ -45,7 +45,6 @@
         this.password = value
       }
     }
-
   }
 </script>
 
@@ -88,14 +87,12 @@
       }
       .apply-button {
         text-align: center;
-        
         margin: 12px auto 0 auto;
         padding-bottom: 4px;
         width: 90px;
         color: #707070;
         border-bottom: 1px solid #707070;
         font-size: 14px;
-
       }
     }
   }
