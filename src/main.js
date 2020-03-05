@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import VueAgile from 'vue-agile'
 import ToggleButton from 'vue-js-toggle-button'
- 
 
 // page
 import Apply from './pages/Apply.vue'
@@ -89,6 +88,6 @@ new Vue({
   router,
   vuetify,
   components: {
-		agile: VueAgile,
+    agile: VueAgile
 	}
 }).$mount('#app')
