@@ -12,7 +12,7 @@
     props: {
       placeHolder: {
         type: String,
-        default: '이메일'
+        default: ''
       },
       inputType: {
         type: String,

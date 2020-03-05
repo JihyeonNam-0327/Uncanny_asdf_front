@@ -11,7 +11,7 @@
       rightType="search">
     </header-component>
     <header-component 
-      leftType="none" 
+      leftType="none"
       centerType="none" 
       rightType="home">
     </header-component>
@@ -20,6 +20,12 @@
       centerType="none" 
       rightType="home">
     </header-component>
+    <header-component 
+      leftType="historyback" 
+      centerType="input"
+      rightType="home">
+    </header-component>
+
   </div>  
 </template>
 
