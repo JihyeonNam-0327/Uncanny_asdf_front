@@ -1,3 +1,4 @@
+<!-- https://vuetifyjs.com/en/components/button-groups -->
 <template>
   <div class="sign-up-outer">
     <header-component class="header-component"
@@ -6,7 +7,7 @@
     <div class="horizontal-line-top"></div>
     <div class="input-email">
       <p>이메일</p>
-      <input-box placeHolder="이메일" inputType="text" @inputValue="getEmail"></input-box>
+      <input-box placeHolder="이메일" @inputValue="getEmail"></input-box>
       <div class="input-email-warning">
         <p class="input-email-warning-text">이미 사용 중인 이메일입니다.</p>
       </div>
@@ -14,13 +15,13 @@
     <div class="horizontal-line-none"></div>
     <div class="input-nickname">
       <p>닉네임</p>
-      <input-box placeHolder="닉네임" inputType="nickname" @inputValue="getNickname"></input-box>
+      <input-box placeHolder="닉네임" @inputValue="getNickname"></input-box>
     </div>
     <div class="horizontal-line"></div>
     <div class="input-password">
       <p>비밀번호</p>
-      <input-box placeHolder="비밀번호" inputType="password" @inputValue="getPassword"></input-box>
-      <input-box placeHolder="비밀번호 확인" inputType="password" @inputValue="getPasswordChk"></input-box>
+      <input-box placeHolder="비밀번호" @inputValue="getPassword"></input-box>
+      <input-box placeHolder="비밀번호 확인" @inputValue="getPasswordChk"></input-box>
       <div class="input-password-warning">
         <p class="input-password-warning-text">비밀번호가 일치하지 않습니다.</p>
       </div>      
@@ -28,10 +29,10 @@
     <div class="horizontal-line-none"></div>
     <div class="input-gender">
       <p class="input-gender-text">성별</p>
-      <v-btn-toggle class="input-gender-radio-button" v-model="text" group mandatory color="#37ABDA">
-        <v-btn value="woman">WOMAN</v-btn>
-        <v-btn value="man">MAN</v-btn>
-      </v-btn-toggle>      
+      <v-btn-toggle class="input-gender-radio-button" v-model="gender" group :mandatory="true" color="#37ABDA">
+        <v-btn value="w">WOMAN</v-btn>
+        <v-btn value="m">MAN</v-btn>
+      </v-btn-toggle>
     </div>
     <div class="horizontal-line"></div>
     <div class="input-birthdate">
@@ -54,11 +55,32 @@
       InputBox,
       BasicButton,
     },
-    data () {
+    data() {
       return {
-        mandatory: 'true',
+        email : '',
+        nickname : '',
+        password : '',
+        passwordChk : '',
+        gender : '',
       }
-    },  
+    },
+    methods: {
+      getEmail(value) {
+        this.email = value
+      },
+      getNickname(value) {
+        this.nickname = value
+      },
+      getPassword(value) {
+        this.password = value
+      },
+      getPasswordChk(value) {
+        this.PasswordChk = value
+      },
+      getBirthdate(value) {
+        this.gender = value
+      },
+    }    
   }
 </script>
 
