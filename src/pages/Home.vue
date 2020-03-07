@@ -22,8 +22,11 @@
 
 <style lang="scss" scoped>
   .bottom-menu-component {
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     width: 100%;
     bottom: 0px;
+    z-index: 5;
+    background-color: #FFFFFF;
   }
 </style>

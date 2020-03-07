@@ -1,7 +1,8 @@
 <template>
   <div class="heart-button-outer" @click="heartClicked">
     <div>
-      <img src="@/assets/icon/icon_heart_empty.svg"/>
+      <img v-if="heartStatus" src="@/assets/icon/icon_heart_fill.svg"/>
+      <img v-else src="@/assets/icon/icon_heart_empty.svg">
     </div>
     <div>
       <span>{{ totalCount }}</span>
@@ -15,11 +16,18 @@
       totalCount: {
         type: Number,
         default: 0
+      },
+      value: [Boolean]
+    },
+    data() {
+      return {
+        heartStatus: false
       }
     },
     methods: {
       heartClicked() {
-        this.$emit('heartBtnClicked')
+        this.heartStatus = !this.heartStatus
+        this.$emit('input', this.heartStatus)
       }
     }
   }
