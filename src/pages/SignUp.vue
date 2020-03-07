@@ -7,7 +7,7 @@
     <div class="horizontal-line-top"></div>
     <div class="input-email">
       <p>이메일</p>
-      <input-box placeHolder="이메일" @inputValue="getEmail"></input-box>
+      <input-box placeHolder="이메일" v-model="email"></input-box>
       <div class="input-email-warning">
         <p class="input-email-warning-text">이미 사용 중인 이메일입니다.</p>
       </div>
@@ -15,13 +15,13 @@
     <div class="horizontal-line-none"></div>
     <div class="input-nickname">
       <p>닉네임</p>
-      <input-box placeHolder="닉네임" @inputValue="getNickname"></input-box>
+      <input-box placeHolder="닉네임" v-model="nickname"></input-box>
     </div>
     <div class="horizontal-line"></div>
     <div class="input-password">
       <p>비밀번호</p>
-      <input-box placeHolder="비밀번호" @inputValue="getPassword"></input-box>
-      <input-box placeHolder="비밀번호 확인" @inputValue="getPasswordChk"></input-box>
+      <input-box placeHolder="비밀번호" v-model="password"></input-box>
+      <input-box placeHolder="비밀번호 확인" v-model="passwordChk"></input-box>
       <div class="input-password-warning">
         <p class="input-password-warning-text">비밀번호가 일치하지 않습니다.</p>
       </div>      
@@ -37,7 +37,7 @@
     <div class="horizontal-line"></div>
     <div class="input-birthdate">
       <p>생년월일</p>
-      <input-box placeHolder="생년월일" inputType="text" @inputValue="getBirthdate"></input-box>
+      <input-box placeHolder="생년월일" inputType="text" v-model="birthDate"></input-box>
     </div>
     <div class="horizontal-line"></div>
     <basic-button class="sign-up-button" buttonText="회원가입"></basic-button>
@@ -57,30 +57,15 @@
     },
     data() {
       return {
-        email : '',
-        nickname : '',
-        password : '',
-        passwordChk : '',
-        gender : '',
+        email: '',
+        nickname: '',
+        password: '',
+        passwordChk: '',
+        gender: '',
+        birthDate: ''
       }
     },
-    methods: {
-      getEmail(value) {
-        this.email = value
-      },
-      getNickname(value) {
-        this.nickname = value
-      },
-      getPassword(value) {
-        this.password = value
-      },
-      getPasswordChk(value) {
-        this.PasswordChk = value
-      },
-      getBirthdate(value) {
-        this.gender = value
-      },
-    }    
+    methods: {}    
   }
 </script>
 

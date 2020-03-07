@@ -9,20 +9,20 @@
       </div>
       <div class="apply-store-name">
         상호명
-        <input-box placeHolder="상호명" inputType="text" @inputValue="getStoreName"></input-box>
+        <input-box placeHolder="상호명" inputType="text" v-model="storeName"></input-box>
       </div>
       <div class="apply-address">
         주소
-        <input-box placeHolder="도로명 주소" inputType="text" @inputValue="getAddress"></input-box>
+        <input-box placeHolder="도로명 주소" inputType="text" v-model="address"></input-box>
       </div>
       <div class="apply-phone-number">
         전화번호
         <div class="apply-phone-number-input">
-          <input-box placeHolder="02" inputType="number" @inputValue="getCountryNum"></input-box>
+          <input-box placeHolder="02" inputType="number" v-model="countryNum"></input-box>
           <div class="apply-phone-number-hyphen">-</div>
-          <input-box placeHolder="1234" inputType="number" @inputValue="getMiddleNum"></input-box>
+          <input-box placeHolder="1234" inputType="number" v-model="middleNum"></input-box>
           <div class="apply-phone-number-hyphen">-</div>
-          <input-box placeHolder="5678" inputType="number" @inputValue="getEndNum"></input-box>
+          <input-box placeHolder="5678" inputType="number" v-model="endNum"></input-box>
         </div>
       </div>
     </div>
@@ -50,23 +50,7 @@
         endNum: '' 
       }
     },
-    methods: {
-      getStoreName(value) {
-        this.storeName = value
-      },
-      getAddress(value) {
-        this.address = value
-      },
-      getCountryNum(value) {
-        this.countryNum = value
-      },
-      getMiddleNum(value) {
-        this.middleNum = value
-      },
-      getEndNum(value) {
-        this.endNum = value
-      }
-    }
+    methods: {}
   }
 </script>
 
