@@ -2,8 +2,9 @@
   <div class="input-box-outer">
     <input class="input-box" 
     :placeholder="placeHolder"
-    v-model="text"
-    :type="inputType"/>
+    :type="inputType"
+    :value="value"
+    @input="emitValue($event.target.value)"/>
   </div>
 </template>
 
@@ -17,16 +18,24 @@
       inputType: {
         type: String,
         default: 'text'
+      },
+      value: {
+        type: [ String, Number, Boolean, Function, Object, Array, Symbol ]
       }
     },
     data() {
       return {
-        text: ''
-        }
+        inputValue: undefined
+      }
     },
     watch: {
-      text: function(newValue) {
-        this.$emit('inputValue', newValue)
+      // text: function(newValue) {
+      //   this.$emit('inputValue', newValue)
+      // }
+    },
+    methods: {
+      emitValue(value) {
+        this.$emit('input', value)
       }
     }
   }
