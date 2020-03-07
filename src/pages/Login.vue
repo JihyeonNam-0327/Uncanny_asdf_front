@@ -2,8 +2,8 @@
   <div class="login-page-outer">
     <header-component class="header-component" leftType="historyback" centerType="underbar" rightType="search"></header-component>
     <div class="contents-container">
-      <input-box class="email-input" placeHolder="이메일" inputType="text" @inputValue="getEmail" ></input-box>
-      <input-box class="password-input"  placeHolder="비밀번호" inputType="password" @inputValue="getPassword"></input-box>
+      <input-box class="email-input" placeHolder="이메일" inputType="text" v-model="email" ></input-box>
+      <input-box class="password-input"  placeHolder="비밀번호" inputType="password" v-model="password"></input-box>
       <div class="auto-login">
         <input id="auto-login-tag" type="checkbox" v-model="autoLogin"/>
         <label for="auto-login-tag" >자동로그인</label>
@@ -37,14 +37,7 @@
         autoLogin: true
       }
     },
-    methods: {
-      getEmail(value) {
-        this.email = value
-      },
-      getPassword(value) {
-        this.password = value
-      }
-    }
+    methods: {}
   }
 </script>
 
