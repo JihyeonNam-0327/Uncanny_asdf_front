@@ -30,6 +30,7 @@
               class="heart-button" 
               :totalCount="item.bookmarkCount"
               v-model="item.bookmark"
+              :bookmark="item.bookmark"
               @click="addBookmark(item.storeId)"></heart-button>
           </div>
         </div>
@@ -46,6 +47,7 @@
               class="heart-button" 
               :totalCount="item.bookmarkCount"
               v-model="item.bookmark"
+              :bookmark="item.bookmark"
               @click="addBookmark(item.storeId)"></heart-button>
           </div>
         </div>

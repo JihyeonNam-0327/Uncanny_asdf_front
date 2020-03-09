@@ -4,6 +4,8 @@ import App from './App.vue'
 import VueAgile from 'vue-agile'
 import ToggleButton from 'vue-js-toggle-button'
 import VueScrollTo from 'vue-scrollto';
+import axios from 'axios'
+import API from '@/api.js'
 
 // page
 import Apply from '@/pages/Apply.vue'
@@ -24,6 +26,9 @@ Vue.use(VueAgile)
 Vue.use(ToggleButton)
 Vue.use(VueScrollTo)
 Vue.config.productionTip = false
+
+Vue.prototype.$http = axios
+Vue.prototype.$api = API
 
 const routes = [
   { 
