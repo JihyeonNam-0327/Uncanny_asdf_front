@@ -1,4 +1,3 @@
-<!-- https://vuetifyjs.com/en/components/button-groups -->
 <template>
   <div class="sign-up-outer">
     <header-component class="header-component"

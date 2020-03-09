@@ -6,8 +6,9 @@
     <select-box v-model="selectedValue"></select-box>
   
   
-    <v-app id="inspire">
-      <div class="slider">
+
+    <div class="slider">
+      <!-- <v-card-text> -->
         <v-slider
           v-model="slider.val"
           :thumb-color="slider.thumbColor"
@@ -20,8 +21,8 @@
           tick-size="1"
           thumb-label="always"
         ></v-slider>
-      </div>
-    </v-app>
+      <!-- </v-card-text> -->
+    </div>
   
   </div>
 </template>

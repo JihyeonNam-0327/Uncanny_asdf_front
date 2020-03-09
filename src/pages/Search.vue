@@ -56,7 +56,6 @@
       <img class="americano-question" src="@/assets/icon/icon_question.svg" alt="?">
     </div>
     <div>
-    <v-app id="inspire">
       <div class="slider">
         <v-slider
           v-model="slider.val"
@@ -71,7 +70,7 @@
           thumb-label="always"
         ></v-slider>
       </div>
-  </v-app>
+
    <div class="horizontal-line"></div>
 </div>
   </div>
