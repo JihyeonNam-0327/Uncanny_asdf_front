@@ -48,8 +48,9 @@
 <style lang="scss" scoped>
   select {
     width: 100%;
-    padding: .8em .5em;
-    border: 1px solid #999;
+    padding: 5px 10px;
+    border: 0;
+    border-bottom: 1px solid #999;
     font-family: inherit;
     background: url('../assets/icon/icon_arrow_down.svg') no-repeat 95% 50%;
     border-radius: 0px;
