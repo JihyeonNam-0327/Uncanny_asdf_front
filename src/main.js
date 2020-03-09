@@ -19,7 +19,7 @@ import Search from '@/pages/Search.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
-import vuetify from '@/plugins/vuetify';
+import vuetify from './plugins/vuetify'
 
 Vue.use(VueRouter)
 Vue.use(VueAgile)

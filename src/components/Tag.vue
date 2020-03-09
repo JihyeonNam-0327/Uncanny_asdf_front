@@ -1,12 +1,10 @@
 <template>
   <div class="tag-outer">
 
-    <div class=background>
-      <div class="tag-container">
-        <div class="tag-filter" :key="index" v-for="(item, index) in filterItem">
-            {{ item.filterName }}
-            <img src="@/assets/icon/icon_x.svg" alt="x">
-        </div>
+    <div class="tag-container">
+      <div class="tag-filter" :key="index" v-for="(item, index) in filterItem">
+          {{ item.filterName }}
+          <img src="@/assets/icon/icon_x.svg" alt="x">
       </div>
     </div>
 
@@ -40,11 +38,11 @@
     display: flex;
     margin-left: 20px;
     margin-right: 20px;
-    font-size: 15px;
+    font-size: 13px;
     .tag-container {
         display: flex;
         width: calc(100%-30px);
-        line-height: 30px;
+        line-height: 27px;
         vertical-align: middle;
         overflow-x: scroll;
         .tag-filter {
@@ -55,8 +53,9 @@
           padding-right: 8px;
           margin-right: 10px;
           text-align: center;
+          background-color: white;
           img {
-            padding: 10px 5px 10px 7px;
+            padding: 7px 5px 7px 7px;
             vertical-align: middle;
           }
         }
@@ -64,7 +63,7 @@
     .tag-refresh {
       margin-left: 10px;
       img {
-          padding: 10px 7px 10px 7px;
+          padding: 7px;
           vertical-align: middle;
       }
     }

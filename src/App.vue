@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
-    <transition name="fade" mode="out-in">
-      <router-view :key="$route.path"></router-view>
-    </transition>
-  </div>
+  <v-app>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
+
 export default {
   name: 'App',
+  components: {},
   data: () => ({
     //
   }),
