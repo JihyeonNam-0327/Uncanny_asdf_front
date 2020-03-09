@@ -17,7 +17,14 @@
         type: Number,
         default: 0
       },
-      value: [Boolean]
+      bookmark: {
+        type: Boolean
+      }
+    },
+    created() {
+      if(this.bookmark !== undefined) {
+        this.heartStatus = this.bookmark
+      }
     },
     data() {
       return {
