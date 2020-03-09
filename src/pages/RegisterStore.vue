@@ -33,13 +33,9 @@
           <p>좌석 수</p>
         </div>
         <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
-          <v-app class="select-box-outer" id="inspire">
-            <v-select
-              v-model="item.floor"
-              :items="floorInfo"
-              class="select-box"
-            ></v-select>
-          </v-app>
+          <div class="select-box-outer">
+            <select-box v-model="item.floor" :options="floorInfo"></select-box>
+          </div>
           <input-box class="floor-num" placeHolder="숫자만" inputType="number" v-model="item.floorNum"></input-box>
           <input-box class="desk-num" placeHolder="좌석수" inputType="number" v-model="item.deskNum"></input-box>
           <img v-if="index === 0" @click="plusFloorInfo" src="@/assets/icon/icon_plus_circle.svg"/>
@@ -137,6 +133,7 @@
 
 <script>
   import InputBox from '@/components/InputBox'
+  import SelectBox from '@/components/SelectBox'
   import HeaderComponent from '@/components/HeaderComponent'
   import BasicButton from '@/components/BasicButton'
   import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
@@ -146,7 +143,8 @@
       InputBox,
       HeaderComponent,
       BasicButton,
-      VueTimepicker
+      VueTimepicker,
+      SelectBox
     },
     data() {
       return {
@@ -184,7 +182,7 @@
           {day: '토요일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
           {day: '일요일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
         ],
-        floorInfo: ['지상', '지하'],
+        floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
         // floor: '지상',
         storeTotalDeskInfo: [
           {floor: '지상', floorNum: 0, deskNum: 0}
@@ -277,25 +275,15 @@
         .total-desk-info {
           display: flex;
           .select-box-outer {
-            height: 48px;
             width: 62px;
-            .select-box {
-              * {
-                font-size: 13px;
-                height: 48px !important;
-              }
-            }
+            margin-top: auto;
           }
           .floor-num {
-            position: relative;
-            top: 1px;
             margin-top: auto;
             width: 68px;
             margin-left: 10px;
           }
           .desk-num {
-            position: relative;
-            top: 1px;
             margin-top: auto;
             width: 122px;
             margin-left: 10px;
