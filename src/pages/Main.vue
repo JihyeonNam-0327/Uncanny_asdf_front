@@ -19,32 +19,34 @@
     <div class="store-list-grid" v-for="(item, index) in storeInfo" :key="index">
       <div v-if="index % 2 === 0" class="right-align-grid">
         <p class="place">{{ item.place }}</p>
-        <div class="img-name-outer">
-          <img class="store-img" :src="item.pic1">
+        <div class="img-name-outer" >
+          <img class="store-img" :src="item.pic1" @click="moveToDetail(item.storeId)">
           <div class="name-outer">
-            <div>
+            <div @click="moveToDetail(item.storeId)">
               <p class="name">{{ item.nameEng }}</p>
               <p class="copyright">{{ item.copyright }}</p>
             </div>
             <heart-button 
               class="heart-button" 
-              :totalCount="item.heartCount"
-              v-model="item.like"></heart-button>
+              :totalCount="item.bookmarkCount"
+              v-model="item.bookmark"
+              @click="addBookmark(item.storeId)"></heart-button>
           </div>
         </div>
       </div>
       <div v-else class="left-align-grid">
         <div class="img-name-outer">
-          <img class="store-img" :src="item.pic1">
+          <img class="store-img" :src="item.pic1" @click="moveToDetail(item.storeId)">
           <div class="name-outer">
-            <div>
+            <div @click="moveToDetail(item.storeId)">
               <p class="name">{{ item.nameEng }}</p>
               <p class="copyright">{{ item.copyright }}</p>
             </div>
             <heart-button 
               class="heart-button" 
-              :totalCount="item.heartCount"
-              v-model="item.like"></heart-button>
+              :totalCount="item.bookmarkCount"
+              v-model="item.bookmark"
+              @click="addBookmark(item.storeId)"></heart-button>
           </div>
         </div>
         <p class="place">{{ item.place }}</p>
@@ -64,12 +66,24 @@
     data() {
       return {
         storeInfo: [
-          {place: '망원', pic1: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'ANTHRACITE Seogyo', copyright: '젠스타일의 정원이 돋보이는 카페', heartCount: 150, like: false},
-          {place: '연남', pic1: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'JIGO', copyright: '따뜻한 원목 느낌이 물씬나는 카페', heartCount: 120, like: false},
-          {place: '서교', pic1: 'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: '13책방', copyright: '가정집을 개조한 북카페', heartCount: 273, like: false},
-          {place: '서촌', pic1: 'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: '대충유원지 Inwangsan', copyright: '인왕산의 큰 호랑이, 대충 카페', heartCount: 87, like: false},
-          {place: '가로수길', pic1: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'Tailor Coffee', copyright: '테일러 로스팅 랩의 원두를 맛볼 수 있는 직영점', heartCount: 120, like: false}
+          {storeId: '1', place: '망원', pic1: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'ANTHRACITE Seogyo', copyright: '젠스타일의 정원이 돋보이는 카페', bookmarkCount: 150, bookmark: false},
+          {storeId: '2', place: '연남', pic1: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'JIGO', copyright: '따뜻한 원목 느낌이 물씬나는 카페', bookmarkCount: 120, bookmark: false},
+          {storeId: '3', place: '서교', pic1: 'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: '13책방', copyright: '가정집을 개조한 북카페', bookmarkCount: 273, bookmark: false},
+          {storeId: '4', place: '서촌', pic1: 'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: '대충유원지 Inwangsan', copyright: '인왕산의 큰 호랑이, 대충 카페', bookmarkCount: 87, bookmark: false},
+          {storeId: '5', place: '가로수길', pic1: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', nameEng: 'Tailor Coffee', copyright: '테일러 로스팅 랩의 원두를 맛볼 수 있는 직영점', bookmarkCount: 120, bookmark: false}
         ]
+      }
+    },
+    methods: {
+      moveToDetail(storeId) {
+        /**
+         * router 의 params 는 Object 타입으로 작성한다.
+         */
+        this.$router.push({name: 'Detail', params: {storeId: storeId}})
+      },
+      addBookmark(storeId) {
+        // TODO: userId 와 storeId 저장
+        console.log(storeId);
       }
     }
   }

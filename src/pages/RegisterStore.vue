@@ -32,27 +32,13 @@
           <p>매장 층</p>
           <p>좌석 수</p>
         </div>
-        <!-- <div class="input-info">
-          <v-app class="select-box-outer" id="inspire">
-            <v-select
-              v-model="storeTotalDeskInfo[0].floor"
-              :items="floorInfo"
-              label="매장 위치"
-              :menu-props="{ top: true, offsetY: true }"
-            ></v-select>
-          </v-app>
-          <input-box class="floor-num" placeHolder="숫자만 입력" inputType="number" v-model="storeTotalDeskInfo[0].floorNum"></input-box>
-          <input-box class="desk-num" placeHolder="좌석수" inputType="number" v-model="storeTotalDeskInfo[0].deskNum"></input-box>
-          <img @click="plusFloorInfo" src="@/assets/icon/icon_plus_circle.svg"/>
-        </div> -->
         <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
           <v-app class="select-box-outer" id="inspire">
             <v-select
               v-model="item.floor"
               :items="floorInfo"
+              class="select-box"
             ></v-select>
-              <!-- label="매장 위치" -->
-              <!-- :menu-props="{ top: true, offsetY: true }" -->
           </v-app>
           <input-box class="floor-num" placeHolder="숫자만" inputType="number" v-model="item.floorNum"></input-box>
           <input-box class="desk-num" placeHolder="좌석수" inputType="number" v-model="item.deskNum"></input-box>
@@ -62,7 +48,6 @@
       </div>
 
       <!-- 변경되는 필드 -->
-
 
       <p>주차 정보</p>
       <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요." v-model="parking"></input-box>
@@ -294,6 +279,12 @@
           .select-box-outer {
             height: 48px;
             width: 62px;
+            .select-box {
+              * {
+                font-size: 13px;
+                height: 48px !important;
+              }
+            }
           }
           .floor-num {
             position: relative;
