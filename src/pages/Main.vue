@@ -94,9 +94,8 @@
 <style lang="scss">
   .main-outer {
     position: relative;
-    margin-bottom: 32px;
+    width: 100%;
     .logo {
-      padding-top: 36px;
       font-weight: bold;
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 25px;

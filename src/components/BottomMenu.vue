@@ -1,14 +1,14 @@
 <template>
   <div class="bottom-menu-outer">
-    <div class="home-button" @click="clickHomeBtn">
+    <div class="menu-button" @click="clickHomeBtn">
       <img v-if="clickHome" src="@/assets/icon/icon_home_fill.svg"/>
       <img v-else src="@/assets/icon/icon_home_empty.svg"/>
     </div>
-    <div class="map-marker-button" @click="clickMapBtn">
+    <div class="menu-button" @click="clickMapBtn">
       <img v-if="clickMap" src="@/assets/icon/icon_map_marker_fill.svg"/>
       <img v-else src="@/assets/icon/icon_map_marker_empty.svg"/>
     </div>
-    <div class="user-button" @click="clickUserBtn">
+    <div class="menu-button" @click="clickUserBtn">
       <img v-if="clickUser" src="@/assets/icon/icon_user_fill.svg"/>
       <img v-else src="@/assets/icon/icon_user_empty.svg"/>
     </div>
@@ -50,25 +50,22 @@
 <style lang="scss" scoped>
   .bottom-menu-outer {
     display: flex;
+    width: inherit;
+    height: 45px;
     justify-content: space-between;
     border-top: 1px solid #E8E8E8;
-    div {
-      flex-grow: 1;
+    background-color: #FFFFFF;
+    .menu-button {
+      border-right: 1px solid #E8E8E8;
       width: 33%;
+      flex-grow: 1;
+      display: flex;
       text-align: center;
-      height: 32px;
+      justify-content: center;
+      align-items: center;
     }
-    img {
-      padding-top: 8px;
-    }
-    .home-button {
-      border-right: 1px solid #E8E8E8;
-    }
-    .map-marker-button {
-      border-right: 1px solid #E8E8E8;
-    }
-    .user-button {
-
+    .menu-button:last-child {
+      border-right: 0;
     }
   }
 </style>
