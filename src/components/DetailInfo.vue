@@ -12,22 +12,22 @@
     <table class="table-basic">
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_coffee.svg"/></td>
-        <td class="title">아메리카노지수</td>
+        <td class="td-title">아메리카노지수</td>
         <td class="contents">{{ storeInfo.americanoIndex | priceFilter }}</td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_chair.svg"/></td>
-        <td class="title">좌석수</td>
+        <td class="td-title">좌석수</td>
         <td class="contents">{{ storeInfo.totalDesk }}</td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_parking.svg"/></td>
-        <td class="title">주차</td>
+        <td class="td-title">주차</td>
         <td class="contents"><img v-if="storeInfo.parking" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_flag.svg"/></td>
-        <td class="title">대관 여부</td>
+        <td class="td-title">대관 여부</td>
         <td class="contents"><img v-if="storeInfo.rental" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
     </table>
@@ -39,22 +39,22 @@
     <table>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_wifi.svg"/></td>
-        <td class="title">와이파이</td>
+        <td class="td-title">와이파이</td>
         <td class="contents"><img v-if="storeInfo.wifi" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_outlet.svg"/></td>
-        <td class="title">콘센트</td>
+        <td class="td-title">콘센트</td>
         <td class="contents"><img v-if="storeInfo.outlet" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_cube.svg"/></td>
-        <td class="title">공간감</td>
+        <td class="td-title">공간감</td>
         <td class="contents"><img v-if="storeInfo.space" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_height.svg"/></td>
-        <td class="title">테이블높이</td>
+        <td class="td-title">테이블높이</td>
         <td class="contents"><img v-if="storeInfo.deskHeight" src="@/assets/icon/icon_true.svg"/><img v-else src="@/assets/icon/icon_false.svg" /></td>
       </tr>
     </table>
@@ -111,16 +111,23 @@
       <tr>
         <td class="icon"><img src="@/assets/icon/icon_instagram.svg"/></td>
         <td class="title-short">instagram</td>
-        <td class="contents long">{{ storeInfo.instagram }}</td>
+        <td class="contents long">{{ storeInfo.instagram | textFilter}}</td>
       </tr>
     </table>
 
-    <div class="map">
-      <div id="map" style="width:100%;height:400px;"></div>
+    <div class="map"> 
+      <naver-maps
+        :height="height"
+        :width="width"
+        :mapOptions="mapOptions"
+        :initLayers="initLayers"
+        @load="onLoad">
+        <naver-marker :lat="storeInfo.x" :lng="storeInfo.y" @click="onMarkerClicked" @load="onMarkerLoaded"></naver-marker>
+      </naver-maps>
     </div>
   </div>
 </template>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID&callback=CALLBACK_FUNCTION"></script>
+
 <script>
   export default {
     props: {
@@ -128,9 +135,9 @@
         type: Object,
         default: () => {
           return {
-            nameKor: '상호명 앤트러사이트서교',
+            nameKor: '앤트러사이트서교',
             nameEng: 'Anthracite Seogyo',
-            address: '주소 서울 마포구 월드컵로12길 11 1층~3층',
+            address: '서울 마포구 월드컵로12길 11 1층~3층',
             countryNum: '02',
             middleNum: '322',
             endNum: '7009',
@@ -158,7 +165,22 @@
             openSun: '10:00',
             closeSun: '22:00',
             URL: '',
-            instagram: '@pouringlg_outl'
+            instagram: '@pouringlg_outl',
+            x: 37.555467,
+            y: 126.911652
+          }
+        }
+      },
+      mapOptions: {
+        type: Object,
+        default: () => {
+          return {
+            lat: 37.555467,
+            lng: 126.911652,
+            zoom: 15,
+            zoomControl: true,
+            zoomControlOptions: {position: 'TOP_RIGHT'},
+            mapTypeControl: true
           }
         }
       }
@@ -175,6 +197,39 @@
           return '-'
         }
       }
+    },
+    computed: {
+      hello() {
+        return `Hello, World! × ${this.count}`;
+      },
+      width() {
+        return window.innerWidth - 60
+      }
+    },
+    data() {
+      return {
+        height: 250,
+        info: true,
+        marker: null,
+        count: 1,
+        map: null,
+        initLayers: ['BACKGROUND', 'BACKGROUND_DETAIL', 'POI_KOREAN', 'TRANSIT']
+      }
+    },
+    methods: {
+      onLoad(vue) {
+        this.map = vue;
+      },
+      onMarkerClicked(event) {
+        console.log('event in onMarkerClicked: ', event);
+        this.info = !this.info;
+      },
+      onMarkerLoaded(vue) {
+        vue.marker.setClickable(true);
+      }
+    },
+    mounted() {
+      setInterval(() => this.count++, 1000);
     }
   }
 </script>
@@ -195,7 +250,7 @@
         width: 25px;
         text-align: center;
       }
-      .title {
+      .td-title {
         width: 155px;
       }
       .title-short {
@@ -209,6 +264,7 @@
       font-size: 13px;
       line-height: 21px;
       padding-left: 5px;
+      margin: 0;
     }
     .bold {
       font-weight: bold;
@@ -241,6 +297,7 @@
     }
     .map {
       margin-top: 25px;
+      margin-bottom: 64px;
     }
   }
 </style>

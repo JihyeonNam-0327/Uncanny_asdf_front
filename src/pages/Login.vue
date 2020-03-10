@@ -52,8 +52,7 @@
     .header-component {
       width: calc(100% - 16px);
       position: absolute;
-      top: 36px;
-      left: 0px;
+      top: 0;
     }
     .contents-container {
       width: calc(100% - 86px);

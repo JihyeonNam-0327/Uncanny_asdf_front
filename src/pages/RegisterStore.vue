@@ -217,14 +217,12 @@
 </script>
 
 <style lang="scss">
-/* @import '../../node_modules/vue2-timepicker/dist/VueTimepicker.css'; */
   .register-store-outer {
     position: relative;
     width: 100%;
     height: 100vh;
     .header-component {
       width: calc(100% - 16px);
-      margin-top: 36px;
     }
     .register-store-context {
       padding: 0 31px;

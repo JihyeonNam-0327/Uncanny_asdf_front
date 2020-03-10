@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-outer">
     <router-view></router-view>
     <bottom-menu class="bottom-menu-component" @homeBtnClicked="pageMoveFunc" @mapBtnClicked="pageMoveFunc" @userBtnClicked="pageMoveFunc"></bottom-menu>
   </div>
@@ -21,12 +21,14 @@
 </script>
 
 <style lang="scss" scoped>
-  .bottom-menu-component {
-    /* position: absolute; */
-    position: fixed;
+  .home-outer {
+    position: relative;
     width: 100%;
-    bottom: 0px;
-    z-index: 5;
-    background-color: #FFFFFF;
+    .bottom-menu-component {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 200;
+    }
   }
 </style>

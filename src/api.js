@@ -1,13 +1,19 @@
 import axios from 'axios'
 
-let API_URL = process.env.VUE_APP_API_ENDPOINT
+const API_URL = process.env.VUE_APP_API_ENDPOINT
+const CLIENT_ID= '5qehk43mhz'
+const CLIENT_SECRET = 'z2NIwCF390EswWakrLISwpokSmOXmZnXyECOeZEK'
 
 const API = {
-  // 1. 로그인
-  login (request) {
-    let url = `${API_URL}/api/login`
+  // 1. Geocoding
+  getGeoInfo (request) {
+    let url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${request}`
+    let headers = { 
+      'X-NCP-APIGW-API-KEY-ID': CLIENT_ID,
+      'X-NCP-APIGW-API-KEY': CLIENT_SECRET
+    }
 
-    return axios.get(url, { params: request })
+    return axios.get(url, { params: request, headers: headers })
   },
   // 2. 메뉴 리스트
   menuList (request, token) {
@@ -17,35 +23,6 @@ const API = {
     }
 
     return axios.get(url, { params : request, headers: headers  })
-  },
-  // 3. 메뉴 상세 (가게 정보 포함)
-  menuDetail (request, token) {
-    let url = `${API_URL}/api/menudetail`
-    let headers = { 
-      Authorization: token
-    }
-
-    return axios.get(url, { params: request, headers: headers })
-  },
-  // 4. 메뉴 수정
-  menuUpdate (request, token) {
-    let url = `${API_URL}/api/menu`
-    let headers = { 
-      Authorization: token,
-      'Content-Type': 'multipart/form-data'
-    }
-    
-    return axios.put(url, request, { headers: headers })
-  },
-  // 5. 식당 등록
-  createRestaurant (request, token) {
-    let url = `${API_URL}/api/restaurant`
-    let headers = { 
-      Authorization: token,
-      'Content-Type': 'multipart/form-data'
-    }
-
-    return axios.post(url, request, { headers: headers })
   }
 }
 

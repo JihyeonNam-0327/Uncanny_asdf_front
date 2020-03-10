@@ -6,6 +6,7 @@ import ToggleButton from 'vue-js-toggle-button'
 import VueScrollTo from 'vue-scrollto';
 import axios from 'axios'
 import API from '@/api.js'
+import naver from 'vue-naver-maps';
 
 // page
 import Apply from '@/pages/Apply.vue'
@@ -21,6 +22,13 @@ import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import vuetify from './plugins/vuetify'
 
+const CLIENT_ID = '5qehk43mhz';
+
+Vue.use(naver, {
+  clientID: CLIENT_ID,
+  useGovAPI: false, //공공 클라우드 API 사용 (선택)
+  // subModules:'geocode' // 서브모듈 (선택)
+});
 Vue.use(VueRouter)
 Vue.use(VueAgile)
 Vue.use(ToggleButton)

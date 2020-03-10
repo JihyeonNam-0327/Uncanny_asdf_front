@@ -35,7 +35,6 @@
     </div>
 
     <div class="bottom-heart-outer">
-
       <heart-button class="heart-button" v-model="bookmarkClicked" :bookmark="true" :totalCount="27"></heart-button>
     </div>
 
@@ -54,14 +53,14 @@
     </v-tabs>
     <detail-photo id="photo" :images="storePics"></detail-photo>
     <detail-info id="info"></detail-info>
-    <detail-comment id="comment"></detail-comment>
+    <!-- <detail-comment id="comment"></detail-comment> -->
   </div>
 </template>
 
 <script>
   import DetailPhoto from '@/components/DetailPhoto.vue'
   import DetailInfo from '@/components/DetailInfo.vue'
-  import DetailComment from '@/components/DetailComment.vue'
+  // import DetailComment from '@/components/DetailComment.vue'
   import HeaderComponent from '@/components/HeaderComponent'
   import HeartButton from '@/components/HeartButton'
 
@@ -74,7 +73,7 @@
     components: {
       DetailPhoto,
       DetailInfo,
-      DetailComment,
+      // DetailComment,
       HeaderComponent,
       HeartButton
     },
@@ -86,8 +85,8 @@
         tab: null,
         tabs: [
           {id: 1, name: 'photo', anchor: { el: '#photo', offset: -30 }},
-          {id: 2, name: 'info', anchor: { el: '#info' , offset: -30 }},
-          {id: 3, name: 'comment', anchor: { el: '#comment' , offset: -30 } }
+          {id: 2, name: 'info', anchor: { el: '#info' , offset: -30 }}
+          // {id: 3, name: 'comment', anchor: { el: '#comment' , offset: -30 } }
         ],
         nameEng: 'ANTHRACITE Seogyo',
         place: '망원',
@@ -114,8 +113,6 @@
           // scroll to anchor 1
         } else if (index === 1) {
           // scroll to anchor 2
-        } else if (index === 2) {
-          // scroll to anchor 3
         }
       },
       handleScroll () {
@@ -131,8 +128,6 @@
           this.tab = 0
         } else if (window.scrollY >= 1288 && window.scrollY < 1788) {
           this.tab = 1
-        } else if (window.scrollY >= 1788) {
-          this.tab = 2
         }
       }
     },
@@ -145,17 +140,18 @@
 <style lang="scss">
   .detail-outer {
     position: relative;
+    p {
+      margin: 0 !important;
+    }
     .header-component {
       width: calc(100% - 16px);
       position: relative;
-      /* top: 0px; */
-      margin-top: 36px;
       margin-bottom: 23px;
       z-index: 2;
       background-color: #FFFFFF;
     }
     .asdf-logo {
-      width: 375px;
+      width: 100%;
       height: 375px;
       overflow: hidden;
       position: relative;
@@ -242,13 +238,12 @@
       }
     }
     .bottom-heart-outer {
-      z-index: 2;
+      z-index: 200;
       display: flex;
       background: #FFFFFF 0% 0% no-repeat padding-box;
       border: 1px solid #D0D0D0;
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
       height: 45px;
       .heart-button {
