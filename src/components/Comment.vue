@@ -1,51 +1,53 @@
 <template>
   <div class="comment-component-outer">
-    <div class="" v-for="(item, index) in commentInfo" :key="index">
-      <div class="top">
-        <div class="nickname">
-          {{ item.nickName }}
-        </div>
-        <div class="time">
-          {{ item.timeStamp }}
-        </div>
-        <div class="button" @click="item.addBtn = !item.addBtn">
-          <img src="@/assets/icon/icon_reply_with_text.svg" />
-        </div>
-      </div>
-      <div class="context">
-        {{ item.context }}
-      </div>
-      <div v-if="item.reply.nickName" class="reply">
-        <div class="icon">
-          <img src="@/assets/icon/icon_reply.svg">
-        </div>
-        <div class="right">
-          <div class="top">
-            <div class="nickname">
-              {{ item.reply.nickName }}
-            </div>
-            <div class="time">
-              {{ item.reply.timeStamp }}
-            </div>
+    <div v-if="commentInfo.length > 1">
+      <div v-for="(item, index) in commentInfo" :key="index">
+        <div class="top">
+          <div class="nickname">
+            {{ item.nickName }}
           </div>
-          <div class="context">
-            {{ item.reply.context }}
+          <div class="time">
+            {{ item.timeStamp }}
+          </div>
+          <div class="button" @click="item.addBtn = !item.addBtn">
+            <img src="@/assets/icon/icon_reply_with_text.svg" />
           </div>
         </div>
-      </div>
-      <div v-if="item.addBtn" class="add-reply">
-        <div class="icon">
-          <img src="@/assets/icon/icon_reply.svg">
+        <div class="context">
+          {{ item.context }}
         </div>
-        <div class="text-area">
-          <textarea v-model="item.addContents"></textarea>
+        <div v-if="item.reply.nickName" class="reply">
+          <div class="icon">
+            <img src="@/assets/icon/icon_reply.svg">
+          </div>
+          <div class="right">
+            <div class="top">
+              <div class="nickname">
+                {{ item.reply.nickName }}
+              </div>
+              <div class="time">
+                {{ item.reply.timeStamp }}
+              </div>
+            </div>
+            <div class="context">
+              {{ item.reply.context }}
+            </div>
+          </div>
         </div>
-        <div class="write" @click="reReply(item)">
-          Write
+        <div v-if="item.addBtn" class="add-reply">
+          <div class="icon">
+            <img src="@/assets/icon/icon_reply.svg">
+          </div>
+          <div class="text-area">
+            <textarea v-model="item.addContents"></textarea>
+          </div>
+          <div class="write" @click="reReply(item)">
+            Write
+          </div>
         </div>
-      </div>
 
-      <div class="line"></div>
+        <div class="line"></div>
+      </div>
     </div>
     
     <div class="add-reply">
