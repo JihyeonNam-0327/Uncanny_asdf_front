@@ -53,14 +53,14 @@
     </v-tabs>
     <detail-photo id="photo" :images="storePics"></detail-photo>
     <detail-info id="info"></detail-info>
-    <!-- <detail-comment id="comment"></detail-comment> -->
+    <detail-comment id="comment"></detail-comment>
   </div>
 </template>
 
 <script>
   import DetailPhoto from '@/components/DetailPhoto.vue'
   import DetailInfo from '@/components/DetailInfo.vue'
-  // import DetailComment from '@/components/DetailComment.vue'
+  import DetailComment from '@/components/DetailComment.vue'
   import HeaderComponent from '@/components/HeaderComponent'
   import HeartButton from '@/components/HeartButton'
 
@@ -73,7 +73,7 @@
     components: {
       DetailPhoto,
       DetailInfo,
-      // DetailComment,
+      DetailComment,
       HeaderComponent,
       HeartButton
     },
@@ -85,8 +85,8 @@
         tab: null,
         tabs: [
           {id: 1, name: 'photo', anchor: { el: '#photo', offset: -30 }},
-          {id: 2, name: 'info', anchor: { el: '#info' , offset: -30 }}
-          // {id: 3, name: 'comment', anchor: { el: '#comment' , offset: -30 } }
+          {id: 2, name: 'info', anchor: { el: '#info' , offset: -30 }},
+          {id: 3, name: 'comment', anchor: { el: '#comment' , offset: -30 } }
         ],
         nameEng: 'ANTHRACITE Seogyo',
         place: '망원',
@@ -113,6 +113,8 @@
           // scroll to anchor 1
         } else if (index === 1) {
           // scroll to anchor 2
+        } else if (index === 2) {
+          // scroll to anchor 3
         }
       },
       handleScroll () {
@@ -128,6 +130,8 @@
           this.tab = 0
         } else if (window.scrollY >= 1288 && window.scrollY < 1788) {
           this.tab = 1
+        } else if (window.scrollY >= 1788) {
+          this.tab = 2
         }
       }
     },
