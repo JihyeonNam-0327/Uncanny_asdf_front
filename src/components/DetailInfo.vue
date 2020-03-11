@@ -225,8 +225,12 @@
         this.info = !this.info;
       },
       onMarkerLoaded(vue) {
+        this.marker = vue.marker
         vue.marker.setClickable(true);
-      }
+      },
+      onWindowLoad(that) {
+        console.log(that);
+      },
     },
     mounted() {
       setInterval(() => this.count++, 1000);
@@ -297,7 +301,7 @@
     }
     .map {
       margin-top: 25px;
-      margin-bottom: 64px;
+      margin-bottom: 20px;
     }
   }
 </style>
