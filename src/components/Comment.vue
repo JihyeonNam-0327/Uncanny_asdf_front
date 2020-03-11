@@ -1,6 +1,6 @@
 <template>
   <div class="comment-component-outer">
-    <div v-if="commentInfo.length > 1">
+    <div v-if="commentInfo.length > 0">
       <div v-for="(item, index) in commentInfo" :key="index">
         <div class="top">
           <div class="nickname">
