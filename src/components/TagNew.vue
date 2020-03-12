@@ -1,7 +1,8 @@
 <template>
-  <div class="tag-outer">
+  <div class="tag-new-outer" >
     {{ tagName }}
-    <img src="@/assets/icon/icon_arrow-down.svg" alt="v">
+    <img v-if="type === 'select'"
+    src="@/assets/icon/icon_arrow-down.svg" alt="v">
   </div>
 </template>
 
@@ -11,13 +12,17 @@
       tagName: {
         type: String,
         default: '',
+      },
+      type: {
+        type: String,
+        default: 'boolean',
       }
     },
   }
 </script>
 
 <style lang="scss" scoped>
-  .tag-outer {
+  .tag-new-outer {
     display: flex;
     font-size: 13px;
     line-height: 27px;
@@ -27,12 +32,13 @@
     clear: both;
     float: left;
 
-    padding-left: 12px;
-    padding-right: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     background-color: white;
+
     img {
-      padding: 7px 5px 7px 7px;
+      padding: 7px 0px 7px 7px;
       vertical-align: middle;
     }
   }
