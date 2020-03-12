@@ -6,23 +6,6 @@
     <select-box v-model="selectedValue"></select-box>
   
   
-
-    <div class="slider">
- <!--      <v-card-text>
-        <v-slider
-          v-model="slider.val"
-          :thumb-color="slider.thumbColor"
-          :color="slider.color"
-          :track-color="slider.trackColor"
-          min="0"
-          max="10000"
-          step="1000"
-          ticks="always"
-          tick-size="1"
-          thumb-label="always"
-        ></v-slider>
-      </v-card-text> -->
-    </div>
   
   </div>
 </template>
