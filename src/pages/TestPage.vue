@@ -8,7 +8,7 @@
   
 
     <div class="slider">
-      <!-- <v-card-text> -->
+ <!--      <v-card-text>
         <v-slider
           v-model="slider.val"
           :thumb-color="slider.thumbColor"
@@ -21,7 +21,7 @@
           tick-size="1"
           thumb-label="always"
         ></v-slider>
-      <!-- </v-card-text> -->
+      </v-card-text> -->
     </div>
   
   </div>

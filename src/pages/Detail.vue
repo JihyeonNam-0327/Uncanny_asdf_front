@@ -38,7 +38,7 @@
       <heart-button class="heart-button" v-model="bookmarkClicked" :bookmark="true" :totalCount="27"></heart-button>
     </div>
 
-    <v-tabs class="tab-index"
+    <!-- <v-tabs class="tab-index"
       v-model="tab"
       id="tabIndex"
       grow
@@ -50,7 +50,7 @@
         @change="changeTab(index)">
         {{ item.name }}
       </v-tab>
-    </v-tabs>
+    </v-tabs> -->
     <detail-photo id="photo" :images="storePics"></detail-photo>
     <detail-info id="info"></detail-info>
     <detail-comment id="comment"></detail-comment>
@@ -118,13 +118,13 @@
         }
       },
       handleScroll () {
-        if(window.scrollY < 790) {
+        /* if(window.scrollY < 790) {
           document.getElementById('tabIndex').removeAttribute('style')
           document.getElementById('tabIndex').style.position = 'relative'
         } else {
           document.getElementById('tabIndex').style.position = 'sticky'
           document.getElementById('tabIndex').style.top = 0
-        }
+        } */
 
         if(window.scrollY >= 790 && window.scrollY < 1288) {
           this.tab = 0
