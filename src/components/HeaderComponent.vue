@@ -105,6 +105,10 @@
       width: 100%;
       outline: none;
       border: 0;
+      padding-top: 7px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 13px;
     }
   }
   .center-none {
