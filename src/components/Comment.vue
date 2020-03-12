@@ -170,8 +170,9 @@
         width: 100%;
         flex: 1 1 auto;
         textarea {
+          box-sizing: border-box;
           padding: 10px;
-          height: 50px;
+          height: 52px;
           width: 100%;
           overflow: auto;
           outline: none;
