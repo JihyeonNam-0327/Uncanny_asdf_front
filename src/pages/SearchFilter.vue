@@ -1,5 +1,5 @@
 <template>
-  <div class="search-outer">
+  <div class="search-filter-outer">
     <header-component class="header-component" leftType="historyback" centerType="underbar" rightType="search"></header-component>
     <div class="search-tag-background">
       <tag class="search-tag"></tag>
@@ -52,27 +52,25 @@
 
    <div class="horizontal-line"></div>
     <div class="filter-container">
-      <p>아메키라노 지수</p>
+      <p>아메리카노 지수</p>
       <img class="americano-question" src="@/assets/icon/icon_question.svg" alt="?">
     </div>
-    <div>
-      <div class="slider">
-        <v-slider
-          v-model="slider.val"
-          :thumb-color="slider.thumbColor"
-          :color="slider.color"
-          :track-color="slider.trackColor"
-          min="0"
-          max="10000"
-          step="1000"
-          ticks="always"
-          tick-size="1"
-          thumb-label="always"
-        ></v-slider>
-      </div>
 
-   <div class="horizontal-line"></div>
-</div>
+    <div class="slider">
+      <v-range-slider
+        v-model="slider.val"
+        :thumb-color="slider.thumbColor"
+        :color="slider.color"
+        :track-color="slider.trackColor"
+        min="0"
+        max="10000"
+        step="1000" 
+        ticks="always"
+        tick-size="1"
+        thumb-label="always"
+      ></v-range-slider>
+    </div>
+    <div class="horizontal-line"></div>
   </div>
 </template>
 
@@ -111,8 +109,7 @@
           mm: '00'
         },
         slider: { 
-          val: 10000, thumbColor: 'red', 
-          color: '#000000', trackColor: '#F7F7F7'
+          val: [0, 10000], thumbColor: 'red', color: '#000000', trackColor: '#F7F7F7'
         },
       }
     },
@@ -125,25 +122,25 @@
 </script>
 
 <style lang="scss">
-  .search-outer {
+  .search-filter-outer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
+    .header-component {
+      width: calc(100% - 16px);
+      position: absolute;
+      top: 36px;
+      left: 0px;
+    }
     .horizontal-line {
       width: 100%;
       height: 1px;
       margin-top: 6px;
       margin-bottom: 6px;
       background-color: #EBEBEB;
-    }
-    .header-component {
-      width: calc(100% - 16px);
-      position: absolute;
-      top: 36px;
-      left: 0px;
     }
     .search-tag-background {
       background-color: #F7F7F7;
@@ -162,6 +159,7 @@
       width: calc(100% - 86px);
       p {
         padding: 5px 10px;
+        margin: 0px;
       }
       .toggle {
         margin-left: auto;
@@ -179,22 +177,25 @@
         padding-top: 2px;
       }
       .visiting-time {
-          margin-right: auto;
-          .vue__time-picker .clear-btn {
-            align-items: flex-end;
-          }
-      }
-    }
-    .slider {
-      width: calc(100% - 86px);
-      padding-top: 50px;
-      .v-application--wrap {
-        height: 50px;
-        * {
-          height: 50px;
+        width: 100px;
+        margin-left: auto;
+        span {
+          width: 100px;
+        }
+        input {
+          border: 0;
+          outline: none;
+          width: 100px;
+          border-bottom: 1px solid #404040;
+        }
+        .vue__time-picker .clear-btn {
+          align-items: flex-end;
         }
       }
     }
-
+    .slider {
+      width: calc(100% - 106px);
+      padding-top: 35px;
+    }
   }
 </style>

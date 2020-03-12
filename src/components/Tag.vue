@@ -4,7 +4,7 @@
     <div class="tag-container">
       <div class="tag-filter" :key="index" v-for="(item, index) in filterItem">
           {{ item.filterName }}
-          <img src="@/assets/icon/icon_x.svg" alt="x">
+          <img src="@/assets/icon/icon_arrow-down.svg" alt="x">
       </div>
     </div>
 
@@ -48,7 +48,7 @@
         .tag-filter {
           flex: 0 0 auto;
           border: 1px solid black;
-          border-radius: 20px;
+          border-radius: 6px;
           padding-left: 12px;
           padding-right: 8px;
           margin-right: 10px;

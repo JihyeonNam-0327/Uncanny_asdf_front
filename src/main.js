@@ -16,7 +16,8 @@ import MyPage from '@/pages/MyPage.vue'
 import Main from '@/pages/Main.vue'
 import MapPage from '@/pages/MapPage.vue'
 import RegisterStore from '@/pages/RegisterStore.vue'
-import Search from '@/pages/Search.vue'
+import SearchKeyword from '@/pages/SearchKeyword.vue'
+import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
@@ -55,9 +56,14 @@ const routes = [
     component: RegisterStore 
   },
   { 
-    path: '/search', 
-    name: 'Search', 
-    component: Search
+    path: '/searchkeyword', 
+    name: 'Searchkeyword', 
+    component: SearchKeyword
+  },
+  { 
+    path: '/searchfilter', 
+    name: 'SearchFilter', 
+    component: SearchFilter
   },
   { 
     path: '/signup', 
