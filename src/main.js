@@ -21,7 +21,6 @@ import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
-import vuetify from './plugins/vuetify'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -131,7 +130,6 @@ const router = new VueRouter({
 new Vue({
   render: h => h(App),
   router,
-  vuetify,
   components: {
     agile: VueAgile
 	}

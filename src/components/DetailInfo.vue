@@ -240,6 +240,9 @@
 
 <style lang="scss" scoped>
   .detail-info-outer {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
     width: 100%;
     padding: 20px 30px 0px 30px;
     table {

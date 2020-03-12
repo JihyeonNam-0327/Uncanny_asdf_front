@@ -57,7 +57,7 @@
     </div>
 
     <div class="slider">
-      <v-range-slider
+      <!-- <v-range-slider
         v-model="slider.val"
         :thumb-color="slider.thumbColor"
         :color="slider.color"
@@ -68,7 +68,7 @@
         ticks="always"
         tick-size="1"
         thumb-label="always"
-      ></v-range-slider>
+      ></v-range-slider> -->
     </div>
     <div class="horizontal-line"></div>
   </div>
