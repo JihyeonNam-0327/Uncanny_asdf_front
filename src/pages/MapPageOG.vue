@@ -28,6 +28,20 @@
       </div>
     </div>
 
+    <!-- 컴포넌트 MyModal -->
+    <MapPageTime @close="closeModal" v-if="modal">
+      <!-- default 슬롯 콘텐츠 -->
+      <p>Vue.js Modal Window!</p>
+      <div><input v-model="message"></div>
+      <!-- /default -->
+      <!-- footer 슬롯 콘텐츠 -->
+      <template slot="footer">
+        <button @click="doSend">제출</button>
+      </template>
+      <!-- /footer -->
+    </MapPageTime>
+
+
     <div class="map-outer">
       <naver-maps
         :height="height"
@@ -61,10 +75,12 @@
 
 <script>
   import TagNew from '@/components/TagNew'
-  
+  import MapPageTime from '@/components/MapPageTime'
+
   export default {
     components: {
       TagNew,
+      MapPageTime,
     },
     data() {
       return {
