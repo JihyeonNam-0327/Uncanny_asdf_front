@@ -4,12 +4,13 @@
     <div class="contents-container">
       <input-box class="email-input" placeHolder="이메일" inputType="text" v-model="email" ></input-box>
       <input-box class="password-input"  placeHolder="비밀번호" inputType="password" v-model="password"></input-box>
+      {{ nickName }}
       <div class="auto-login">
         <input id="auto-login-tag" type="checkbox" v-model="autoLogin"/>
         <label for="auto-login-tag" >자동로그인</label>
       </div>
-      <basic-button buttonText="로그인"></basic-button>
-      <p class="sign-up-button">
+      <basic-button buttonText="로그인" @click="checkUserFunc"></basic-button>
+      <p class="sign-up-button" @click="checkUserFunc">
         이메일로 회원가입하기
       </p>
       <p class="apply-button">
@@ -34,10 +35,25 @@
       return {
         email: '',
         password: '',
-        autoLogin: true
+        autoLogin: true,
+        nickName: ''
       }
     },
-    methods: {}
+    methods: {
+      checkUserFunc() {
+        this.nickName = ''
+        let params = { userId : this.email }
+        this.$api.checkUser(params)
+        .then(response => {
+          if(response.data.errCode === 200) {
+            this.nickName = response.data.userInfo.NICKNAME
+          }
+        })
+        .catch(error => {
+          console.lgo('error : ', error)
+        })
+      }
+    }
   }
 </script>
 
