@@ -25,7 +25,8 @@
         slider: { 
           val: 10000, thumbColor: 'red', color: '#000000', trackColor: '#F7F7F7'
         },
-        userName: ''
+        userName: '',
+        userId: 'USER_ID 01'
       }
     },
     watch: {
@@ -35,9 +36,9 @@
     },
     methods: {
       apiTest() {
-        let params = {}
+        let params = { userId: this.userId }
         let token = {}
-        this.$api.menuList(params, token)
+        this.$api.checkUser(params, token)
         .then(response => {
           console.log(response)
           if(response.status === 200) {

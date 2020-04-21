@@ -16,8 +16,8 @@ const API = {
     return axios.get(url, { params: request, headers: headers })
   },
   // 2. 메뉴 리스트
-  menuList (request, token) {
-    let url = `${API_URL}/users/api`
+  checkUser (request, token) {
+    let url = `${API_URL}/api/checkUser`
     let headers = { 
       Authorization: token,
     }
