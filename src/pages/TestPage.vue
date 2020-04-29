@@ -1,8 +1,8 @@
 <template>
   <div>
-    <header-component leftType="historyBack" centerType="underbar" rightType="search"></header-component>
-    <header-component leftType="none" centerType="underbar" rightType="search"></header-component>
-    <header-component leftType="none" centerType="underbar" rightType="home"></header-component>
+    <header-component leftType="historyBack" ></header-component>
+    <header-component leftType="none" ></header-component>
+    <header-component leftType="none" ></header-component>
     <select-box v-model="selectedValue"></select-box>
 
     <p>버튼을 누르면 모달 대화 상자가 열립니다.</p>

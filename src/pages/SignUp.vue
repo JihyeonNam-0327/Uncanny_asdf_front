@@ -1,7 +1,7 @@
 <template>
   <div class="sign-up-outer">
     <header-component class="header-component"
-      leftType="historyback" centerType="none" rightType="home">
+      leftType="historyback" >
     </header-component>
     <div class="horizontal-line-top"></div>
     <div class="input-email">

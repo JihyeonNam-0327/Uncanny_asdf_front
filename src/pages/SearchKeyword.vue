@@ -1,6 +1,6 @@
 <template>
   <div class="search-keyword-outer">
-    <header-component class="header-component" leftType="historyback" centerType="input" rightType="search"></header-component>
+    <header-component class="header-component" leftType="historyback" ></header-component>
 
   </div>
 </template>

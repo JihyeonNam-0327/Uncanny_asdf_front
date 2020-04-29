@@ -1,6 +1,6 @@
 <template>
   <div class="detail-outer">
-    <header-component class="header-component" id="header" leftType="historyback" centerType="underbar" rightType="search"></header-component>
+    <header-component class="header-component" id="header" leftType="historyback"></header-component>
     
     <div class="asdf-logo">
       <img src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" />
