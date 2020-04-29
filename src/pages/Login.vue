@@ -1,6 +1,6 @@
 <template>
   <div class="login-page-outer">
-    <header-component class="header-component" leftType="historyback" centerType="underbar" rightType="search"></header-component>
+    <header-component class="header-component" leftType="historyback"></header-component>
     <div class="contents-container">
       <input-box class="email-input" placeHolder="이메일" inputType="text" v-model="email" ></input-box>
       <input-box class="password-input"  placeHolder="비밀번호" inputType="password" v-model="password"></input-box>

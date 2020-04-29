@@ -1,6 +1,6 @@
 <template>
   <div class="search-filter-outer">
-    <header-component class="header-component" leftType="historyback" centerType="underbar" rightType="search"></header-component>
+    <header-component class="header-component" leftType="historyback" ></header-component>
     <div class="search-tag-background">
       <tag class="search-tag"></tag>
     </div>

@@ -7,7 +7,7 @@
       <img src="../assets/icon/icon_arrow_back.svg" alt="">
     </div>
 
-    <div 
+    <!-- <div 
       class="center-underbar" 
       v-if="centerType === 'underbar'"
       @click="searchButtonClick">
@@ -20,9 +20,9 @@
     <div
       class="center-none"
       v-else>
-    </div>
+    </div> -->
   
-    <div 
+    <!-- <div 
       class="right-search" 
       v-if="rightType === 'search'"
       @click="searchButtonClick">
@@ -33,7 +33,7 @@
       @click="homeButtonClick"
       v-else>
       <img src="../assets/icon/icon_home_empty.svg" alt="">
-    </div>
+    </div> -->
   </div>
 </template>
 

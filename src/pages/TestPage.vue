@@ -1,8 +1,8 @@
 <template>
   <div>
-    <header-component leftType="historyBack" centerType="underbar" rightType="search"></header-component>
-    <header-component leftType="none" centerType="underbar" rightType="search"></header-component>
-    <header-component leftType="none" centerType="underbar" rightType="home"></header-component>
+    <header-component leftType="historyBack" ></header-component>
+    <header-component leftType="none" ></header-component>
+    <header-component leftType="none" ></header-component>
     <select-box v-model="selectedValue"></select-box>
     <button @click="apiTest">버튼</button>
     <p>{{userName}}</p>

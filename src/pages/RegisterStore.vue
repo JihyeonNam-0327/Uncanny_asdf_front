@@ -1,6 +1,6 @@
 <template>
   <div class="register-store-outer">
-    <header-component class="header-component" leftType="historyback" centerType="none" rightType="home"></header-component>
+    <header-component class="header-component" leftType="historyback" ></header-component>
     
     <div class="register-store-context">
       <p class="page-desc">아래의 매장 정보로 등록을 요청하게 됩니다.</p>
@@ -23,14 +23,15 @@
         <input-box placeHolder="5678" v-model="endNum"></input-box>
       </div>
       
-      <p>아메리카노 지수</p>
-      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요." v-model="americanoIndex"></input-box>
+      <!-- <p>아메리카노 지수</p>
+      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요." v-model="americanoIndex"></input-box> -->
 
       <!-- 고정된 필드 -->
       <div class="store-floor-info">
         <div class="desc">
           <p>매장 층</p>
           <p>좌석 수</p>
+          <p>(총 좌석수: {{totalDeskNum}})</p>
         </div>
         <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
           <div class="select-box-outer">
@@ -45,6 +46,7 @@
 
       <!-- 변경되는 필드 -->
 
+      <!--
       <p>주차 정보</p>
       <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요." v-model="parking"></input-box>
 
@@ -66,7 +68,7 @@
       <div class="toggle-container">
         <p>높은 테이블 유무</p>
         <toggle-button class="toggle" v-model="deskHeight" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
+      </div> -->
 
       <p>휴무일</p>
       <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="holiday"></input-box>
@@ -189,6 +191,15 @@
         ]
       }
     },
+    computed: {
+      totalDeskNum() {
+        let totalNum = 0
+        this.storeTotalDeskInfo.forEach((item) => {
+          totalNum += Number(item.deskNum)
+        })
+        return totalNum
+      }
+    },
     methods: {
       loadFile() {
         let storeImages = Array.from(this.$refs.storeImage.files);
@@ -269,6 +280,9 @@
           p {
             flex-basis: 50%;
           }
+          p:last-child {
+            float: left;
+          }
         }
         .total-desk-info {
           display: flex;
@@ -280,11 +294,13 @@
             margin-top: auto;
             width: 68px;
             margin-left: 10px;
+            margin-right: 10px;
           }
           .desk-num {
             margin-top: auto;
             width: 122px;
             margin-left: 10px;
+            margin-right: 10px;
           }
           img {
             margin: auto;

@@ -1,7 +1,7 @@
 <template>
   <div class="my-page-outer">
     <HeaderComponent class="header-component"  
-      leftType="none" centerType="underbar" rightType="search">
+      leftType="none" >
     </HeaderComponent>
 
     <div class="my-page-contents">

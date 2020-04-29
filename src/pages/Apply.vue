@@ -1,6 +1,6 @@
 <template>
   <div class="apply-page-outer">
-    <header-component class="header-component" leftType="historyback" centerType="none" rightType="home"></header-component>
+    <header-component class="header-component" leftType="historyback"></header-component>
     <div class="apply-contents">
       <div class="apply-notice">
         아래의 매장 정보를 입력해주시면,
