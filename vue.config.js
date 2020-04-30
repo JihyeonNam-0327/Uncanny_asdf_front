@@ -7,5 +7,8 @@ module.exports = {
         '@': path.join(__dirname, 'src/')
       }
     }
-  }
+  },
+  // devServer: {
+  //   proxy: 'https://openapi.map.naver.com/',
+  // }
 }

@@ -15,13 +15,7 @@
 
     <div class="tag-outer">
       <div class="tag-container">
-        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="방문시간" type="select" ></tagNew></div>
-        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="작업환경" type="select"></tagNew></div>
-        <div class="tag-filter"><tagNew class="tag-filter" tagName="주차" type="toggle"></tagNew></div>  
-        <div class="tag-filter"><tagNew class="tag-filter" tagName="애견동반" type="toggle"></tagNew></div>  
-        <div class="tag-filter"><tagNew class="tag-filter" tagName="촬영" type="toggle"></tagNew></div>  
-        <div class="tag-filter"><tagNew class="tag-filter" tagName="대관" type="toggle"></tagNew></div>  
-        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="아메리카노지수" type="select"></tagNew></div>
+
       </div>
       <div class="tag-control">
         <img src="@/assets/icon/icon_control.svg">
@@ -29,7 +23,7 @@
     </div>
 
     <div class="map-outer">
-      <naver-maps
+      <!-- <naver-maps
         :height="height"
         :width="width"
         :mapOptions="mapOptions"
@@ -40,31 +34,30 @@
           @load="onWindowLoad"
           :isOpen="info"
           :marker="marker">
-          <!-- <div class="info-window-container">
+          <div class="info-window-container">
             <h1>{{hello}}</h1>
-          </div> -->
+          </div> 
         </naver-info-window>
         <naver-marker :lat="37" :lng="127" @click="onMarkerClicked" @load="onMarkerLoaded"/>
-        <!-- <naver-circle :lat="37" :lng="127" :radius="88600"/>
+         <naver-circle :lat="37" :lng="127" :radius="88600"/>
         <naver-rectangle :south="36" :north="38" :west="126" :east="128"/>
         <naver-ellipse :bounds="{south:36,north:38,west:126,east:128}"/>
         <naver-polygon :paths="[[{lat:37,lng:127},{lat:38,lng:127},{lat:38,lng:129},{lat:37,lng:128}]]"/>
         <naver-polyline :path="[{lat:37,lng:127},{lat:38,lng:129}]"/>
         <naver-ground-overlay
           :url="'//logoproject.naver.com/img/img_about.gif'"
-          :bounds="{south:36.7,north:36.9,west:126.5,east:127.5}"/> -->
-      </naver-maps>
+          :bounds="{south:36.7,north:36.9,west:126.5,east:127.5}"/> 
+      </naver-maps> -->
     </div>  
 
   </div>
 </template>
 
 <script>
-  import TagNew from '@/components/TagNew'
   
   export default {
     components: {
-      TagNew,
+ 
     },
     data() {
       return {

@@ -20,9 +20,20 @@ import SearchKeyword from '@/pages/SearchKeyword.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
-import TestPage from '@/pages/TestPage.vue'
+import JhjTestPage from '@/pages/JhjTestPage.vue'
 
 const CLIENT_ID = '5qehk43mhz';
+
+
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
+// set default config
+Vue.$cookies.config('7d')
+
+// set global cookie
+Vue.$cookies.set('cross-site-cookie', 'bar');
+// Vue.$cookies.set('SameSite', 'None');
 
 Vue.use(naver, {
   clientID: CLIENT_ID,
@@ -95,8 +106,8 @@ const routes = [
       },
       { 
         path: '/test', 
-        name: 'TestPage', 
-        component: TestPage 
+        name: 'JhjTestPage', 
+        component: JhjTestPage 
       }
     ]
   },

@@ -186,7 +186,7 @@
         floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
         // floor: '지상',
         storeTotalDeskInfo: [
-          {floor: '지상', floorNum: 0, deskNum: 0}
+          {floor: '지상', floorNum: undefined, deskNum: undefined}
         ]
       }
     },
@@ -194,7 +194,9 @@
       totalDeskNum() {
         let totalNum = 0
         this.storeTotalDeskInfo.forEach((item) => {
-          totalNum += Number(item.deskNum)
+          if(item.deskNum) {
+            totalNum += Number(item.deskNum)
+          }
         })
         return totalNum
       }
@@ -298,12 +300,18 @@
             width: calc((100%-70px)*0.22);;
             margin-left: 10px;
             margin-right: 10px;
+            input {
+              height: 30px;
+            }
           }
           .desk-num {
             margin-top: auto;
             width: calc((100%-70px)*0.55);
             margin-left: 10px;
             margin-right: 10px;
+            input {
+              height: 30px;
+            }
           }
           img {
             margin: auto;

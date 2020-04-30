@@ -99,6 +99,8 @@
     flex: 0 0 auto;
   }
   .center-text {
+    padding-top: 7px;
+    padding-right: 11px;
     width: 100%;
     flex: 1 1 auto;
     margin-left: 5px;

@@ -1,5 +1,9 @@
 <template>
   <div>
+
+    <basic-map class="map-outer">
+    </basic-map>
+
     <header-component leftType="historyBack" ></header-component>
     <header-component leftType="none" ></header-component>
     <header-component leftType="none" ></header-component>
@@ -9,18 +13,7 @@
     <button @click="openModal">열기</button>
     <div @click="openModal">열기22</div>
 
-    <!-- 컴포넌트 MyModal -->
-    <MapPageTest @close="closeModal" v-if="modal">
-      <!-- default 슬롯 콘텐츠 -->
-      <p>내용을 입력하세요</p>
-      <div><input v-model="message"></div>
-      <!-- /default -->
-      <!-- footer 슬롯 콘텐츠 -->
-      <template slot="footer">
-        <button @click="doSend">제출</button>
-      </template>
-      <!-- /footer -->
-    </MapPageTest>
+  
 
 
 
@@ -30,13 +23,16 @@
 <script>
   import HeaderComponent from '../components/HeaderComponent.vue'
   import SelectBox from '@/components/SelectBox'
-  import MapPageTest from '@/components/MapPageTest.vue'
+  import BasicMap from '@/components/BasicMap.vue'
 
   export default {
     components: {
       HeaderComponent,
       SelectBox,
-      MapPageTest,
+      BasicMap
+    },
+    craeted() {
+      document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
     },
     data() {
       return {
@@ -91,4 +87,8 @@
 </script>
 
 <style lang="scss" scoped>
+  .map-outer {
+    width: 100%;
+    height: 500px;
+  }
 </style>
