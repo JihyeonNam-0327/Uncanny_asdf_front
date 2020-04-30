@@ -20,7 +20,7 @@ import SearchKeyword from '@/pages/SearchKeyword.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
-import JhjTestPage from '@/pages/JhjTestPage.vue'
+import TestPage from '@/pages/TestPage.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -106,8 +106,8 @@ const routes = [
       },
       { 
         path: '/test', 
-        name: 'JhjTestPage', 
-        component: JhjTestPage 
+        name: 'TestPage', 
+        component: TestPage 
       }
     ]
   },
