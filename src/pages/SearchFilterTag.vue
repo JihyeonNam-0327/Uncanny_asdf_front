@@ -3,91 +3,39 @@
     
     <div class="horizontal-line"></div>
 
-    <div>
-      <filterTagNew type='radio'
-        v-bind:tagArray="[
-          {name:'남여공용'},
-          {name:'남녀구분'},
-          {name:'남녀뭐야'}
-        ]">
-      </filterTagNew>
-    </div>
-
-    <div class="horizontal-line"></div>
-
-    <div>
-      <filterTagNew type='checkbox'
-        v-bind:tagArray="[
-          {name:'용용용용'},
-          {name:'남녀해해'},
-          {name:'남녀수수'}
-        ]">
-      </filterTagNew>
-    </div>
-
-    <div class="horizontal-line"></div>
-
     <div class="group-outer">
       <div class="group-name">카테고리</div>
       <div class="group-container">
-        <filterTagNew type='checkbox'
-          v-bind:groupName="카테고리"
+        <filterTag type='checkbox'
+          groupName="grp1"
           v-bind:tagArray="[
-            {name:'카페',},
-            {name:'차',},
-            {name:'디저트',},
-            {name:'식당',},
-            {name:'주점',},
-            {name:'문화',},
-            {name:'기타',}
+            {name:'카페'},
+            {name:'차'},
+            {name:'디저트'},
+            {name:'식당'},
+            {name:'주점'},
+            {name:'문화'},
+            {name:'기타'}
           ]">
-        </filterTagNew>
+        </filterTag>
       </div>
     </div>
     
-    <div class="horizontal-line"></div>
-
-    <div class="group-outer">
-      <div class="group-name">주차</div>
-      <div class="group-container">
-        <filterTagNew type='radio' 
-          v-bind:tagArray="[
-            {name:'주차불가',},
-            {name:'무료주차',},
-            {name:'유료주차',},
-            {name:'무료발렛',},
-            {name:'유료발렛',},
-         ]">
-        </filterTagNew>
-      </div>
-    </div>
-    
-
-    <div class="horizontal-line"></div>
-
-    <div class="group-outer">
-      <div class="group-name">카테고리</div>
-      <div class="group-container">
-        <filterTag type='check' tagName='카페'></filterTag>
-        <filterTag type='check' tagName='차'></filterTag>
-        <filterTag type='check' tagName='디저트'></filterTag>
-        <filterTag type='check' tagName='식당'></filterTag>
-        <filterTag type='check' tagName='주점'></filterTag>
-        <filterTag type='check' tagName='문화'></filterTag>
-        <filterTag type='check' tagName='기타'></filterTag>
-      </div>
-    </div>
-
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">주차정보</div>
       <div class="group-container">
-        <filterTag type='check' tagName='주차불가'></filterTag>
-        <filterTag type='check' tagName='무료주차'></filterTag>
-        <filterTag type='check' tagName='유료주차'></filterTag>
-        <filterTag type='check' tagName='무료발렛'></filterTag>
-        <filterTag type='check' tagName='유료발렛'></filterTag>
+        <filterTag type='radio' 
+          groupName="grp2"
+          v-bind:tagArray="[
+            {name:'주차불가'},
+            {name:'무료주차'},
+            {name:'유료주차'},
+            {name:'무료발렛'},
+            {name:'유료발렛'},
+         ]">
+        </filterTag>
       </div>
       <div class="parking-tip">주차Tip.
         <input type="text" placeholder="ex) 50m이내 공영주차장 이용">
@@ -99,15 +47,30 @@
     <div class="group-outer">
       <div class="group-name">유형</div>
       <div class="group-container">
-        <filterTag type='check' tagName='포장/테이크아웃'></filterTag>
-        <filterTag type='check' tagName='배달가능'></filterTag>
-        <filterTag type='check' tagName='드라이브스루'></filterTag>
+        <filterTag type='checkbox' 
+          groupName="grp4"
+          v-bind:tagArray="[
+            {name:'포장/테이크아웃'},
+            {name:'배달가능'},
+            {name:'드라이브스루'},
+         ]">
+        </filterTag>
       </div>
       <div style="padding-bottom:10px;"></div>
       <div class="group-container">
-        <filterTag type='check' tagName='노키즈존'></filterTag>
-        <filterTag type='check' tagName='유아의자'></filterTag>
-        <filterTag type='check' tagName='애견동반'></filterTag>
+        <filterTag type='radio' 
+          groupName="grp5"
+          v-bind:tagArray="[
+            {name:'노키즈존'},
+            {name:'유아의자'},
+         ]">
+        </filterTag>
+        <filterTag type='checkbox'
+          groupName="grp6"
+          v-bind:tagArray="[
+            {name:'애견동반'},
+         ]">
+        </filterTag>
       </div>
     </div>
 
@@ -116,92 +79,123 @@
     <div class="group-outer">
       <div class="group-name">공간</div>
       <div class="group-container">
-        <filterTag type='check' tagName='혼밥가능'></filterTag>
-        <filterTag type='check' tagName='단체석'></filterTag>
-        <filterTag type='check' tagName='룸'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp7"
+          v-bind:tagArray="[
+            {name:'혼밥가능'},
+            {name:'단체석'},
+            {name:'룸'},
+          ]">
+        </filterTag>
       </div>
       <div style="padding-bottom:10px;"></div>
       <div class="group-container">
-        <filterTag type='check' tagName='높은테이블'></filterTag>
-        <filterTag type='check' tagName='콘센트'></filterTag>
-        <filterTag type='check' tagName='무료 Wi-Fi'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp8"
+          v-bind:tagArray="[
+            {name:'높은테이블'},
+            {name:'콘센트'},
+            {name:'무료 Wi-Fi'},
+          ]">
+        </filterTag>
       </div>
       <div style="padding-bottom:10px;"></div>
       <div class="group-container">
-        <filterTag type='check' tagName='테라스'></filterTag>
-        <filterTag type='check' tagName='루프탑'></filterTag>
-        <filterTag type='check' tagName='흡연시설'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp9"
+          v-bind:tagArray="[
+            {name:'테라스'},
+            {name:'루프탑'},
+            {name:'흡연시설'},
+          ]">
+        </filterTag>
       </div>
     </div>
-
+    
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">Good for</div>
       <div class="group-container">
-        <filterTag type='check' tagName='아침'></filterTag>
-        <filterTag type='check' tagName='브런치'></filterTag>
-        <filterTag type='check' tagName='점심'></filterTag>
-        <filterTag type='check' tagName='저녁'></filterTag>
-        <filterTag type='check' tagName='늦은저녁'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp10"
+          v-bind:tagArray="[
+            {name:'아침'},
+            {name:'브런치'},
+            {name:'점심'},
+            {name:'저녁'},
+            {name:'늦은저녁'},
+          ]">
+        </filterTag>
       </div>
       <div style="padding-bottom:10px;"></div>
       <div class="group-container">
-        <filterTag type='check' tagName='디카페인'></filterTag>
-        <filterTag type='check' tagName='디저트'></filterTag>
-        <filterTag type='check' tagName='비건'></filterTag>
-        <filterTag type='check' tagName='할랄'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp11"
+          v-bind:tagArray="[
+            {name:'디카페인'},
+            {name:'비건'},
+            {name:'할랄'},
+          ]">
+        </filterTag>
       </div>
     </div>
-
+    
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">지불</div>
       <div class="group-container">
-        <filterTag type='check' tagName='카드불가'></filterTag>
-        <filterTag type='check' tagName='현금불가'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp12"
+          v-bind:tagArray="[
+            {name:'카드불가'},
+            {name:'현금불가'},
+          ]">
+        </filterTag>
       </div>
     </div>
-
+    
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">화장실</div>
       <div class="group-container">
-        <filterTag type='check' tagName='내부'></filterTag>
-        <filterTag type='check' tagName='외부'></filterTag>
-        <filterTag type='check' tagName='남녀공용'></filterTag>
-        <filterTag type='check' tagName='남녀구분'></filterTag>
+        <filterTag type='radio' 
+          groupName="grp13"
+          v-bind:tagArray="[
+            {name:'내부', id: 'grp1'},
+            {name:'외부', id: 'grp1'} 
+         ]">
+        </filterTag>
+        <filterTag type='radio'
+        groupName="grp14"
+          v-bind:tagArray="[
+            {name:'남녀공용', id: 'grp2'},
+            {name:'남녀구분', id: 'grp2'}
+         ]">
+        </filterTag>
       </div>
     </div>
-
+    
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">기타</div>
       <div class="group-container">
-        <filterTag type='check' tagName='해피아워'></filterTag>
-        <filterTag type='check' tagName='지역상품권 사용가능'></filterTag>
+        <filterTag type='checkbox'
+          groupName="grp15"
+          v-bind:tagArray="[
+            {name:'해피아워'},
+            {name:'지역상품권 사용가능'},
+          ]">
+        </filterTag>
       </div>
     </div>
 
     <div class="horizontal-line"></div>
 
-
-
-    <div class="horizontal-line"></div>
-
-    <div>
-      <input type="radio" id="radio1" name="radios" value="all" checked>
-      <label for="radio1">iPhone</label>
-      <input type="radio" id="radio2" name="radios" value="false">
-      <label for="radio2">Galaxy S IV</label>
-      <input type="radio" id="radio3" name="radios" value="true">
-      <label for="radio3">Nexus S</label> 
-    </div>
-
-    <div class="horizontal-line"></div>
+    <div style="padding-bottom:110px;"></div>
 
     <div class="footer">
       하단
@@ -213,12 +207,10 @@
 
 <script>
   import FilterTag from '@/components/FilterTag'
-  import FilterTagNew from '@/components/FilterTagNew'
 
   export default {
     components: {
       FilterTag,
-      FilterTagNew,
     },
   }
 </script>
