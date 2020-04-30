@@ -9,8 +9,8 @@
         {{ tagName }}
         <img src="@/assets/icon/icon_arrow-down.svg" alt="v">
       </div>
-    </div>
 
+  </div>
 </template>
 
 <script>
