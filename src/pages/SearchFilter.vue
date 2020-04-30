@@ -2,7 +2,6 @@
   <div class="search-filter-outer">
     <header-component class="header-component" leftType="historyback" ></header-component>
     <div class="search-tag-background">
-      <tag class="search-tag"></tag>
     </div>
 
     <div class="horizontal-line"></div>
@@ -77,13 +76,11 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent'
   import SelectBox from '@/components/SelectBox'
-  import Tag from '@/components/Tag'
   import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
 
   export default {
     components: {
       HeaderComponent,
-      Tag,
       SelectBox,
       VueTimepicker
     },

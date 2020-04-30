@@ -25,6 +25,17 @@ import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
+
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
+// set default config
+Vue.$cookies.config('7d')
+
+// set global cookie
+Vue.$cookies.set('cross-site-cookie', 'bar');
+// Vue.$cookies.set('SameSite', 'None');
+
 Vue.use(naver, {
   clientID: CLIENT_ID,
   useGovAPI: false, //공공 클라우드 API 사용 (선택)
