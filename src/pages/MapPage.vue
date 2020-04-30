@@ -15,7 +15,7 @@
 
     <div class="tag-outer">
       <div class="tag-container">
-        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="방문시간" type="select" ></tagNew></div>
+        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="방문시간" type="select"></tagNew></div>
         <div class="tag-filter" @click="openSelectTime"><tagNew tagName="작업환경" type="select"></tagNew></div>
         <div class="tag-filter"><tagNew class="tag-filter" tagName="주차" type="toggle"></tagNew></div>  
         <div class="tag-filter"><tagNew class="tag-filter" tagName="애견동반" type="toggle"></tagNew></div>  
