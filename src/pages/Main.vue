@@ -3,8 +3,6 @@
     <div class="logo">
       asdf
     </div>
-    <header-component
-      leftType="none" ></header-component>
     <agile :initial-slide="3">
       <img class="slide" src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
       <img class="slide" src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
@@ -58,12 +56,10 @@
 </template>
 
 <script>
-  import HeaderComponent from '@/components/HeaderComponent'
   import HeartButton from '@/components/HeartButton.vue'
   export default {
     components: {
-      HeartButton,
-      HeaderComponent
+      HeartButton
     },
     data() {
       return {
