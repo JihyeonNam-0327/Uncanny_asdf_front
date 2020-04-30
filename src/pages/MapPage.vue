@@ -15,7 +15,17 @@
 
     <div class="tag-outer">
       <div class="tag-container">
+<<<<<<< HEAD
 
+=======
+        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="방문시간" type="select"></tagNew></div>
+        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="작업환경" type="select"></tagNew></div>
+        <div class="tag-filter"><tagNew class="tag-filter" tagName="주차" type="toggle"></tagNew></div>  
+        <div class="tag-filter"><tagNew class="tag-filter" tagName="애견동반" type="toggle"></tagNew></div>  
+        <div class="tag-filter"><tagNew class="tag-filter" tagName="촬영" type="toggle"></tagNew></div>  
+        <div class="tag-filter"><tagNew class="tag-filter" tagName="대관" type="toggle"></tagNew></div>  
+        <div class="tag-filter" @click="openSelectTime"><tagNew tagName="아메리카노지수" type="select"></tagNew></div>
+>>>>>>> develope
       </div>
       <div class="tag-control">
         <img src="@/assets/icon/icon_control.svg">

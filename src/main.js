@@ -21,6 +21,7 @@ import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
+import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -74,6 +75,11 @@ const routes = [
     path: '/searchfilter', 
     name: 'SearchFilter', 
     component: SearchFilter
+  },
+  { 
+    path: '/searchfiltertag', 
+    name: 'SearchFilterTag', 
+    component: SearchFilterTag
   },
   { 
     path: '/signup', 
