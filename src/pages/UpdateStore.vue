@@ -1,6 +1,6 @@
 <template>
   <div class="register-store-outer">
-    <header-component class="header-component" leftType="historyback" ></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="기본정보 수정"></header-component>
     
     <div class="register-store-context">
 
@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <basic-button class="register-button" buttonText="등록하기"></basic-button>
+      <basic-button class="register-button" buttonText="수정하기"></basic-button>
     </div>
   </div>
 </template>

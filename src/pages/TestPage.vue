@@ -56,21 +56,21 @@
       }
     },
     methods: {
-
-    openModal() {
-      this.modal = true
-    },
-    closeModal() {
-      this.modal = false
-    },
-    doSend() {
-      if (this.message.length > 0) {
-        alert(this.message)
-        this.message = ''
-        this.closeModal()
-      } else {
-        alert('메시지를 입력해주세요.')
-    },
+      openModal() {
+        this.modal = true
+      },
+      closeModal() {
+        this.modal = false
+      },
+      doSend() {
+        if (this.message.length > 0) {
+          alert(this.message)
+          this.message = ''
+          this.closeModal()
+        } else {
+          alert('메시지를 입력해주세요.')
+        }
+      },
       apiTest() {
         let params = { userId: this.userId }
         let token = {}
@@ -87,7 +87,7 @@
       }
     }
   }
-}
+
 </script>
 
 <style lang="scss" scoped>
