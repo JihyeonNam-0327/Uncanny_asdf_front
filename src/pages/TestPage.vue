@@ -56,8 +56,7 @@
       }
     },
     methods: {
-    }
-}
+
 </script>
 
 <style lang="scss" scoped>

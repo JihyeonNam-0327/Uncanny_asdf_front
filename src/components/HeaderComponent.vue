@@ -7,6 +7,10 @@
       <img src="../assets/icon/icon_arrow_back.svg" alt="">
     </div>
 
+    <div class="center-text">
+      {{centerText}}
+    </div>
+ 
     <!-- <div 
       class="center-underbar" 
       v-if="centerType === 'underbar'"
@@ -44,10 +48,16 @@
         type: String,
         default: 'none'
       },
+      centerText: {
+        type: String,
+        default: '등록'
+      },
+      // deprecated props
       centerType: {
         type: String,
         default: 'none'
       },
+      // deprecated props
       rightType: {
         type: String,
         default: 'none'
@@ -88,12 +98,12 @@
     padding-left: 11px;
     flex: 0 0 auto;
   }
-  .center-underbar {
+  .center-text {
     width: 100%;
-    border-bottom: 1px solid #707070;
     flex: 1 1 auto;
     margin-left: 5px;
     margin-right: 5px;
+    text-align: center;
   }
   .center-input {
     width: 100%;
