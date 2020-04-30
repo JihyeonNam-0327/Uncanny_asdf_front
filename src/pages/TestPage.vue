@@ -55,8 +55,7 @@
         console.log(newVal);
       }
     },
-    methods: {
-
+  }
 </script>
 
 <style lang="scss" scoped>
