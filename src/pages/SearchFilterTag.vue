@@ -197,10 +197,11 @@
 
     <div style="padding-bottom:110px;"></div>
 
-    <div class="footer">
-      하단
+  <footer>
+    <div class="footer-button">
+      필터 적용하기
     </div>
-
+  </footer>
 
   </div>
 </template>
@@ -265,13 +266,29 @@
           width: 200px;
         }
       }
+    }
 
-      .footer {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 6rem;
+    footer { 
+      position:fixed; 
+      left:0px; 
+      bottom:0px; 
+      height:110px; 
+      width:100%; 
+      background:white;
+      color: white; 
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 2%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+      .footer-button {
+        border: 0px;
+        border-radius: 15px;
+        background:#3C3C3C;
+        text-align: center;
+        vertical-align: middle;
+        margin: 30px 20px 0px 20px;
+        line-height: 50px;
       }
     }
   }
