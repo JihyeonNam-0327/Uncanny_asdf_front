@@ -22,6 +22,7 @@ import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
+import jhjTest from '@/pages/jhjTest.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/apply', 
     name: 'Apply', 
     component: Apply 
+  },
+  { 
+    path: '/jhjTest', 
+    name: 'jhjTest', 
+    component: jhjTest
   },
   { 
     path: '/detail', 
