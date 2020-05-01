@@ -21,6 +21,7 @@ import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
+import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 
 const CLIENT_ID = '5qehk43mhz';
@@ -103,6 +104,11 @@ const routes = [
         path: '/test', 
         name: 'TestPage', 
         component: TestPage 
+      },
+      { 
+        path: '/njhtest', 
+        name: 'NjhTestPage', 
+        component: NjhTestPage 
       }
     ]
   },
