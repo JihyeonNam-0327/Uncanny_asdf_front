@@ -3,14 +3,14 @@
 
     <div class="filter-tag-inner" v-if="type === 'radio'">
       <div class="filter-tag-individual" v-for="(item, index) in tagArray" :key="index">
-        <input type="radio" :id="item.name" :name="groupName" value="item.name">
+        <input type="radio" :id="item.name" :name="groupName" :value="item.name" v-model="selectedValue" @click="compareValue">
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
 
     <div class="filter-tag-inner" v-else>
-      <div class="filter-tag-individual" v-for="item in tagArray" :key="item.id">
-        <input type="checkbox" :id="item.name" :name='groupName' value="item.name">
+      <div class="filter-tag-individual" v-for="(item, index) in tagArray" :key="index">
+        <input type="checkbox" :id="item.name" :name='groupName' :value="item.name">
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
@@ -34,6 +34,18 @@
         default: ''
       }
     },
+    data() {
+      return {
+        selectedValue: ''
+      }
+    },
+    methods: {
+      compareValue(event) {
+        if(this.selectedValue === event.target.value) {
+          this.selectedValue = ''
+        }
+      }
+    }
   }
 </script>
 

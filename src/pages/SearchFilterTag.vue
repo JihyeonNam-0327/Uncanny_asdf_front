@@ -164,15 +164,15 @@
         <filterTag type='radio' 
           groupName="grp13"
           v-bind:tagArray="[
-            {name:'내부', id: 'grp1'},
-            {name:'외부', id: 'grp1'} 
+            {name:'내부'},
+            {name:'외부'} 
          ]">
         </filterTag>
         <filterTag type='radio'
         groupName="grp14"
           v-bind:tagArray="[
-            {name:'남녀공용', id: 'grp2'},
-            {name:'남녀구분', id: 'grp2'}
+            {name:'남녀공용'},
+            {name:'남녀구분'}
          ]">
         </filterTag>
       </div>
