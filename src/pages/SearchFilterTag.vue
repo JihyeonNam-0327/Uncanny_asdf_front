@@ -7,16 +7,16 @@
       <div class="group-name">카테고리</div>
       <div class="group-container">
         <filterTag type='checkbox'
-          groupName="grp1"
           v-bind:tagArray="[
-            {name:'카페'},
-            {name:'차'},
-            {name:'디저트'},
-            {name:'식당'},
-            {name:'주점'},
-            {name:'문화'},
-            {name:'기타'}
-          ]">
+            {name:'카페', selected: true},
+            {name:'차', selected: true},
+            {name:'디저트', selected: false},
+            {name:'식당', selected: false},
+            {name:'주점', selected: false},
+            {name:'문화', selected: false},
+            {name:'기타', selected: false}
+          ]"
+          v-model="categories">
         </filterTag>
       </div>
     </div>
@@ -27,18 +27,19 @@
       <div class="group-name">주차정보</div>
       <div class="group-container">
         <filterTag type='radio' 
-          groupName="grp2"
+          groupName="parking"
           v-bind:tagArray="[
-            {name:'주차불가'},
-            {name:'무료주차'},
-            {name:'유료주차'},
-            {name:'무료발렛'},
-            {name:'유료발렛'},
-         ]">
+            {name:'주차불가', selected: false},
+            {name:'무료주차', selected: false},
+            {name:'유료주차', selected: true},
+            {name:'무료발렛', selected: false},
+            {name:'유료발렛', selected: false},
+         ]"
+         v-model="parking">
         </filterTag>
       </div>
       <div class="parking-tip">주차Tip.
-        <input type="text" placeholder="ex) 50m이내 공영주차장 이용">
+        <input type="text" placeholder="ex) 50m이내 공영주차장 이용" v-model="parkingTip">
       </div>
     </div>
 
@@ -48,28 +49,24 @@
       <div class="group-name">유형</div>
       <div class="group-container">
         <filterTag type='checkbox' 
-          groupName="grp4"
           v-bind:tagArray="[
-            {name:'포장/테이크아웃'},
-            {name:'배달가능'},
-            {name:'드라이브스루'},
-         ]">
+            {name:'포장/테이크아웃', selected: false},
+            {name:'배달가능', selected: false},
+            {name:'드라이브스루', selected: false},
+            {name:'애견동반', selected: false},
+         ]"
+         v-model="deliveryType">
         </filterTag>
       </div>
       <div style="padding-bottom:10px;"></div>
       <div class="group-container">
         <filterTag type='radio' 
-          groupName="grp5"
+          groupName="kids"
           v-bind:tagArray="[
-            {name:'노키즈존'},
-            {name:'유아의자'},
-         ]">
-        </filterTag>
-        <filterTag type='checkbox'
-          groupName="grp6"
-          v-bind:tagArray="[
-            {name:'애견동반'},
-         ]">
+            {name:'노키즈존', selected: false},
+            {name:'유아의자', selected: false},
+         ]"
+         v-model="kids">
         </filterTag>
       </div>
     </div>
@@ -80,34 +77,18 @@
       <div class="group-name">공간</div>
       <div class="group-container">
         <filterTag type='checkbox'
-          groupName="grp7"
           v-bind:tagArray="[
-            {name:'혼밥가능'},
-            {name:'단체석'},
-            {name:'룸'},
-          ]">
-        </filterTag>
-      </div>
-      <div style="padding-bottom:10px;"></div>
-      <div class="group-container">
-        <filterTag type='checkbox'
-          groupName="grp8"
-          v-bind:tagArray="[
-            {name:'높은테이블'},
-            {name:'콘센트'},
-            {name:'무료 Wi-Fi'},
-          ]">
-        </filterTag>
-      </div>
-      <div style="padding-bottom:10px;"></div>
-      <div class="group-container">
-        <filterTag type='checkbox'
-          groupName="grp9"
-          v-bind:tagArray="[
-            {name:'테라스'},
-            {name:'루프탑'},
-            {name:'흡연시설'},
-          ]">
+            {name:'혼밥가능', selected: false},
+            {name:'단체석', selected: false},
+            {name:'룸', selected: false},
+            {name:'높은테이블', selected: false},
+            {name:'콘센트', selected: false},
+            {name:'무료 Wi-Fi', selected: false},
+            {name:'테라스', selected: false},
+            {name:'루프탑', selected: false},
+            {name:'흡연시설', selected: false}
+          ]"
+          v-model="spaceType">
         </filterTag>
       </div>
     </div>
@@ -118,25 +99,17 @@
       <div class="group-name">Good for</div>
       <div class="group-container">
         <filterTag type='checkbox'
-          groupName="grp10"
           v-bind:tagArray="[
-            {name:'아침'},
-            {name:'브런치'},
-            {name:'점심'},
-            {name:'저녁'},
-            {name:'늦은저녁'},
-          ]">
-        </filterTag>
-      </div>
-      <div style="padding-bottom:10px;"></div>
-      <div class="group-container">
-        <filterTag type='checkbox'
-          groupName="grp11"
-          v-bind:tagArray="[
-            {name:'디카페인'},
-            {name:'비건'},
-            {name:'할랄'},
-          ]">
+            {name:'아침', selected: false},
+            {name:'브런치', selected: false},
+            {name:'점심', selected: false},
+            {name:'저녁', selected: false},
+            {name:'늦은저녁', selected: false},
+            {name:'디카페인', selected: false},
+            {name:'비건', selected: false},
+            {name:'할랄', selected: false},
+          ]"
+          v-model="goodFor">
         </filterTag>
       </div>
     </div>
@@ -147,11 +120,13 @@
       <div class="group-name">지불</div>
       <div class="group-container">
         <filterTag type='checkbox'
-          groupName="grp12"
           v-bind:tagArray="[
-            {name:'카드불가'},
-            {name:'현금불가'},
-          ]">
+            {name:'카드불가', selected: false},
+            {name:'현금불가', selected: false},
+            {name:'카카오페이가능', selected: false},
+            {name:'네이버페이가능', selected: false}
+          ]"
+          v-model="payInfo">
         </filterTag>
       </div>
     </div>
@@ -162,18 +137,20 @@
       <div class="group-name">화장실</div>
       <div class="group-container">
         <filterTag type='radio' 
-          groupName="grp13"
+          groupName="toiletLocation"
           v-bind:tagArray="[
-            {name:'내부'},
-            {name:'외부'} 
-         ]">
+            {name:'내부', selected: false},
+            {name:'외부', selected: false} 
+         ]"
+         v-model="toiletLocation">
         </filterTag>
         <filterTag type='radio'
-        groupName="grp14"
+        groupName="toiletGender"
           v-bind:tagArray="[
-            {name:'남녀공용'},
-            {name:'남녀구분'}
-         ]">
+            {name:'남녀공용', selected: false},
+            {name:'남녀구분', selected: false}
+         ]"
+         v-model="toiletGender">
         </filterTag>
       </div>
     </div>
@@ -184,11 +161,11 @@
       <div class="group-name">기타</div>
       <div class="group-container">
         <filterTag type='checkbox'
-          groupName="grp15"
           v-bind:tagArray="[
-            {name:'해피아워'},
-            {name:'지역상품권 사용가능'},
-          ]">
+            {name:'해피아워', selected: false},
+            {name:'지역상품권 사용가능', selected: false},
+          ]"
+          v-model="etcInfo">
         </filterTag>
       </div>
     </div>
@@ -213,6 +190,25 @@
     components: {
       FilterTag,
     },
+    data() {
+      return {
+        parkingTip: '',
+        categories: [],
+        parking: '',
+        deliveryType: [],
+        kids: '',
+        spaceType: [],
+        goodFor: [],
+        payInfo: [],
+        toiletLocation: '',
+        toiletGender: '',
+        etcInfo: []
+      }
+    },
+    watch: { 
+    },
+    methods: {
+    }
   }
 </script>
 

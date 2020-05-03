@@ -3,14 +3,16 @@
 
     <div class="filter-tag-inner" v-if="type === 'radio'">
       <div class="filter-tag-individual" v-for="(item, index) in tagArray" :key="index">
-        <input type="radio" :id="item.name" :name="groupName" :value="item.name" v-model="selectedValue" @click="compareValue">
+        <input type="radio" :id="item.name" :name="groupName" :value="item.name" 
+        v-model="radioSelectedValue" @click="compareValue">
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
 
     <div class="filter-tag-inner" v-else>
       <div class="filter-tag-individual" v-for="(item, index) in tagArray" :key="index">
-        <input type="checkbox" :id="item.name" :name='groupName' :value="item.name">
+        <input type="checkbox" :id="item.name" :value="item.name" 
+        v-model="checkSelectedValue" @change="onChange">
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
@@ -21,6 +23,19 @@
 
 <script>
   export default {
+    created() {
+      if(this.tagArray.length > 0) {
+        this.tagArray.forEach(item => {
+          if(item.selected) {
+            if(this.type === 'radio') {
+              this.radioSelectedValue = item.name
+            } else if (this.type === 'checkbox') {
+              this.checkSelectedValue.push(item.name)
+            }
+          }
+        })
+      }
+    },
     props: {
       type: {
         type: String,
@@ -36,14 +51,28 @@
     },
     data() {
       return {
-        selectedValue: ''
+        radioSelectedValue: '',
+        checkSelectedValue: []
+      }
+    },
+    watch: {
+      checkSelectedValue(newVal, oldVal) {
+      },
+      radioSelectedValue(newVal, oldVal) {
+        if(newVal !== oldVal) {
+          this.$emit('input', this.radioSelectedValue)
+        }
       }
     },
     methods: {
       compareValue(event) {
-        if(this.selectedValue === event.target.value) {
-          this.selectedValue = ''
+        if(this.radioSelectedValue === event.target.value) {
+          this.radioSelectedValue = ''
         }
+      },
+      onChange(event) {
+        this.$emit('input', this.checkSelectedValue)
+
       }
     }
   }
@@ -52,9 +81,9 @@
 
 <style lang="scss" scoped>
   .filter-tag-outer {
-
     .filter-tag-inner {
       display: flex;
+      flex-wrap : wrap;
       .filter-tag-individual {
 
         input[type=radio] {
