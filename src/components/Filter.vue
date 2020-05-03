@@ -1,7 +1,7 @@
 <template>
   <div class="flter-outer">
     <span>{{filter.category}}</span>
-    <img v-if="filter.option.length > 0" src="@/assets/icon/icon_arrow_down.svg" @click="open"/>
+    <img v-if="filter.option.length > 0" src="@/assets/icon/icon_arrow_down.svg" @click="openOption"/>
   </div>
 </template>
 
@@ -13,11 +13,26 @@
         default () {
           return {
             category: '주차',
-            option: ['무료', '유료', '발렛', '상관없음'],
+            option: [
+              {name: '무료', selected: false}, 
+              {name: '유료', selected: false}, 
+              {name: '발렛', selected: false}, 
+              {name: '상관없음', selected: false}
+            ],
             type: 'radio',
             selected: []
           }
         }
+      }
+    },
+    data() {
+      return {
+        isOpen: false
+      }
+    },
+    methods: {
+      openOption() {
+        this.isOpen != this.isOpen
       }
     }
   }
