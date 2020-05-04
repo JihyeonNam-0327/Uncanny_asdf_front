@@ -22,17 +22,20 @@
             <span>{{ storeCard.storeBranchEng }}</span>
           </div>
           <div class="line3">
-            <span>{{ storeCard.openClosed }}</span>
-            <span> · 영업종료시간 </span>
+            <span class="openNow" v-if="storeCard.openClosed">
+            Open Now</span>
+            <span class="closedNow" v-else>
+            Closed Now</span>
+            <span> · 영업 종료 ▶ </span>
             <span>{{ storeCard.operatingHour }}</span>
           </div>
           <div class="line4">
-            <span>icon1 </span>
-            <span>{{ storeCard.seatsCnt }} · </span>
-            <span>icon2 </span>
-            <span>{{ storeCard.reviewCnt }} · </span>
-            <span>icon3 </span>
-            <span>{{ storeCard.pinCnt }}</span>
+            <span><img src="@/assets/icon/Icon_seats_cnt.svg"/></span>
+            <span> {{ storeCard.seatsCnt }} · </span>
+            <span><img src="@/assets/icon/Icon_review_cnt.svg"/></span>
+            <span> {{ storeCard.reviewCnt }} · </span>
+            <span><img src="@/assets/icon/Icon_heart_cnt.svg"/></span>
+            <span> {{ storeCard.pinCnt }}</span>
           </div>
         </div>
 
@@ -42,7 +45,13 @@
           </div>
           <div class="distance_pin">
             <span>{{ storeCard.distance }} km</span>
-            <span>{{ storeCard.heart }}</span>
+            <span @click="storeCard.heart=!storeCard.heart"> <!-- emit 을 써야할 때인가 -->
+              {{ storeCard.heart }}
+              <span v-if="storeCard.heart">
+                <img src="@/assets/icon/Icon_heart_fill_pin.svg"/></span>
+              <span v-else>
+                <img src="@/assets/icon/Icon_heart_empty_pin.svg"/></span>
+              </span>
           </div>
         </div>
       </div>
@@ -57,6 +66,12 @@
       storeCards: {
         type: Array,
       },
+
+    },
+    methods: {
+      pin() {
+
+      }
     }
   }
 </script>
@@ -87,6 +102,15 @@
         width: 70vw;
         .title {
           font-size: 15px;
+        }
+        .line3 {
+          .openNow {
+            color: #D02121;
+            font-weight: bold;
+          }
+          .closedNow {
+            color: grey;
+          }
         }
       }
       .right-part {

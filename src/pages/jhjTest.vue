@@ -1,6 +1,8 @@
 <template>
   <div class="jhjTest-outer">
+
     <div class="list-outer">
+      <div></div>
       <storeCard
         v-bind:storeCards="[{
         storeNameKor: '앤트러사이트',
@@ -8,13 +10,13 @@
         category: '카페',
         storeNameEng: 'ANTHRACITE',
         storeBranchEng: 'Seogyo',
-        openClosed: 'true',
+        openClosed: true,
         operatingHour: '23:00',
         seatsCnt: '120',
         reviewCnt: '99',
         pinCnt: '1200',
         distance: '1.2',
-        heart:'true'},]"
+        heart: true},]"
         >
       </storeCard>
     </div>
@@ -34,6 +36,7 @@
 
 <style lang="scss" scoped>
   list-outer {
+    border: 1px solid black;
     z-index: 1;
   }
 </style>
