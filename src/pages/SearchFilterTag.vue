@@ -1,6 +1,26 @@
 <template>
   <div class="search-filter-tag-outer">
+
+    <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
     
+    <div class="horizontal-line"></div>
+
+    <div class="group-outer">
+      <div class="group-name">방문날짜</div>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="group-outer">
+      <div class="group-name">방문시간</div>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="group-outer">
+      <div class="group-name">체류시간</div>
+    </div>
+
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
@@ -57,9 +77,6 @@
          ]"
          v-model="deliveryType">
         </filterTag>
-      </div>
-      <div style="padding-bottom:10px;"></div>
-      <div class="group-container">
         <filterTag type='radio' 
           groupName="kids"
           v-bind:tagArray="[
@@ -184,14 +201,19 @@
 </template>
 
 <script>
+  import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
+  import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+  import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
   export default {
     components: {
+      HeaderComponent,
       FilterTag,
     },
     data() {
       return {
+        value: '',
         parkingTip: '',
         categories: [],
         parking: '',

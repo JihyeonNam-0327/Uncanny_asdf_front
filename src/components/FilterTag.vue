@@ -72,7 +72,6 @@
       },
       onChange(event) {
         this.$emit('input', this.checkSelectedValue)
-
       }
     }
   }

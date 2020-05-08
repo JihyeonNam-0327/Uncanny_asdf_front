@@ -40,8 +40,11 @@
         </div>
 
         <div class="right-part">
-          <div class="Emoji">
-            emoji
+          <div class="emoji">
+            <div class="emo"><img src="@/assets/icon/Icon_heart_cnt.svg"/><div>10</div></div>
+            <div class="emo"><img src="@/assets/icon/Icon_heart_cnt.svg"/><div>200</div></div>
+            <div class="emo"><img src="@/assets/icon/Icon_heart_cnt.svg"/><div>888</div></div>
+            <div class="emo"><img src="@/assets/icon/Icon_heart_cnt.svg"/><div>1209</div></div>
           </div>
           <div class="distance_pin">
             <span>{{ storeCard.distance }} km</span>
@@ -65,8 +68,8 @@
     props: {
       storeCards: {
         type: Array,
-      },
 
+      },
     },
     methods: {
       pin() {
@@ -99,7 +102,7 @@
       padding: 0px 15px 15px 15px;
       .left-part {
         border: 1px solid red;
-        width: 70vw;
+        width: 65vw;
         .title {
           font-size: 15px;
         }
@@ -112,10 +115,43 @@
             color: grey;
           }
         }
+        .line4 {
+          span {
+            img {
+              vertical-align: -7%;
+            }
+          }
+        }
       }
       .right-part {
-        border: 1px solid blue;        
-        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid blue;
+        width: 35vw;
+        .emoji {
+          display: flex;
+          justify-content: space-around;
+          border: 3px solid black;
+          .emo {
+            border: 1px solid black;
+            font-size: 10px;
+            text-align: center;
+            width: 25px;
+            img {
+              margin-left: auto;
+              margin-right: auto;       
+            }
+            .emoji-temp {
+              width: 15px;
+              height: 15px;
+            }
+          }
+
+         }
+        .distance_pin {
+          border: 3px solid purple;
+        }
       }
     }
   }

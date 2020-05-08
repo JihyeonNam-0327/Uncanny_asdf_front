@@ -50,7 +50,7 @@ const routes = [
   { 
     path: '/jhjTest', 
     name: 'jhjTest', 
-    component: jhjTest
+    component: jhjTest 
   },
   { 
     path: '/detail', 
