@@ -24,6 +24,7 @@ import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 import jhjTest from '@/pages/jhjTest.vue'
+import jhjTest2 from '@/pages/jhjTest2.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/jhjTest', 
     name: 'jhjTest', 
     component: jhjTest 
+  },
+  { 
+    path: '/jhjTest2', 
+    name: 'jhjTest2', 
+    component: jhjTest2 
   },
   { 
     path: '/detail', 

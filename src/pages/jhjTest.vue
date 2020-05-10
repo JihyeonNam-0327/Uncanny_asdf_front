@@ -22,6 +22,11 @@
       </storeCard>
     </div>
 
+
+    <div>
+      enter
+    </div>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@1.4.1/dist/vue-ctk-date-time-picker.css">
     <vue-ctk-date-time-picker 
       auto-close

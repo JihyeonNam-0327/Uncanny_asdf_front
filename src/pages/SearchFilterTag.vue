@@ -6,19 +6,15 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문날짜</div>
+      <div class="group-name">방문시간</div>  
+      방문날짜, 방문시간, 체류시간 >> npm 
     </div>
 
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문시간</div>
-    </div>
-
-    <div class="horizontal-line"></div>
-
-    <div class="group-outer">
-      <div class="group-name">체류시간</div>
+      <div class="group-name">좌석수</div>
+       ~~이상 ~~ 이하
     </div>
 
     <div class="horizontal-line"></div>

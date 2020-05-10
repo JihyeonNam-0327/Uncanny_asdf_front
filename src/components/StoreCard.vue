@@ -48,7 +48,7 @@
           </div>
           <div class="distance_pin">
             <span>{{ storeCard.distance }} km</span>
-            <span @click="storeCard.heart=!storeCard.heart"> <!-- emit 을 써야할 때인가 -->
+            <span @click="pinChange">
               {{ storeCard.heart }}
               <span v-if="storeCard.heart">
                 <img src="@/assets/icon/Icon_heart_fill_pin.svg"/></span>
@@ -66,14 +66,18 @@
 <script>
   export default {
     props: {
-      storeCards: {
-        type: Array,
-
+      storeCards:{
+        type: Array
+      },
+      pin: {
+        type: Boolean,
+        default: false,
       },
     },
+    
     methods: {
-      pin() {
-
+      pinChange() {
+        this.$emit('heart', !storeCard.heart)
       }
     }
   }
