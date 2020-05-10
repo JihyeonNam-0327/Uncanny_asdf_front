@@ -32,7 +32,7 @@
           storeNameEng: 'ANTHRACITE',
           storeBranchEng: 'Seogyo',
           openClosed: true,
-          operatingHour: '23:00',
+          operatingHour: '22:00',
           seatsCnt: '120',
           reviewCnt: '99',
           pinCnt: '1200',
@@ -56,7 +56,7 @@
     methods: { 
       // Array.set(Object []array, int index, Object value)
       pinChange: function (index) {
-        this.$set(this.storeCards, index, !this.storeCardsheart)
+        this.storeCards[index].heart = !this.storeCards[index].heart
       }
     }
   }

@@ -45,9 +45,8 @@
           <div class="emo">😍<div>1209</div></div>
         </div>
         <div class="distance-pin">
-          <span>{{ storeCard.distance }} km</span>
-          <span @click="pinChange">
-            {{ storeCard.heart }}
+          <span class="distance">{{ storeCard.distance }} km</span>
+          <span class="pin" @click="pinChange">
             <span v-if="storeCard.heart">
               <img src="@/assets/icon/Icon_heart_fill_pin.svg"/></span>
             <span v-else>
@@ -138,9 +137,13 @@
               height: 15px;
             }
           }
-
          }
         .distance-pin {
+          display: flex;
+          justify-content: flex-end;
+          .distance {
+            padding: 14px 10px 0px 0px;
+          }
         }
       }
     }
