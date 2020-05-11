@@ -2,10 +2,10 @@
   <div class="store-card-outer">
 
     <div class="picture-outer">
-      <div>pic1</div>
-      <div>pic2</div>
-      <div>pic3</div>
-      <div>pic4</div>
+      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
+      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
+      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
+      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
     </div>
 
     <div class="information-outer">
@@ -24,7 +24,7 @@
           Open Now</span>
           <span class="closedNow" v-else>
           Closed Now</span>
-          <span> · 영업 종료 ▶ </span>
+          <span> · 영업 종료 </span>
           <span>{{ storeCard.operatingHour }}</span>
         </div>
         <div class="line4">
@@ -45,13 +45,13 @@
           <div class="emo">😍<div>1209</div></div>
         </div>
         <div class="distance-pin">
-          <span class="distance">{{ storeCard.distance }} km</span>
-          <span class="pin" @click="pinChange">
-            <span v-if="storeCard.heart">
-              <img src="@/assets/icon/Icon_heart_fill_pin.svg"/></span>
-            <span v-else>
-              <img src="@/assets/icon/Icon_heart_empty_pin.svg"/></span>
-            </span>
+          <div class="distance">{{ storeCard.distance }} km</div>
+          <div class="pin" @click="pinChange">
+            <div class="pin-img" v-if="storeCard.heart">
+              <img src="@/assets/icon/Icon_heart_fill_pin.svg"/></div>
+            <div class="pin-img" v-else>
+              <img src="@/assets/icon/Icon_heart_empty_pin.svg"/></div>
+          </div>
         </div>
       </div>
     </div>
@@ -87,19 +87,21 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 15px 15px 10px 15px;
-      width: calc(100%-30px);
+      padding: 15px 5vw 15px 5vw;
+      width: 90vw;
       :nth-child(n) {
-        border: 1px solid black;
         width: 20vw;
         height: 20vw;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
       }
     }
     .information-outer {
       display: flex;
-      padding: 0px 15px 15px 15px;
+      padding: 0px 5vw 15px 5vw;
       .left-part {
-        width: 65vw;
+        width: 60vw;
         .title {
           font-size: 15px;
         }
@@ -124,7 +126,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 35vw;
+        width: 30vw;
         .emoji {
           display: flex;
           justify-content: space-around;
@@ -143,6 +145,11 @@
           justify-content: flex-end;
           .distance {
             padding: 14px 10px 0px 0px;
+          }
+          .pin {
+            .pin-img {
+              display: flex;
+            }
           }
         }
       }

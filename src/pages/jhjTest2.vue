@@ -1,5 +1,7 @@
 <template>
   <div class="jhjTest-outer">
+    <div class="back-ground"></div>
+
     <div class="jhjTest-inner">
       <div class="top-handler">
         <div class="handler"></div>
@@ -10,8 +12,12 @@
           v-for="(storeCard, index) in storeCards" :key="index"
           v-bind:storeCard="storeCard"
           @pinChange="pinChange(index)">
-        </storeCard2>
+        </storeCard2>        
       </div>
+    </div>
+
+    <div class="bottom-menu">
+      Bottom Menu
     </div>
   </div>
 </template>
@@ -50,31 +56,83 @@
           pinCnt: '999',
           distance: '0.6',
           heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
         ]
       }
     },
     methods: { 
-      // Array.set(Object []array, int index, Object value)
       pinChange: function (index) {
         this.storeCards[index].heart = !this.storeCards[index].heart
       }
     }
   }
-
-
 </script>
 <style lang="scss" scoped>
   .jhjTest-outer {
-    background-color: pink;
+    .back-ground {
+      background-color: #FADADD;
+      width: 100vw;
+      height: 90vh;
+    }
     .jhjTest-inner {
       background-color: white;
-      border-radius: 5% 5% 0% 0%;
+      position: absolute;
       z-index: 1;
+      top: 50vh;
+      height: 40vh;
+      border-radius: 20px 20px 0px 0px;
       font-size:12px;
       .top-handler {
         display: flex;
         justify-content: center;
-        height: 20px;
+        height: 3vh;
         .handler {
           margin-top: 10px;
           background-color: #E4E4E4;
@@ -83,6 +141,16 @@
           height: 5px;
         }
       }
+      .list-outer {
+        overflow: scroll;
+        height: 37vh;
+      }
+    }
+    .bottom-menu {
+      height: 10vh;
+      background-color: gray;
+      color: white;
+      text-align: center;
     }
   }
 </style>
