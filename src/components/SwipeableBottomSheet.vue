@@ -1,3 +1,4 @@
+<!-- https://github.com/atsutopia/vue-swipeable-bottom-sheet -->
 <template>
 <div class="wrapper" :data-open="state === 'open' ? 1 : 0">
   <div class="bg" @click="() => setState('half')"></div>
@@ -34,7 +35,7 @@ export default {
     },
     defaultState: {
       type: String,
-      default: "half"
+      default: "close"
     }
   },
   data() {
