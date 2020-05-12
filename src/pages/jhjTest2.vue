@@ -1,33 +1,33 @@
 <template>
   <div class="jhjTest-outer">
+
     <div class="back-ground"></div>
 
-    <div class="jhjTest-inner">
-      <div class="top-handler">
-        <div class="handler"></div>
-      </div>
-
-      <div class="list-outer">
+    <div class="list-outer">
+      <SwipeableBottomSheet ref="swipeableBottomSheet">
         <storeCard2
           v-for="(storeCard, index) in storeCards" :key="index"
           v-bind:storeCard="storeCard"
           @pinChange="pinChange(index)">
         </storeCard2>        
-      </div>
+      </SwipeableBottomSheet>
     </div>
 
     <div class="bottom-menu">
       Bottom Menu
     </div>
+
   </div>
 </template>
 
 <script>
   import StoreCard2 from '@/components/StoreCard2'
+  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
  
   export default {
     components: {
       StoreCard2,
+      SwipeableBottomSheet,
     },
     data() {
       return {
@@ -121,33 +121,13 @@
       width: 100vw;
       height: 90vh;
     }
-    .jhjTest-inner {
-      background-color: white;
-      position: absolute;
-      z-index: 1;
-      top: 50vh;
-      height: 40vh;
-      border-radius: 20px 20px 0px 0px;
-      font-size:12px;
-      .top-handler {
-        display: flex;
-        justify-content: center;
-        height: 3vh;
-        .handler {
-          margin-top: 10px;
-          background-color: #E4E4E4;
-          border-radius: 15px;
-          width: 37px;
-          height: 5px;
-        }
-      }
-      .list-outer {
-        overflow: scroll;
-        height: 37vh;
-      }
-    }
     .bottom-menu {
+      position: absolute;
+      z-index: 0;
+
       height: 10vh;
+      width: 100vw;
+
       background-color: gray;
       color: white;
       text-align: center;

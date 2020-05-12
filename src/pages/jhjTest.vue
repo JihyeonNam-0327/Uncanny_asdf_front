@@ -1,69 +1,47 @@
 <template>
-  <div class="jhjTest-outer">
+  <div>
+    <h1>Vue Swipeable Bottom Sheet</h1>
+    <button @click="open">Open</button>
+    <button @click="half">Half</button>
+    <button @click="close">Close</button>
+    <SwipeableBottomSheet ref="swipeableBottomSheet">
+      <h1>Lorem Ipsum</h1>
+      <h2>What is Lorem Ipsum?</h2>
+      <p>
+        <strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <h2>Where does it come from?</h2>
+      <p>
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+      </p>
+      <h2>Why do we use it?</h2>
+      <p>
+        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+      </p>
 
-
-
-    <div class="list-outer">
-      <storeCard
-        v-bind:storeCards="[{
-        storeNameKor: '앤트러사이트',
-        storeBranchKor: '서교점',
-        category: '카페',
-        storeNameEng: 'ANTHRACITE',
-        storeBranchEng: 'Seogyo',
-        openClosed: true,
-        operatingHour: '23:00',
-        seatsCnt: '120',
-        reviewCnt: '99',
-        pinCnt: '1200',
-        distance: '1.2',
-        heart: true},]"
-        >
-      </storeCard>
-    </div>
-
-
-    <div>
-      enter
-    </div>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@1.4.1/dist/vue-ctk-date-time-picker.css">
-    <vue-ctk-date-time-picker 
-      auto-close
-      id="TimePicker" label="Select Time" color="firebrick"
-      format="hh:mm a" formatted="hh:mm a" inputSize="sm" minute-interval="10"
-      v-model="value">
-    </vue-ctk-date-time-picker>
-      
+    </SwipeableBottomSheet>
   </div>
 </template>
 
-<script src="https://unpkg.com/vue" charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@1.4.1/dist/vue-ctk-date-time-picker.umd.js" charset="utf-8"></script>
 <script>
-  import StoreCard from '@/components/StoreCard'
-  import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-  import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
- 
-  export default {
-    components: {
-      StoreCard,
-      VueCtkDateTimePicker,
-    },
-    data() {
-      return {
-        value: '',
-      }
-    },
-  }
+import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
 
+export default {
+  components: {
+    SwipeableBottomSheet,
+  },
+  methods: {
+    half () {
+      this.$refs.swipeableBottomSheet.setState("half")
+    },
+    open () {
+      this.$refs.swipeableBottomSheet.setState("open")
+    },
+    close () {
+      this.$refs.swipeableBottomSheet.setState("close")
+    }
+  }
+}
 </script>
-<style lang="scss" scoped>
 
-  .jhjTest-outer {
-    border: 1px solid black;
-    z-index: 1;
-    font-size:12px;
-  
-  }
-</style>
+
