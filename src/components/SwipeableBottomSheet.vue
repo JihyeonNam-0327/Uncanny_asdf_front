@@ -54,9 +54,7 @@ export default {
     this.rect = this.$refs.card.getBoundingClientRect()
     this.mc = new Hammer(this.$refs.pan)
     this.mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
-      this.y = evt.center.y - 16 
-      console.log(this.y)
-    })
+      this.y = evt.center.y - 16
     // panstart : 처음 잡은 곳의 y값을 startY에 할당
     // panend : 놓은 곳의 y값은 evt.center.y
     this.mc.on("panstart", (evt) => {
