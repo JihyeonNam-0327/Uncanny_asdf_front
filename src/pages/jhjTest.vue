@@ -1,47 +1,139 @@
 <template>
-  <div>
-    <h1>Vue Swipeable Bottom Sheet</h1>
-    <button @click="open">Open</button>
-    <button @click="half">Half</button>
-    <button @click="close">Close</button>
-    <SwipeableBottomSheet ref="swipeableBottomSheet">
-      <h1>Lorem Ipsum</h1>
-      <h2>What is Lorem Ipsum?</h2>
-      <p>
-        <strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </p>
-      <h2>Where does it come from?</h2>
-      <p>
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-      </p>
-      <h2>Why do we use it?</h2>
-      <p>
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-      </p>
+  <div class="jhjTest-outer">
 
-    </SwipeableBottomSheet>
+    <div class="back-ground"></div>
+
+    <div class="list-outer">
+      <SwipeableBottomSheet ref="swipeableBottomSheet">
+        <storeCard
+          v-for="(storeCard, index) in storeCards" :key="index"
+          v-bind:storeCard="storeCard"
+          @pinChange="pinChange(index)">
+        </storeCard>        
+      </SwipeableBottomSheet>
+    </div>
+
+    <div class="bottom-menu">
+    </div>
+
   </div>
 </template>
 
 <script>
-import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
-
-export default {
-  components: {
-    SwipeableBottomSheet,
-  },
-  methods: {
-    half () {
-      this.$refs.swipeableBottomSheet.setState("half")
+  import StoreCard from '@/components/StoreCard'
+  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
+ 
+  export default {
+    components: {
+      StoreCard,
+      SwipeableBottomSheet,
     },
-    open () {
-      this.$refs.swipeableBottomSheet.setState("open")
+    data() {
+      return {
+        storeCards: [
+          {storeNameKor: '앤트러사이트',
+          storeBranchKor: '서교',
+          category: '카페',
+          storeNameEng: 'ANTHRACITE',
+          storeBranchEng: 'Seogyo',
+          openClosed: true,
+          operatingHour: '22:00',
+          seatsCnt: '120',
+          reviewCnt: '99',
+          pinCnt: '1200',
+          distance: '1.2',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '공그로트',
+          storeBranchKor: '연남',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+          {storeNameKor: '인생카페',
+          storeBranchKor: '종착지',
+          category: '카페',
+          storeNameEng: 'Gongrot',
+          storeBranchEng: 'YeonNam',
+          openClosed: true,
+          operatingHour: '24:00',
+          seatsCnt: '80',
+          reviewCnt: '200',
+          pinCnt: '999',
+          distance: '0.6',
+          heart: true},
+        ]
+      }
     },
-    close () {
-      this.$refs.swipeableBottomSheet.setState("close")
+    methods: { 
+      pinChange: function (index) {
+        this.storeCards[index].heart = !this.storeCards[index].heart
+      }
     }
   }
-}
 </script>
+<style lang="scss" scoped>
+  .jhjTest-outer {
+    .back-ground {
+      background-color: #FADADD;
+      width: 100vw;
+      height: 90vh;
+    }
+    .bottom-menu {
+      position: absolute;
+      z-index: 0;
 
 
+      height: 10vh;
+      width: 100vw;
+
+      background-color: white;
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 2%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+      text-align: center;
+    }
+  }
+</style>

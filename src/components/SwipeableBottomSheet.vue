@@ -9,7 +9,7 @@
     :style="{ top: `${isMove ? y : calcY()}px` }"
   >
     <div class="pan-area" ref="pan"><div class="bar" ref="bar"></div></div>
-    <div class="contents">
+    <div class="contents" :data-state="isMove ? 'move' : state">
       <slot></slot>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
     },
     defaultState: {
       type: String,
-      default: "close"
+      default: "half"
     }
   },
   data() {
@@ -169,5 +169,8 @@ export default {
   //padding-bottom: calc(100vh * 0.2);
   padding-bottom: calc(100vh * 0.235);
   box-sizing: border-box;
+}
+.contents[data-state="half"] {
+  padding-bottom: calc(100vh * 0.57);
 }
 </style>
