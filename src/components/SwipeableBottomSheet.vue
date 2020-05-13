@@ -35,7 +35,7 @@ export default {
     },
     defaultState: {
       type: String,
-      default: "half"
+      default: "close"
     }
   },
   data() {
@@ -161,7 +161,7 @@ export default {
   cursor: pointer;
 }
 .pan-area {
-  padding: 12px 0;
+  padding: 12px 0px 14px 0px;
 }
 .contents {
   overflow-y: scroll;

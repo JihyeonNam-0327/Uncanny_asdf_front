@@ -16,7 +16,7 @@
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
-  
+    
   </div>
 </template>
 

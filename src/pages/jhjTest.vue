@@ -1,139 +1,32 @@
 <template>
-  <div class="jhjTest-outer">
-
-    <div class="back-ground"></div>
-
-    <div class="list-outer">
-      <SwipeableBottomSheet ref="swipeableBottomSheet">
-        <storeCard
-          v-for="(storeCard, index) in storeCards" :key="index"
-          v-bind:storeCard="storeCard"
-          @pinChange="pinChange(index)">
-        </storeCard>        
-      </SwipeableBottomSheet>
-    </div>
-
-    <div class="bottom-menu">
-    </div>
-
+  <div>
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <!-- use the modal component, pass in the prop -->
+    <ModalPicker v-if="showModal" @close="showModal = false">
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <h3 slot="header">custom header</h3>
+    </ModalPicker>
   </div>
 </template>
 
 <script>
-  import StoreCard from '@/components/StoreCard'
-  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
- 
+  import ModalPicker from '@/components/ModalPicker'
+
   export default {
     components: {
-      StoreCard,
-      SwipeableBottomSheet,
+      ModalPicker,
     },
     data() {
       return {
-        storeCards: [
-          {storeNameKor: '앤트러사이트',
-          storeBranchKor: '서교',
-          category: '카페',
-          storeNameEng: 'ANTHRACITE',
-          storeBranchEng: 'Seogyo',
-          openClosed: true,
-          operatingHour: '22:00',
-          seatsCnt: '120',
-          reviewCnt: '99',
-          pinCnt: '1200',
-          distance: '1.2',
-          heart: true},
-          {storeNameKor: '공그로트',
-          storeBranchKor: '연남',
-          category: '카페',
-          storeNameEng: 'Gongrot',
-          storeBranchEng: 'YeonNam',
-          openClosed: true,
-          operatingHour: '24:00',
-          seatsCnt: '80',
-          reviewCnt: '200',
-          pinCnt: '999',
-          distance: '0.6',
-          heart: true},
-          {storeNameKor: '공그로트',
-          storeBranchKor: '연남',
-          category: '카페',
-          storeNameEng: 'Gongrot',
-          storeBranchEng: 'YeonNam',
-          openClosed: true,
-          operatingHour: '24:00',
-          seatsCnt: '80',
-          reviewCnt: '200',
-          pinCnt: '999',
-          distance: '0.6',
-          heart: true},
-          {storeNameKor: '공그로트',
-          storeBranchKor: '연남',
-          category: '카페',
-          storeNameEng: 'Gongrot',
-          storeBranchEng: 'YeonNam',
-          openClosed: true,
-          operatingHour: '24:00',
-          seatsCnt: '80',
-          reviewCnt: '200',
-          pinCnt: '999',
-          distance: '0.6',
-          heart: true},
-          {storeNameKor: '공그로트',
-          storeBranchKor: '연남',
-          category: '카페',
-          storeNameEng: 'Gongrot',
-          storeBranchEng: 'YeonNam',
-          openClosed: true,
-          operatingHour: '24:00',
-          seatsCnt: '80',
-          reviewCnt: '200',
-          pinCnt: '999',
-          distance: '0.6',
-          heart: true},
-          {storeNameKor: '인생카페',
-          storeBranchKor: '종착지',
-          category: '카페',
-          storeNameEng: 'Gongrot',
-          storeBranchEng: 'YeonNam',
-          openClosed: true,
-          operatingHour: '24:00',
-          seatsCnt: '80',
-          reviewCnt: '200',
-          pinCnt: '999',
-          distance: '0.6',
-          heart: true},
-        ]
-      }
-    },
-    methods: { 
-      pinChange: function (index) {
-        this.storeCards[index].heart = !this.storeCards[index].heart
+      showModal: false
       }
     }
-  }
+ }
 </script>
+
 <style lang="scss" scoped>
-  .jhjTest-outer {
-    .back-ground {
-      background-color: #FADADD;
-      width: 100vw;
-      height: 90vh;
-    }
-    .bottom-menu {
-      position: absolute;
-      z-index: 0;
 
-
-      height: 10vh;
-      width: 100vw;
-
-      background-color: white;
-      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 2%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
-      text-align: center;
-    }
-  }
 </style>

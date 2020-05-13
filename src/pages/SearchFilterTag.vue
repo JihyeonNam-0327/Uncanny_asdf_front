@@ -7,7 +7,12 @@
 
     <div class="group-outer">
       <div class="group-name">방문시간</div>  
-      방문날짜, 방문시간, 체류시간 >> npm 
+      <date-time-picker-modal
+        :startDate = "startDate" 
+        :endDate = "endDate"
+        :singleDate = "false" 
+        @onChange = "onChange"
+      />
     </div>
 
     <div class="horizontal-line"></div>
@@ -199,16 +204,20 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
-  import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-  import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+  import { DateTimePickerModal } from "@lazy-copilot/datetimepicker";
+  import '@lazy-copilot/datetimepicker/dist/datetimepicker.css'
 
-  export default {
+export default {
     components: {
       HeaderComponent,
       FilterTag,
+      DateTimePickerModal,
     },
     data() {
       return {
+        startDate: new Date("2020-05-13T00:03"),
+        endDate: new Date("2020-05-13T23:29"),
+
         value: '',
         parkingTip: '',
         categories: [],
