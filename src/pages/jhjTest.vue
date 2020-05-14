@@ -1,30 +1,27 @@
+
 <template>
   <div>
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
-    <!-- use the modal component, pass in the prop -->
-    <ModalPicker v-if="showModal" @close="showModal = false">
-      <!--
-        you can use custom content here to overwrite
-        default content
-      -->
-      <h3 slot="header">custom header</h3>
-    </ModalPicker>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <i-button @click="show">Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to ViewUI</Modal>
   </div>
 </template>
 
+<script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+<script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 <script>
-  import ModalPicker from '@/components/ModalPicker'
-
   export default {
-    components: {
-      ModalPicker,
-    },
     data() {
       return {
-      showModal: false
+          visible: false          
       }
-    }
- }
+    },
+    methods: {
+          show: function () {
+              this.visible = true;
+          }
+      }
+  }
 </script>
 
 <style lang="scss" scoped>

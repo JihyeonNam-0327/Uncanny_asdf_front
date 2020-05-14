@@ -94,3 +94,34 @@
     transform: scale(1.1);
   }
 </style>
+
+
+<!-- 
+<template>
+  <div>
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <ModalPicker v-if="showModal" @close="showModal = false">
+      <h3 slot="header">custom header</h3>
+    </ModalPicker>
+  </div>
+</template>
+
+<script>
+  import ModalPicker from '@/components/ModalPicker'
+
+  export default {
+    components: {
+      ModalPicker,
+    },
+    data() {
+      return {
+      showModal: false
+      }
+    }
+ }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
+-->
