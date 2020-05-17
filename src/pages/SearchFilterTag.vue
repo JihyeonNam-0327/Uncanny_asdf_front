@@ -6,20 +6,31 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문시간</div>  
-      <date-time-picker-modal
-        :startDate = "startDate" 
-        :endDate = "endDate"
-        :singleDate = "false" 
-        @onChange = "onChange"
-      />
+      <div class="group-name">방문시간 / 토글 ? / 24시간 체크? / 날짜or요일?? </div>
+        <div class="time-container">
+          <vue-timepicker
+            format="hh:mm A" 
+            input-width="30vw"
+            v-model="startTime"
+            :minute-interval="10"
+            @change = "onChangeStartTime"/>
+          <div class="time-wave">~</div>
+          <vue-timepicker
+            format="hh:mm A" 
+            input-width="30vw"
+            v-model="endTime"
+            :minute-interval="10"
+            @change = "onChangeEndTime"/>
+          <div v-if="todayOrTommorrow == '익일'" class="time-today-or-tommorrow">
+            {{ todayOrTommorrow }}</div>
+      </div>
     </div>
 
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
       <div class="group-name">좌석수</div>
-       ~~이상 ~~ 이하
+       ~~이상 ~~ 이하 >> 슬라이더
     </div>
 
     <div class="horizontal-line"></div>
@@ -204,21 +215,20 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
-  import { DateTimePickerModal } from "@lazy-copilot/datetimepicker";
-  import '@lazy-copilot/datetimepicker/dist/datetimepicker.css'
+  import VueTimepicker from 'vue2-timepicker'
 
 export default {
     components: {
       HeaderComponent,
       FilterTag,
-      DateTimePickerModal,
+      VueTimepicker,
     },
     data() {
       return {
-        startDate: new Date("2020-05-13T00:03"),
-        endDate: new Date("2020-05-13T23:29"),
+        startTime: { hh:'09', mm:'40', A: 'AM'},
+        endTime: { hh:'09', mm:'40', A: 'AM'},
+        todayOrTommorrow : '당일',
 
-        value: '',
         parkingTip: '',
         categories: [],
         parking: '',
@@ -235,6 +245,49 @@ export default {
     watch: { 
     },
     methods: {
+      onChangeStartTime() {
+        this.endTime.hh = this.startTime.hh
+        this.endTime.mm = this.startTime.mm
+        this.endTime.A = this.startTime.A
+      },
+      onChangeEndTime(event) {
+        switch (this.startTime.A) {
+          case 'AM':
+            if (this.endTime.A == 'AM') {
+              if (this.startTime.hh > this.endTime.hh) {
+                this.todayOrTommorrow = '익일'
+              } else if (this.startTime.hh == this.endTime.hh) {
+                if (this.startTime.mm > this.endTime.mm) {
+                  this.todayOrTommorrow = '익일'
+                } else {
+                  this.todayOrTommorrow = '당일'
+                }
+              } else { 
+                this.todayOrTommorrow = '당일'
+              }
+            } else {
+              this.todayOrTommorrow = '당일'
+            }
+            break;            
+          case "PM":
+            if (this.endTime.A == 'AM') {
+              this.todayOrTommorrow = '익일'
+            } else {
+              if (this.startTime.hh > this.endTime.hh) {
+                this.todayOrTommorrow = '익일'
+              } else if (this.startTime.hh == this.endTime.hh) {
+                if (this.startTime.mm > this.endTime.mm) {
+                  this.todayOrTommorrow = '익일'
+                } else {
+                  this.todayOrTommorrow = '당일'
+                }
+              } else { 
+                this.todayOrTommorrow = '당일'
+              }
+            }
+            break;
+        }
+      }
     }
   }
 </script>
@@ -273,6 +326,16 @@ export default {
       .group-name { 
         font-weight: bold;
         padding-bottom: 15px;
+      }
+      .time-container {
+        display: flex;        
+        .time-wave {
+          padding: 4px 10px 0px 10px;
+        }
+        .time-today-or-tommorrow {
+          padding: 4px 10px 0px 10px;
+          color: red;
+        }
       }
       .group-container {
         display: flex;

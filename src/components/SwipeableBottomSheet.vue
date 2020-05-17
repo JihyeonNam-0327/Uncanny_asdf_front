@@ -143,7 +143,7 @@ export default {
   position: fixed;
   background: white;
   border-radius: 10px 10px 0 0;
-  box-shadow: 0 -3px 4px rgba(0, 0, 0, .1);
+  box-shadow: 0 -3px 4px rgba(0, 0, 0, .1); 
   left: 0;
 }
 .card[data-state="half"], .card[data-state="open"], .card[data-state="close"] {
