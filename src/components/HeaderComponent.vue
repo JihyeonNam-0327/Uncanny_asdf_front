@@ -7,14 +7,10 @@
       <img src="../assets/icon/icon_arrow_back.svg" alt="">
     </div>
 
-    <div class="center-text">
-      {{centerText}}
-    </div>
- 
-    <!-- <div 
-      class="center-underbar" 
-      v-if="centerType === 'underbar'"
-      @click="searchButtonClick">
+    <div 
+      class="center-text"
+      v-if="centerType === 'text'">
+      {{ centerText }}
     </div>
     <div 
       class="center-input" 
@@ -24,9 +20,9 @@
     <div
       class="center-none"
       v-else>
-    </div> -->
+    </div> 
   
-    <!-- <div 
+    <div 
       class="right-search" 
       v-if="rightType === 'search'"
       @click="searchButtonClick">
@@ -35,9 +31,13 @@
     <div 
       class="right-home" 
       @click="homeButtonClick"
-      v-else>
+      v-else-if="rightType === 'home'">
       <img src="../assets/icon/icon_home_empty.svg" alt="">
-    </div> -->
+    </div>
+    <div
+      class="right-none"
+      v-else>
+    </div> 
   </div>
 </template>
 
@@ -52,12 +52,10 @@
         type: String,
         default: '등록'
       },
-      // deprecated props
       centerType: {
         type: String,
         default: 'none'
       },
-      // deprecated props
       rightType: {
         type: String,
         default: 'none'
@@ -99,12 +97,12 @@
     flex: 0 0 auto;
   }
   .center-text {
-    padding-top: 7px;
+    padding-top: 6px;
     padding-right: 11px;
     width: 100%;
     flex: 1 1 auto;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 32px;
     text-align: center;
   }
   .center-input {
@@ -113,13 +111,12 @@
     flex: 1 1 auto;
     margin-left: 5px;
     margin-right: 5px;
+
     .center-inputbox {
       width: 100%;
       outline: none;
       border: 0;
       padding-top: 7px;
-      padding-left: 10px;
-      padding-right: 10px;
       font-size: 13px;
     }
   }
