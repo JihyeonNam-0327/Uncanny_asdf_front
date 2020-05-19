@@ -1,42 +1,29 @@
+
 <template>
-  <div class="jhjTest-outer">
-
-    <div class="list-outer">
-      <div></div>
-      <storeCard
-        v-bind:storeCards="[{
-        storeNameKor: '앤트러사이트',
-        storeBranchKor: '서교점',
-        category: '카페',
-        storeNameEng: 'ANTHRACITE',
-        storeBranchEng: 'Seogyo',
-        openClosed: true,
-        operatingHour: '23:00',
-        seatsCnt: '120',
-        reviewCnt: '99',
-        pinCnt: '1200',
-        distance: '1.2',
-        heart: true},]"
-        >
-      </storeCard>
-    </div>
-
+  <div>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <i-button @click="show">Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to ViewUI</Modal>
   </div>
 </template>
 
+<script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+<script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 <script>
-  import StoreCard from '@/components/StoreCard'
-
   export default {
-    components: {
-      StoreCard,
+    data() {
+      return {
+          visible: false          
+      }
     },
+    methods: {
+          show: function () {
+              this.visible = true;
+          }
+      }
   }
 </script>
 
 <style lang="scss" scoped>
-  list-outer {
-    border: 1px solid black;
-    z-index: 1;
-  }
+
 </style>

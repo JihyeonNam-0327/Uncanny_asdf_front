@@ -23,6 +23,7 @@ import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
+import MapBottomList from '@/pages/MapBottomList.vue'
 import jhjTest from '@/pages/jhjTest.vue'
 
 const CLIENT_ID = '5qehk43mhz';
@@ -48,9 +49,14 @@ const routes = [
     component: Apply 
   },
   { 
+    path: '/MapBottomList', 
+    name: 'MapBottomList', 
+    component: MapBottomList 
+  },
+  { 
     path: '/jhjTest', 
     name: 'jhjTest', 
-    component: jhjTest
+    component: jhjTest 
   },
   { 
     path: '/detail', 

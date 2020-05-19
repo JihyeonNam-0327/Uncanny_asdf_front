@@ -16,7 +16,7 @@
         <label :for="item.name">{{ item.name }}</label>
       </div>
     </div>
-  
+    
   </div>
 </template>
 
@@ -72,7 +72,6 @@
       },
       onChange(event) {
         this.$emit('input', this.checkSelectedValue)
-
       }
     }
   }

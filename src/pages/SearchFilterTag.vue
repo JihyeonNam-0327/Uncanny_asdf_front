@@ -1,6 +1,43 @@
 <template>
   <div class="search-filter-tag-outer">
+
+    <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
     
+    <div class="horizontal-line"></div>
+
+    <div class="group-outer">
+      <div class="group-name">방문시간 / 요일 radio 버튼 구현</div>
+        <div class="time-container">
+          <vue-timepicker
+            format="hh:mm A" 
+            input-width="30vw"
+            v-model="startTime"
+            :minute-interval="10"
+            @change = "onChangeStartTime"/>
+          <div class="time-wave">~</div>
+          <vue-timepicker
+            format="hh:mm A" 
+            input-width="30vw"
+            v-model="endTime"
+            :minute-interval="10"
+            @change = "onChangeEndTime"/>
+          <div v-if="todayOrTommorrow === '익일'" class="time-tommorrow">
+            {{ todayOrTommorrow }}</div>
+          <div v-else class="time-today"></div>
+      </div>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="group-outer">
+      <div class="group-name">좌석수</div>
+        <div class="seats-container">
+          <vue-slider v-model="seatsValue" v-bind="seatsOptions" 
+            :enable-cross="false" :marks="true" :interval="10" :tooltip="'none'">
+          </vue-slider>
+        </div>
+    </div>
+
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
@@ -57,9 +94,6 @@
          ]"
          v-model="deliveryType">
         </filterTag>
-      </div>
-      <div style="padding-bottom:10px;"></div>
-      <div class="group-container">
         <filterTag type='radio' 
           groupName="kids"
           v-bind:tagArray="[
@@ -175,7 +209,7 @@
     <div style="padding-bottom:110px;"></div>
 
   <footer>
-    <div class="footer-button">
+    <div class="footer-button" @click="applyButtonClick">
       필터 적용하기
     </div>
   </footer>
@@ -184,17 +218,38 @@
 </template>
 
 <script>
+  import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
+  import VueTimepicker from 'vue2-timepicker'
+  import VueSlider from 'vue-slider-component'
+  import 'vue-slider-component/theme/default.css'
 
-  export default {
+export default {
+    created() {
+      this.seatsValue[0] = this.seatsOptions.min
+      this.seatsValue[1] = this.seatsOptions.max
+    },
     components: {
+      HeaderComponent,
       FilterTag,
+      VueTimepicker,
+      VueSlider,
     },
     data() {
       return {
-        parkingTip: '',
+        startTime: { hh:'09', mm:'40', A: 'AM'},
+        endTime: { hh:'09', mm:'40', A: 'AM'},
+        todayOrTommorrow : '당일',
+
+        seatsValue: [0, 0],
+        seatsOptions: {
+          min: 10,
+          max: 90,
+        },
+
         categories: [],
         parking: '',
+        parkingTip: '',
         deliveryType: [],
         kids: '',
         spaceType: [],
@@ -208,11 +263,57 @@
     watch: { 
     },
     methods: {
+      onChangeStartTime() {
+        this.endTime.hh = this.startTime.hh
+        this.endTime.mm = this.startTime.mm
+        this.endTime.A = this.startTime.A
+      },
+      onChangeEndTime(event) {
+        switch (this.startTime.A) {
+          case 'AM':
+            if (this.endTime.A == 'AM') {
+              if (this.startTime.hh > this.endTime.hh) {
+                this.todayOrTommorrow = '익일'
+              } else if (this.startTime.hh == this.endTime.hh) {
+                if (this.startTime.mm > this.endTime.mm) {
+                  this.todayOrTommorrow = '익일'
+                } else {
+                  this.todayOrTommorrow = '당일'
+                }
+              } else { 
+                this.todayOrTommorrow = '당일'
+              }
+            } else {
+              this.todayOrTommorrow = '당일'
+            }
+            break;            
+          case "PM":
+            if (this.endTime.A == 'AM') {
+              this.todayOrTommorrow = '익일'
+            } else {
+              if (this.startTime.hh > this.endTime.hh) {
+                this.todayOrTommorrow = '익일'
+              } else if (this.startTime.hh == this.endTime.hh) {
+                if (this.startTime.mm > this.endTime.mm) {
+                  this.todayOrTommorrow = '익일'
+                } else {
+                  this.todayOrTommorrow = '당일'
+                }
+              } else { 
+                this.todayOrTommorrow = '당일'
+              }
+            }
+            break;
+        }
+      },
+      applyButtonClick() {
+        console.log(this.parking)
+      }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .search-filter-tag-outer {
     display: flex;
     flex-direction: column;
@@ -225,14 +326,13 @@
         input[type=radio] + label {
           display:inline-block;
           padding: 4px 12px;
-          background-color: #e7e7e7;
+          background-color: white;
           border-color: #ddd;
         }
         input[type=radio]:checked + label { 
           background-image: none;
           background-color:#d0d0d0;
         }
-
 
     .horizontal-line {
       height: 10px;
@@ -246,6 +346,38 @@
       .group-name { 
         font-weight: bold;
         padding-bottom: 15px;
+      }
+      .time-container {
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+        position: relative;
+        .vue__time-picker .dropdown ul li:not([disabled]).active {
+          background-color: #3498db;
+        }
+        .time-wave {
+          padding: 4px 10px 0px 10px;
+          font-weight: bold;
+        }
+        .time-tommorrow {
+          width: 40px;
+          margin-left: 3px;
+          text-align: center;
+          padding: 3px 0px 0px 0px;
+          color: red;
+          font-weight: bold;
+          border: 1px solid #d2d2d2;
+        }
+        .time-today {
+          width: 40px;
+          margin-left: 5px;
+          padding: 3px 0px 0px 0px;
+        }
+      }
+      .seats-container {
+        width: 80vw;
+        margin : 0 auto;
+        padding-bottom: 20px;
       }
       .group-container {
         display: flex;
