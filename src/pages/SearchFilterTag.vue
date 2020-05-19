@@ -15,6 +15,7 @@
             {name:'주점', selected: false},
             {name:'문화', selected: false},
             {name:'기타', selected: false}
+            
           ]"
           v-model="categories">
         </filterTag>
@@ -206,6 +207,9 @@
       }
     },
     watch: { 
+      categories(newVal, oldVal) {
+        // console.log('newVal : ', newVal, 'oldVal : ', oldVal);
+      }
     },
     methods: {
     }
