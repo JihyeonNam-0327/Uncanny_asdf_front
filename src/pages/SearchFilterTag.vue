@@ -9,7 +9,7 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문시간 / 날짜?</div>
+      <div class="group-name">방문시간 / 토글 ? / 24시간 체크? / 날짜or요일?? </div>
         <div class="time-container">
           <vue-timepicker
             format="hh:mm A" 
@@ -24,9 +24,8 @@
             v-model="endTime"
             :minute-interval="10"
             @change = "onChangeEndTime"/>
-          <div v-if="todayOrTommorrow === '익일'" class="time-tommorrow">
+          <div v-if="todayOrTommorrow == '익일'" class="time-today-or-tommorrow">
             {{ todayOrTommorrow }}</div>
-          <div v-else class="time-today"></div>
       </div>
     </div>
 
@@ -34,12 +33,7 @@
 
     <div class="group-outer">
       <div class="group-name">좌석수</div>
-        <div class="seats-container">
-          <vue-slider v-model="seatsValue" v-bind="seatsOptions" 
-            :enable-cross="false" :marks="true" :interval="10" :tooltip="'none'">
-          </vue-slider>
-        </div>
-
+       ~~이상 ~~ 이하 >> 슬라이더
     </div>
 
     <div class="horizontal-line"></div>
@@ -225,31 +219,18 @@
   import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
   import VueTimepicker from 'vue2-timepicker'
-  import VueSlider from 'vue-slider-component'
-  import 'vue-slider-component/theme/default.css'
 
 export default {
-    created() {
-      this.seatsValue[0] = this.seatsOptions.min
-      this.seatsValue[1] = this.seatsOptions.max
-    },
     components: {
       HeaderComponent,
       FilterTag,
       VueTimepicker,
-      VueSlider,
     },
     data() {
       return {
         startTime: { hh:'09', mm:'40', A: 'AM'},
         endTime: { hh:'09', mm:'40', A: 'AM'},
         todayOrTommorrow : '당일',
-
-        seatsValue: [0, 0],
-        seatsOptions: {
-          min: 10,
-          max: 90,
-        },
 
         parkingTip: '',
         categories: [],
@@ -335,6 +316,7 @@ export default {
           background-color:#d0d0d0;
         }
 
+
     .horizontal-line {
       height: 10px;
       background-color: #EBEBEB;
@@ -349,32 +331,14 @@ export default {
         padding-bottom: 15px;
       }
       .time-container {
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        position: relative;
+        display: flex;        
         .time-wave {
           padding: 4px 10px 0px 10px;
-          font-weight: bold;
         }
-        .time-tommorrow {
-          width: 35px;
-          margin-left: 3px;
-          padding: 4px 1px 0px 14px;
+        .time-today-or-tommorrow {
+          padding: 4px 10px 0px 10px;
           color: red;
-          font-weight: bold;
-          border: 1px solid #d2d2d2;
         }
-        .time-today {
-          width: 35px;
-          margin-left: 5px;
-          padding: 4px 1px 0px 14px;
-        }
-      }
-      .seats-container {
-        width: 80vw;
-        margin : 0 auto;
-        padding-bottom: 20px;
       }
       .group-container {
         display: flex;
