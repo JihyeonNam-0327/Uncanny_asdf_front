@@ -36,7 +36,6 @@
             :enable-cross="false" :marks="true" :interval="10" :tooltip="'none'">
           </vue-slider>
         </div>
-
     </div>
 
     <div class="horizontal-line"></div>
@@ -210,7 +209,7 @@
     <div style="padding-bottom:110px;"></div>
 
   <footer>
-    <div class="footer-button">
+    <div class="footer-button" @click="applyButtonClick">
       필터 적용하기
     </div>
   </footer>
@@ -248,9 +247,9 @@ export default {
           max: 90,
         },
 
-        parkingTip: '',
         categories: [],
         parking: '',
+        parkingTip: '',
         deliveryType: [],
         kids: '',
         spaceType: [],
@@ -306,6 +305,9 @@ export default {
             }
             break;
         }
+      },
+      applyButtonClick() {
+        console.log(this.parking)
       }
     }
   }
@@ -355,17 +357,18 @@ export default {
           font-weight: bold;
         }
         .time-tommorrow {
-          width: 35px;
+          width: 40px;
           margin-left: 3px;
-          padding: 4px 1px 0px 14px;
+          text-align: center;
+          padding: 3px 0px 0px 0px;
           color: red;
           font-weight: bold;
           border: 1px solid #d2d2d2;
         }
         .time-today {
-          width: 35px;
+          width: 40px;
           margin-left: 5px;
-          padding: 4px 1px 0px 14px;
+          padding: 3px 0px 0px 0px;
         }
       }
       .seats-container {
