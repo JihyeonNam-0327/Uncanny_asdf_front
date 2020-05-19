@@ -6,7 +6,7 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문시간 / 날짜?</div>
+      <div class="group-name">방문시간 / 요일 radio 버튼 구현</div>
         <div class="time-container">
           <vue-timepicker
             format="hh:mm A" 
@@ -313,7 +313,7 @@ export default {
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .search-filter-tag-outer {
     display: flex;
     flex-direction: column;
@@ -326,7 +326,7 @@ export default {
         input[type=radio] + label {
           display:inline-block;
           padding: 4px 12px;
-          background-color: #e7e7e7;
+          background-color: white;
           border-color: #ddd;
         }
         input[type=radio]:checked + label { 
@@ -352,6 +352,9 @@ export default {
         justify-content: center;
         z-index: 10;
         position: relative;
+        .vue__time-picker .dropdown ul li:not([disabled]).active {
+          background-color: #3498db;
+        }
         .time-wave {
           padding: 4px 10px 0px 10px;
           font-weight: bold;
