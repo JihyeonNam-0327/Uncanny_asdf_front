@@ -1,10 +1,7 @@
 <template>
   <div class="search-filter-tag-outer">
 
-    <header-component class="header-component" 
-      leftType="historyback"
-      centerType="text" centerText="필터 검색">
-    </header-component>
+    <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
     
     <div class="horizontal-line"></div>
 
