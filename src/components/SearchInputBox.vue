@@ -38,17 +38,13 @@
       }
     },
     data() {
-      return {
-        inputValue: undefined
-      }
+      return {}
     },
     computed: {
       leftMargin() {
         if(this.historybutton) return 'padding-left: 30px;'
         else return 'padding-left: 15px;'
       }
-    },
-    watch: {
     },
     methods: {
       emitValue(value) {
@@ -66,12 +62,13 @@
 
 <style lang="scss" scoped>
   .search-input-outer {
-
+    height:40px;
     .back-button {
       position: relative;
       width: fit-content;
-      top: 34px;
+      top: 10px;
       left: 13px;
+      height: 0px;
     }
     .input-box {
       width: 100%;
