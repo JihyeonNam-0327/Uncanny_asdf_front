@@ -35,7 +35,7 @@ export default {
     },
     defaultState: {
       type: String,
-      default: "close"
+      default: "open"
     }
   },
   data() {

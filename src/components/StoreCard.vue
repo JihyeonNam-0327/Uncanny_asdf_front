@@ -21,11 +21,14 @@
         </div>
         <div class="line3">
           <span class="openNow" v-if="storeCard.openClosed">
-          Open Now</span>
+            Open Now</span>
           <span class="closedNow" v-else>
-          Closed Now</span>
+            Closed Now</span>
           <span> · 영업 종료 </span>
-          <span>{{ storeCard.operatingHour }}</span>
+          <span>{{ storeCard.closingHour }}</span>
+          <span v-if="operatingHourArrow">
+            클릭하면 운영시간이 촤르륵 떠야해
+          </span>
         </div>
         <div class="line4">
           <span><img src="@/assets/icon/Icon_seats_cnt.svg"/></span>
@@ -63,7 +66,11 @@
 <script>
   export default {
     props: {
-      storeCard:{
+      storeCard: {
+      },
+      operatingHourArrow: {
+        type: Boolean,
+        default: false
       },
     },
     methods: {
