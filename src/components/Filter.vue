@@ -2,11 +2,11 @@
   <div class="filter-outer" :style="outerClass">
     <div class="filter-category" @click="openOption">
       <span :style="categoryClass">{{filter.category}}</span>
-      <img v-if="filter.option.length > 0 && !isOpen" :src="icon"/>
-      <img v-if="filter.option.length > 0 && isOpen" :src="icon" class="arrow-up"/>
+      <img v-if="filter.option.length > 0 && !filter.isOpen" :src="icon"/>
+      <img v-if="filter.option.length > 0 && filter.isOpen" :src="icon" class="arrow-up"/>
     </div>
-    <div v-if="isOpen" class="divider"></div>
-    <div v-if="isOpen" class="filter-option">
+    <div v-if="filter.isOpen" class="divider"></div>
+    <div v-if="filter.isOpen" class="filter-option">
       <div v-for="(item, index) in filter.option" :key="index" @click="itemClicked(item)"
       :class="item | optionClass"> {{item.name}} </div>
     </div>
@@ -22,6 +22,7 @@
           return {
             category: '주차',
             type: 'selectbox',
+            isOpen: false,
             option: [
               {name: '무료', selected: false}, 
               {name: '유료', selected: false}, 
@@ -29,19 +30,10 @@
             ]
           }
         }
-      },
-      // close: {
-      //   type: Boolean,
-      //   default: false
-      // },
-      indexNum: {
-        type: Number
       }
     },
     data() {
-      return {
-        isOpen: false
-      }
+      return {}
     },
     computed: {
       selectedStatus() {
@@ -62,24 +54,7 @@
       icon() {
         if(this.selectedStatus) return require('@/assets/icon/icon_arrow_down_red.svg')
         else return require('@/assets/icon/icon_arrow_down.svg')
-      },
-      // isOpen: {
-      //   // getter
-      //   get() {
-      //     if(this.close) {
-      //       console.log('in getter close true');
-      //       return false
-      //     } else {
-      //       console.log('in getter close false');
-      //       return true
-      //     }
-      //   },
-      //   // setter
-      //   set(newValue) {
-      //     console.log('in setter newVal : ', newValue);
-      //     return newValue
-      //   }
-      // }
+      }
     },
     filters: {
       optionClass(item) {
@@ -88,9 +63,7 @@
     },
     methods: {
       openOption() {
-        console.log('open option methods, this.isOpen : ', this.isOpen);
-        this.$emit('changeClose')
-        this.isOpen = !this.isOpen
+        this.$emit('categoryClicked')
       },
       itemClicked(selected) {
         let type = this.filter.type
