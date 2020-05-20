@@ -27,7 +27,10 @@
           <span> · 영업 종료 </span>
           <span>{{ storeCard.closingHour }}</span>
           <span v-if="operatingHourArrow">
-            클릭하면 운영시간이 촤르륵 떠야해
+            <span @click="operatingHourToggleChange"> · button</span>
+            <div v-if="operatingHourToggle">
+              {{ operatingHourToggle }}
+            </div>
           </span>
         </div>
         <div class="line4">
@@ -73,9 +76,22 @@
         default: false
       },
     },
+    data() {
+      return {
+        operatingHourToggle: {
+          type: Boolean,
+          default: false
+        }
+      }
+    },
     methods: {
       pinChange() {
         this.$emit('pinChange')
+      },
+      operatingHourToggleChange() {
+        console.log(this.operatingHourToggle)
+        this.operatingHourToggle = !this.operatingHourToggle
+        console.log(this.operatingHourToggle + "---")
       }
     }
   }

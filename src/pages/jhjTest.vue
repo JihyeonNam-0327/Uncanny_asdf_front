@@ -1,26 +1,40 @@
 
 <template>
   <div>
-    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
-    <i-button @click="show">Click me!</i-button>
-    <Modal v-model="visible" title="Welcome">Welcome to ViewUI</Modal>
+    <storeCard v-bind:storeCard="storeCards"
+    operatingHourArrow
+    ></storeCard>
+
+
   </div>
 </template>
 
-<script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
-<script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 <script>
+  import StoreCard from '@/components/StoreCard'
+
   export default {
+    components: {
+      StoreCard,
+    },
     data() {
       return {
-          visible: false          
-      }
+        storeCards:
+          {storeNameKor: '1앤트러사이트',
+          storeBranchKor: '서교',
+          category: '카페',
+          storeNameEng: 'ANTHRACITE',
+          storeBranchEng: 'Seogyo',
+          openClosed: true,
+          closingHour: '22:00',
+          seatsCnt: '120',
+          reviewCnt: '99',
+          pinCnt: '1200',
+          distance: '1.2',
+          heart: true}
+        }
     },
     methods: {
-          show: function () {
-              this.visible = true;
-          }
-      }
+    }
   }
 </script>
 
