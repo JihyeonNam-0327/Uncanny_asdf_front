@@ -2,11 +2,11 @@
   <div class="filter-outer" :style="outerClass">
     <div class="filter-category" @click="openOption">
       <span :style="categoryClass">{{filter.category}}</span>
-      <img v-if="filter.option.length > 0 && !isOpen" :src="icon"/>
-      <img v-if="filter.option.length > 0 && isOpen" :src="icon" class="arrow-up"/>
+      <img v-if="filter.option.length > 0 && !filter.isOpen" :src="icon"/>
+      <img v-if="filter.option.length > 0 && filter.isOpen" :src="icon" class="arrow-up"/>
     </div>
-    <div v-if="isOpen" class="divider"></div>
-    <div v-if="isOpen" class="filter-option">
+    <div v-if="filter.isOpen" class="divider"></div>
+    <div v-if="filter.isOpen" class="filter-option">
       <div v-for="(item, index) in filter.option" :key="index" @click="itemClicked(item)"
       :class="item | optionClass"> {{item.name}} </div>
     </div>
@@ -22,20 +22,18 @@
           return {
             category: '주차',
             type: 'selectbox',
+            isOpen: false,
             option: [
               {name: '무료', selected: false}, 
               {name: '유료', selected: false}, 
-              {name: '발렛', selected: false}, 
-              {name: '상관없음', selected: false}
+              {name: '발렛', selected: false}
             ]
           }
         }
       }
     },
     data() {
-      return {
-        isOpen: true
-      }
+      return {}
     },
     computed: {
       selectedStatus() {
@@ -65,7 +63,7 @@
     },
     methods: {
       openOption() {
-        this.isOpen = !this.isOpen
+        this.$emit('categoryClicked')
       },
       itemClicked(selected) {
         let type = this.filter.type
@@ -84,16 +82,24 @@
 
 <style lang="scss" scoped>
   .filter-outer {
+    background-color: #ffffff;
     border: 0.5px solid #636363;
     border-radius: 15px;
     width: fit-content;
     text-align: center;
+    font-size: 13px;
+    line-height: 16px;
     padding: 0px 10px;
+    * {
+      word-break: keep-all;
+      word-wrap: normal;
+      white-space: nowrap;
+    }
     .filter-category {
       display: flex;
-      height: 33px;
+      height: 32px;
       justify-content: center;
-      padding: 0px 10px;
+      padding: 0px 5px;
       span {
         line-height: 30px;
       }
@@ -112,10 +118,10 @@
     .filter-option {
       padding: 0px 5px;
       div {
-        margin-top: 4px;
+        margin-top: 9px;
       }
       div:last-child {
-        margin-bottom: 6px;
+        margin-bottom: 10px;
       }
       .selected-item {
         color: #CB2727;

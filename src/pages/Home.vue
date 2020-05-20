@@ -28,9 +28,12 @@
     position: relative;
     width: 100%;
     .bottom-menu-component {
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
       position: fixed;
       bottom: 0;
-      width: 100%;
+      width: 100vw;
       z-index: 200;
     }
   }

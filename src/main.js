@@ -6,8 +6,8 @@ import ToggleButton from 'vue-js-toggle-button'
 import VueScrollTo from 'vue-scrollto';
 import axios from 'axios'
 import API from '@/api.js'
-import naver from 'vue-naver-maps';
-
+import vClickOutside from 'v-click-outside'
+ 
 // page
 import Apply from '@/pages/Apply.vue'
 import Detail from '@/pages/Detail.vue'
@@ -17,7 +17,6 @@ import Main from '@/pages/Main.vue'
 import MapPage from '@/pages/MapPage.vue'
 import RegisterStore from '@/pages/RegisterStore.vue'
 import SearchKeyword from '@/pages/SearchKeyword.vue'
-import SearchFilter from '@/pages/SearchFilter.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
@@ -28,11 +27,7 @@ import jhjTest from '@/pages/jhjTest.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
-Vue.use(naver, {
-  clientID: CLIENT_ID,
-  useGovAPI: false, //공공 클라우드 API 사용 (선택)
-  // subModules:'geocode' // 서브모듈 (선택)
-});
+Vue.use(vClickOutside)
 Vue.use(VueRouter)
 Vue.use(VueAgile)
 Vue.use(ToggleButton)
@@ -72,11 +67,6 @@ const routes = [
     path: '/searchkeyword', 
     name: 'Searchkeyword', 
     component: SearchKeyword
-  },
-  { 
-    path: '/searchfilter', 
-    name: 'SearchFilter', 
-    component: SearchFilter
   },
   { 
     path: '/searchfiltertag', 
