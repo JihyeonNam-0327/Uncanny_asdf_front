@@ -2,9 +2,10 @@
   <div class="input-box-outer">
     <input class="input-box" 
     :placeholder="placeHolder"
-    :type="inputType"
-    :value="value"
-    @input="emitValue($event.target.value)"/>
+    v-model="text"/>
+    <button @click="changeFunc">
+      button
+    </button>
   </div>
 </template>
 
@@ -13,29 +14,22 @@
     props: {
       placeHolder: {
         type: String,
-        default: ''
-      },
-      inputType: {
-        type: String,
-        default: 'text'
-      },
-      value: {
-        type: [ String, Number, Boolean, Function, Object, Array, Symbol ]
+        default: '이메일'
       }
     },
     data() {
       return {
-        inputValue: undefined
-      }
+        text: ''
+        }
     },
     watch: {
-      // text: function(newValue) {
-      //   this.$emit('inputValue', newValue)
-      // }
+      text: function(newValue) {
+        this.$emit('inputValue', newValue)
+      }
     },
     methods: {
-      emitValue(value) {
-        this.$emit('input', value)
+      changeFunc() {
+        this.text = this.text + '1'
       }
     }
   }
@@ -44,12 +38,11 @@
 <style lang="scss" scoped>
   .input-box-outer {
     .input-box {
-      width: 100%;
+      width:100%;
       height:40px;
-      font-size: 17px;
       border:0;
       border-bottom:1px solid #707070;
-      padding-left: 7px;
+      padding-left:9.5px;
     }
     .input-box:focus{
       outline:none;
