@@ -44,11 +44,11 @@
           isOpen: false,
           option: [
             {name: '10개 이하', selected: false}, 
-            {name: '20개 이하', selected: false}, 
-            {name: '30개 이하', selected: false}, 
-            {name: '40개 이하', selected: false},
-            {name: '50개 이하', selected: false},
-            {name: '50개 이상', selected: false}
+            {name: '10-30', selected: false}, 
+            {name: '30-50', selected: false}, 
+            {name: '50-70', selected: false},
+            {name: '70-90', selected: false},
+            {name: '90개 이상', selected: false}
           ]
           },
           {
