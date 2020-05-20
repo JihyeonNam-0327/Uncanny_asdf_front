@@ -23,8 +23,9 @@
   .basic-button-outer {
     .button-outline {
       width:100%;
-      height:42px;
+      height:45px;
       background:#3C3C3C 0% 0% no-repeat padding-box;
+      border-radius: 15px;
       opacity:1;
       color: #ffffff;
       display: flex;
