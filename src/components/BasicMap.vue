@@ -9,11 +9,7 @@
       setTimeout(this.onLoad, 50)
     },
     data() {
-      return {
-        // appKey: '77b3df31df5c79b69d43559da305ae93',
-        //피자알볼로
-        level: 3,
-      }
+      return {}
     },
     props: {
       storelatlng: {
@@ -30,16 +26,7 @@
             lng: 126.86700,
           },
         ],
-      },
-      //  mylatlng: {
-      //   type: Object,
-      //   default: () => (
-      //     {
-      //       name: '목동본점',
-      //       lat: 37.532688, //서울특별시 양천구 목4동 목동중앙서로 30
-      //       lng: 126.86703
-      //     })
-      // }
+      }
     },
     watch: {
       storelatlng: {
@@ -56,7 +43,7 @@
             this.storelatlng[0].lat,
             this.storelatlng[0].lng
           ),
-          zoom: 10,
+          zoom: 17,
           zoomControl: true, //지도 줌 +/-버튼 표시
           zoomControlOptions: {
             style: naver.maps.ZoomControlStyle.SMALL,
