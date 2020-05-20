@@ -1,44 +1,31 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
-      <router-view :key="$route.path"></router-view>
-    </transition>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
+
 export default {
   name: 'App',
-  components: {},
-  data: () => ({
-    //
-  }),
-};
+  components: {
+  },
+  methods: {
+    alertFnc() {
+      alert('asdf')
+    }
+  }
+}
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
-@font-face {
-  font-family: 'Mosk Ultra';
-  font-style: normal;
-  font-weight: normal;
-  src: 
-    url('./assets/font/Mosk Ultra-Bold 900.woff2') format('woff2'),
-    url('./assets/font/MoskUltra-Bold900.woff') format('woff'),
-    url('./assets/font/MoskUltra-Bold900.ttf') format('truetype'),
-    url('./assets/font/Mosk Ultra-Bold 900.eot') format('embedded-opentype'),
-    url('./assets/font/MoskUltra-Bold900.svg') format('svg')
-}
-html, body {
-  font-family: 'Noto Sans KR';
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  letter-spacing: -0.4px;
-  word-spacing: -1px;
-}
 #app {
-  min-height: 100%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
