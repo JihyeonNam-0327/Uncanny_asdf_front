@@ -6,24 +6,40 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-      <div class="group-name">방문시간 / 요일 radio 버튼 구현</div>
-        <div class="time-container">
-          <vue-timepicker
-            format="hh:mm A" 
             input-width="30vw"
-            v-model="startTime"
-            :minute-interval="10"
-            @change = "onChangeStartTime"/>
-          <div class="time-wave">~</div>
-          <vue-timepicker
-            format="hh:mm A" 
-            input-width="30vw"
-            v-model="endTime"
-            :minute-interval="10"
-            @change = "onChangeEndTime"/>
-          <div v-if="todayOrTommorrow === '익일'" class="time-tommorrow">
-            {{ todayOrTommorrow }}</div>
-          <div v-else class="time-today"></div>
+      <div class="group-name">방문요일/시간</div>
+      <div class="day-of-the-week-container">
+        <filterTag type='radio'
+          v-bind:tagArray="[
+            {name:'월', selected: true},
+            {name:'화', selected: true},
+            {name:'수', selected: false},
+            {name:'목', selected: false},
+            {name:'금', selected: false},
+            {name:'토', selected: false},
+            {name:'일', selected: false}
+          ]"
+          v-model="categories">
+        </filterTag>
+      </div>
+
+      <div class="time-container">
+        <vue-timepicker
+          format="hh:mm A" 
+          input-width="30vw"
+          v-model="startTime"
+          :minute-interval="10"
+          @change = "onChangeStartTime"/>
+        <div class="time-wave">~</div>
+        <vue-timepicker
+          format="hh:mm A" 
+          input-width="30vw"
+          v-model="endTime"
+          :minute-interval="10"
+          @change = "onChangeEndTime"/>
+        <div v-if="todayOrTommorrow === '익일'" class="time-tommorrow">
+          {{ todayOrTommorrow }}</div>
+        <div v-else class="time-today"></div>
       </div>
     </div>
 
@@ -52,7 +68,6 @@
             {name:'주점', selected: false},
             {name:'문화', selected: false},
             {name:'기타', selected: false}
-            
           ]"
           v-model="categories">
         </filterTag>
@@ -262,9 +277,6 @@ export default {
       }
     },
     watch: { 
-      categories(newVal, oldVal) {
-        // console.log('newVal : ', newVal, 'oldVal : ', oldVal);
-      }
     },
     methods: {
       onChangeStartTime() {
@@ -351,11 +363,17 @@ export default {
         font-weight: bold;
         padding-bottom: 15px;
       }
+      .day-of-the-week-container {
+        .filter-tag-outer .filter-tag-inner[data-v-4e39d002] {
+          justify-content: center;
+        }
+      }
       .time-container {
         display: flex;
-        justify-content: center;
         z-index: 10;
         position: relative;
+        justify-content: center;
+        margin-top:15px;
         .vue__time-picker .dropdown ul li:not([disabled]).active {
           background-color: #3498db;
         }
