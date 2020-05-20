@@ -2,7 +2,7 @@
   <div class="map-page-outer">
 
     <div class="search-input-component">
-      <search-input-box></search-input-box>
+      <search-input-box v-model="keyword"></search-input-box>
     </div>
 
     <div class="tag-outer">
