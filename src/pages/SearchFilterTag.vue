@@ -6,7 +6,6 @@
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
-            input-width="30vw"
       <div class="group-name">방문요일/시간</div>
       <div class="day-of-the-week-container">
         <filterTag type='radio'
