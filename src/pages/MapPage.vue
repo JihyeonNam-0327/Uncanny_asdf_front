@@ -1,7 +1,7 @@
 <template>
   <div class="map-page-outer">
 
-    <div class="search-input-component">
+    <div class="search-input-component" @click="pageMove('Searchkeyword')">
       <search-input-box v-model="keyword"></search-input-box>
     </div>
 
@@ -10,8 +10,8 @@
         <img src="@/assets/icon/icon_control.svg">
       </div>
       <div class="tag-list" v-click-outside="closeAllFilter">
-        <div v-for="(item, index) in filterList" :key="index">
-          <filter-component class="tag-element" :filter="item" @categoryClicked="openFilter(item, index)"></filter-component>
+        <div class="tag-element" v-for="(item, index) in filterList" :key="index">
+          <filter-component :filter="item" @categoryClicked="openFilter(item, index)"></filter-component>
         </div>
       </div>
     </div>
@@ -211,10 +211,10 @@
     }
     .tag-outer {
       position: absolute;
-      width: 100%;
+      width: calc(100% - 30px);
       display: flex;
-      margin-left: 15px;
-      margin-right: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
       margin-top: 100px;
       z-index: 101;
     .tag-control {
@@ -233,7 +233,10 @@
       overflow-y: scroll;
       display: flex;
       .tag-element {
-        margin-left: 10px;
+        padding-left: 10px;
+      }
+      .tag-element:last-child {
+        margin-right: 10px;
       }
     }
     .map-outer {

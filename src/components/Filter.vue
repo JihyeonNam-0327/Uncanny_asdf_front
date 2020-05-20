@@ -90,7 +90,11 @@
     font-size: 13px;
     line-height: 16px;
     padding: 0px 10px;
-    word-break: keep-all;
+    * {
+      word-break: keep-all;
+      word-wrap: normal;
+      white-space: nowrap;
+    }
     .filter-category {
       display: flex;
       height: 32px;
