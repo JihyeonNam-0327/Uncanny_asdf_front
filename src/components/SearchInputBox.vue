@@ -73,7 +73,7 @@
     .input-box {
       width: 100%;
       height:40px;
-      font-size: 17px;
+      font-size: 15px;
       background-color: #FFFFFF;
       border: 0.5px solid #707070;
       border-radius: 10px;

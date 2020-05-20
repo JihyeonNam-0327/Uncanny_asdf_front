@@ -25,16 +25,22 @@
             option: [
               {name: '무료', selected: false}, 
               {name: '유료', selected: false}, 
-              {name: '발렛', selected: false}, 
-              {name: '상관없음', selected: false}
+              {name: '발렛', selected: false}
             ]
           }
         }
+      },
+      // close: {
+      //   type: Boolean,
+      //   default: false
+      // },
+      indexNum: {
+        type: Number
       }
     },
     data() {
       return {
-        isOpen: true
+        isOpen: false
       }
     },
     computed: {
@@ -56,7 +62,24 @@
       icon() {
         if(this.selectedStatus) return require('@/assets/icon/icon_arrow_down_red.svg')
         else return require('@/assets/icon/icon_arrow_down.svg')
-      }
+      },
+      // isOpen: {
+      //   // getter
+      //   get() {
+      //     if(this.close) {
+      //       console.log('in getter close true');
+      //       return false
+      //     } else {
+      //       console.log('in getter close false');
+      //       return true
+      //     }
+      //   },
+      //   // setter
+      //   set(newValue) {
+      //     console.log('in setter newVal : ', newValue);
+      //     return newValue
+      //   }
+      // }
     },
     filters: {
       optionClass(item) {
@@ -65,6 +88,8 @@
     },
     methods: {
       openOption() {
+        console.log('open option methods, this.isOpen : ', this.isOpen);
+        this.$emit('changeClose')
         this.isOpen = !this.isOpen
       },
       itemClicked(selected) {
@@ -84,16 +109,20 @@
 
 <style lang="scss" scoped>
   .filter-outer {
+    background-color: #ffffff;
     border: 0.5px solid #636363;
     border-radius: 15px;
     width: fit-content;
     text-align: center;
+    font-size: 13px;
+    line-height: 16px;
     padding: 0px 10px;
+    word-break: keep-all;
     .filter-category {
       display: flex;
-      height: 33px;
+      height: 32px;
       justify-content: center;
-      padding: 0px 10px;
+      padding: 0px 5px;
       span {
         line-height: 30px;
       }
@@ -112,10 +141,10 @@
     .filter-option {
       padding: 0px 5px;
       div {
-        margin-top: 4px;
+        margin-top: 9px;
       }
       div:last-child {
-        margin-bottom: 6px;
+        margin-bottom: 10px;
       }
       .selected-item {
         color: #CB2727;
