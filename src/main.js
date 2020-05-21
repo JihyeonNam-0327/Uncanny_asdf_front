@@ -16,6 +16,7 @@ import MyPage from '@/pages/MyPage.vue'
 import Main from '@/pages/Main.vue'
 import MapPage from '@/pages/MapPage.vue'
 import RegisterStore from '@/pages/RegisterStore.vue'
+import UpdateStore from '@/pages/UpdateStore.vue'
 import SearchKeyword from '@/pages/SearchKeyword.vue'
 import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
@@ -62,6 +63,11 @@ const routes = [
     path: '/registerstore', 
     name: 'RegisterStore', 
     component: RegisterStore 
+  },
+  {
+    path: '/updatestore',
+    name: 'UpdateStore',
+    component: UpdateStore
   },
   { 
     path: '/searchkeyword', 

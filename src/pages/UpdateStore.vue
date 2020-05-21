@@ -5,36 +5,33 @@
     <div class="register-store-context">
 
       <p>상호명(한글)</p>
-      <input-box placeHolder="상호명(한글)" v-model="nameKor"></input-box>
+      <input-box placeHolder="상호명(한글)" v-model="storeInfo.nameKor"></input-box>
 
       <p>상호명(영문)</p>
-      <input-box placeHolder="상호명(영문)" v-model="nameEng"></input-box>
+      <input-box placeHolder="상호명(영문)" v-model="storeInfo.nameEng"></input-box>
 
       <p>주소</p>
-      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." v-model="address"></input-box>
+      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." v-model="storeInfo.address"></input-box>
 
       <p>전화번호</p>
       <div class="call-info">
-        <input-box placeHolder="02" v-model="countryNum"></input-box>
+        <input-box placeHolder="02" v-model="storeInfo.countryNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="1234" v-model="middleNum"></input-box>
+        <input-box placeHolder="1234" v-model="storeInfo.middleNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="5678" v-model="endNum"></input-box>
+        <input-box placeHolder="5678" v-model="storeInfo.endNum"></input-box>
       </div>
-      
-      <!-- <p>아메리카노 지수</p>
-      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요." v-model="americanoIndex"></input-box> -->
 
       <!-- 고정된 필드 -->
       <div class="store-floor-info">
         <div class="desc">
           <p>매장 층</p>
           <p>좌석 수</p>
-          <p>(총 좌석수: {{totalDeskNum}})</p>
+          <p>(총 좌석수: {{storeInfo.totalDeskNum}})</p>
         </div>
-        <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
+        <div class="total-desk-info" v-for="(item, index) in storeInfo.storeTotalDeskInfo" :key="index">
           <div class="select-box-outer">
-            <select-box v-model="item.floor" :options="floorInfo"></select-box>
+            <select-box v-model="item.floor" :options="storeInfo.floorInfo"></select-box>
           </div>
           <input-box class="floor-num" placeHolder="숫자만" inputType="number" v-model="item.floorNum"></input-box>
           <input-box class="desk-num" placeHolder="좌석수" inputType="number" v-model="item.deskNum"></input-box>
@@ -43,55 +40,29 @@
         </div>
       </div>
 
-      <!-- 변경되는 필드 -->
-
-      <!--
-      <p>주차 정보</p>
-      <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요." v-model="parking"></input-box>
-
-      <div class="toggle-container">
-        <p>대관 가능 여부</p>
-        <toggle-button class="toggle" v-model="rental" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>와이파이 제공 여부</p>
-        <toggle-button class="toggle" v-model="wifi" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>콘센트 유무</p>
-        <toggle-button class="toggle" v-model="outlet" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>높은 테이블 유무</p>
-        <toggle-button class="toggle" v-model="deskHeight" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div> -->
-
       <p>휴무일</p>
-      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="holiday"></input-box>
+      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="storeInfo.holiday"></input-box>
 
       <p>운영 시간</p>
 
       <div class="toggle-container">
         <p>매일 동일</p>
-        <toggle-button class="toggle" v-model="sameOperationgTime" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
+        <toggle-button class="toggle" v-model="storeInfo.sameOperationgTime" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
       </div>
 
-      <div v-if="sameOperationgTime" class="operation-time">
+      <div v-if="storeInfo.sameOperationgTime" class="operation-time">
         <div class="am">
-          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="everydayOpen"></vue-timepicker>
+          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="storeInfo.everydayOpen"></vue-timepicker>
         </div>
         <div class="bar">
           -
         </div>
         <div class="pm">
-          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="everydayClose"></vue-timepicker>
+          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="storeInfo.everydayClose"></vue-timepicker>
         </div>
       </div>
       <div v-else class="operation-time multiple">
-        <div v-for="(item, index) in weeklyOperationTime" :key="index" class="time">
+        <div v-for="(item, index) in storeInfo.weeklyOperationTime" :key="index" class="time">
           <p>{{item.day}}</p>
           <div class="am">
             <vue-timepicker :minute-interval="10" format="HH:mm" v-model="item.open"></vue-timepicker>
@@ -106,10 +77,10 @@
       </div>
 
       <p>홈페이지 주소</p>
-      <input-box placeHolder="www.mycafe.me" v-model="url"></input-box>
+      <input-box placeHolder="www.mycafe.me" v-model="storeInfo.url"></input-box>
 
       <p>인스타그램 계정</p>
-      <input-box placeHolder="asdf_official" v-model="instagram"></input-box>
+      <input-box placeHolder="asdf_official" v-model="storeInfo.instagram"></input-box>
 
       <div class="file-input-container">
         <p>사진 업로드</p>
@@ -121,7 +92,7 @@
       </div>
 
       <div class="store-images-container">      
-        <div class="store-images" v-for="(item, index) in storeImageArray" :key="index">
+        <div class="store-images" v-for="(item, index) in storeInfo.storeImageArray" :key="index">
           <img class="image" :src="item.src"/>
           <img class="cancel-icon" src="@/assets/icon/icon_cancel.svg" @click="removeItem(item)"/>
         </div>
@@ -147,53 +118,59 @@
       VueTimepicker,
       SelectBox
     },
+    created() {
+      // 이전 페이지에서 넘겨주는 값
+      // this.storeInfo = this.$route.params.storeInfo
+    },
     data() {
       return {
-        storeImageArray: [],
-        rental: false,
-        wifi: false,
-        outlet: false,
-        deskHeight: false,
-        sameOperationgTime: true,
-        nameKor: '',
-        nameEng: '',
-        address: '',
-        countryNum: '',
-        middleNum: '',
-        endNum: '',
-        americanoIndex: '',
-        parking: '',
-        holiday: '',
-        url: '',
-        instagram: '',
-        everydayOpen: {
-          HH: '10',
-          mm: '00'
-        },
-        everydayClose: {
-          HH: '22',
-          mm: '00'
-        },
-        weeklyOperationTime: [
-          {day: '월', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '화', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '수', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '목', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '금', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '토', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
-        ],
-        floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
-        // floor: '지상',
-        storeTotalDeskInfo: [
-          {floor: '지상', floorNum: 0, deskNum: 0}
-        ]
+        storeInfo: {
+          storeImageArray: [],
+          rental: false,
+          wifi: false,
+          outlet: false,
+          deskHeight: false,
+          sameOperationgTime: true,
+          nameKor: '',
+          nameEng: '',
+          address: '',
+          countryNum: '',
+          middleNum: '',
+          endNum: '',
+          americanoIndex: '',
+          parking: '',
+          holiday: '',
+          url: '',
+          instagram: '',
+          everydayOpen: {
+            HH: '10',
+            mm: '00'
+          },
+          everydayClose: {
+            HH: '22',
+            mm: '00'
+          },
+          weeklyOperationTime: [
+            {day: '월', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '화', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '수', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '목', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '금', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '토', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
+          ],
+          floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
+          // floor: '지상',
+          storeTotalDeskInfo: [
+            {floor: '지상', floorNum: 0, deskNum: 0}
+          ]
+        }
       }
     },
     computed: {
       totalDeskNum() {
         let totalNum = 0
-        this.storeTotalDeskInfo.forEach((item) => {
+        this.storeInfo.storeTotalDeskInfo.forEach((item) => {
           totalNum += Number(item.deskNum)
         })
         return totalNum
@@ -203,23 +180,23 @@
       loadFile() {
         let storeImages = Array.from(this.$refs.storeImage.files);
         storeImages.forEach((item) => {
-          this.storeImageArray.push({item: item, src: URL.createObjectURL(item)})
+          this.storeInfo.storeImageArray.push({item: item, src: URL.createObjectURL(item)})
         })
       },
       removeItem(item) {
         var index = this.storeImageArray.indexOf(item);
         if (index !== -1) {
-          this.storeImageArray.splice(index, 1)
+          this.storeInfo.storeImageArray.splice(index, 1)
         }
       },
       plusFloorInfo() {
-        if(this.storeTotalDeskInfo.length > 3) return
-        this.storeTotalDeskInfo.push({floor: '지상', floorNum: 0, deskNum: 0})
+        if(this.storeInfo.storeTotalDeskInfo.length > 3) return
+        this.storeInfo.storeTotalDeskInfo.push({floor: '지상', floorNum: 0, deskNum: 0})
       },
       minusFloorInfo(item) {
-        var index = this.storeTotalDeskInfo.indexOf(item);
+        var index = this.storeInfo.storeTotalDeskInfo.indexOf(item);
         if (index !== -1) {
-          this.storeTotalDeskInfo.splice(index, 1)
+          this.storeInfo.storeTotalDeskInfo.splice(index, 1)
         }
       }
     }
