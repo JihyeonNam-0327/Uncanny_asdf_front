@@ -2,10 +2,11 @@
   <div class="filter-outer" :style="outerClass">
     <div class="filter-category" @click="openOption">
       <span :style="categoryClass">{{filter.category}}</span>
-      <img v-if="filter.option.length > 0 && !filter.isOpen" :src="icon"/>
-      <img v-if="filter.option.length > 0 && filter.isOpen" :src="icon" class="arrow-up"/>
+      <img v-if="filter.option.length > 0" :src="icon" :class="{'arrow-up' : filter.isOpen}"/>
     </div>
+
     <div v-if="filter.isOpen" class="divider"></div>
+
     <div v-if="filter.isOpen" class="filter-option">
       <div v-for="(item, index) in filter.option" :key="index" @click="itemClicked(item)"
       :class="item | optionClass"> {{item.name}} </div>
@@ -66,12 +67,11 @@
         this.$emit('categoryClicked')
       },
       itemClicked(selected) {
-        let type = this.filter.type
         this.filter.option.forEach(item => {
           if(item.name === selected.name) {
             item.selected = !item.selected
           } else {
-            if(type === 'radio') item.selected = false
+            if(this.filter.type === 'radio') item.selected = false
           }
         })
         this.$emit('input', this.filter)
@@ -93,7 +93,10 @@
     * {
       word-break: keep-all;
       word-wrap: normal;
-      white-space: nowrap;
+      white-space: nowrap; 
+    }
+    *::-webkit-scrollbar {
+      display: none;
     }
     .filter-category {
       display: flex;
