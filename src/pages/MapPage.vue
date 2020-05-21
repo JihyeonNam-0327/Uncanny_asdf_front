@@ -20,6 +20,7 @@
       <basic-map class="map"></basic-map>
     </div>
 
+    <swipeable-bottom-sheet class="bottom-sheet"></swipeable-bottom-sheet>
   </div>
 </template>
 
@@ -27,12 +28,14 @@
   import BasicMap from '@/components/BasicMap'
   import SearchInputBox from '@/components/SearchInputBox'
   import FilterComponent from '@/components/Filter'
+  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
 
   export default {
     components: {
       BasicMap,
       SearchInputBox,
-      FilterComponent
+      FilterComponent,
+      SwipeableBottomSheet
     },
     data() {
       return {
@@ -244,6 +247,9 @@
       .map {
         height: 100%;
       }
+    }
+    .bottom-sheet {
+      z-index: 102;
     }
   }
 </style>
