@@ -1,25 +1,37 @@
 
 <template>
-  <div>
-    <div>사진 슬라이더?</div>
-    <div>===========================================</div>
-    <storeCard 
+  <div class="jhj-test-outer">
+
+    <div class="horizontal-line"></div>
+
+    <div>??????????사진슬라이더??????????</div>
+
+    <div class="horizontal-line"></div>
+
+    <store-card 
       v-bind:storeCard="storeCards"
       detailInformation
       operatingHourArrow
       @pinChange="pinChange"
-    ></storeCard>
+    ></store-card>
 
+    <detail-filter
+      v-bind:storeFilter="storeFilters">
+    </detail-filter>
+
+    <div class="horizontal-line"></div>
 
   </div>
 </template>
 
 <script>
   import StoreCard from '@/components/StoreCard'
+  import DetailFilter from '@/components/DetailFilter'
 
   export default {
     components: {
       StoreCard,
+      DetailFilter,
     },
     data() {
       return {
@@ -53,8 +65,10 @@
           reviewCnt: '99',
           pinCnt: '1200',
           distance: '1.2',
-          heart: true}
-        }
+          heart: true},
+        storeFilters:
+          ['주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반']
+      }
     },
     methods: {
       pinChange: function () {
@@ -65,5 +79,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .jhj-test-outer{
+    .horizontal-line {
+      height: 10px;
+      background-color: #EBEBEB;
+    }
+  }
 </style>
