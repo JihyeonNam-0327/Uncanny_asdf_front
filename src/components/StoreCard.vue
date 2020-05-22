@@ -177,8 +177,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 15px 5vw 15px 5vw;
-      width: 90vw;
+      padding: 15px;
       :nth-child(n) {
         width: 20vw;
         height: 20vw;
@@ -189,7 +188,7 @@
     }
     .information-outer {
       display: flex;
-      padding: 0px 5vw 15px 5vw;
+      padding: 0px 15px 15px 15px;
       .left-part {
         width: 60vw;
         .title {
