@@ -20,7 +20,13 @@
       <basic-map class="map"></basic-map>
     </div>
 
-    <swipeable-bottom-sheet class="bottom-sheet"></swipeable-bottom-sheet>
+    <!-- <swipeable-bottom-sheet class="bottom-sheet" ref="swipeableBottomSheet">
+       <store-card
+          v-for="(storeCard, index) in storeCards" :key="index"
+          v-bind:storeCard="storeCard"
+          @pinChange="pinChange(index)">
+        </store-card>         
+      </swipeable-bottom-sheet> -->
   </div>
 </template>
 
@@ -28,14 +34,16 @@
   import BasicMap from '@/components/BasicMap'
   import SearchInputBox from '@/components/SearchInputBox'
   import FilterComponent from '@/components/Filter'
-  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
+  // import StoreCard from '@/components/StoreCard'
+  // import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
 
   export default {
     components: {
       BasicMap,
       SearchInputBox,
       FilterComponent,
-      SwipeableBottomSheet
+      // StoreCard,
+      // SwipeableBottomSheet
     },
     data() {
       return {
@@ -165,6 +173,92 @@
             // {name:'긴급재난지원금', selected: false},
           ]
           },
+        ],
+        storeCards: [
+          {
+            storeNameKor: '앤트러사이트',
+            storeBranchKor: '서교',
+            category: '카페',
+            storeNameEng: 'ANTHRACITE',
+            storeBranchEng: 'Seogyo',
+            openClosed: true,
+            operatingHour: '22:00',
+            seatsCnt: '120',
+            reviewCnt: '99',
+            pinCnt: '1200',
+            distance: '1.2',
+            heart: true
+            },
+          {
+            storeNameKor: '공그로트',
+            storeBranchKor: '연남',
+            category: '카페',
+            storeNameEng: 'Gongrot',
+            storeBranchEng: 'YeonNam',
+            openClosed: true,
+            operatingHour: '24:00',
+            seatsCnt: '80',
+            reviewCnt: '200',
+            pinCnt: '999',
+            distance: '0.6',
+            heart: true
+          },
+          {
+            storeNameKor: '공그로트',
+            storeBranchKor: '연남',
+            category: '카페',
+            storeNameEng: 'Gongrot',
+            storeBranchEng: 'YeonNam',
+            openClosed: true,
+            operatingHour: '24:00',
+            seatsCnt: '80',
+            reviewCnt: '200',
+            pinCnt: '999',
+            distance: '0.6',
+            heart: true
+          },
+          {
+            storeNameKor: '공그로트',
+            storeBranchKor: '연남',
+            category: '카페',
+            storeNameEng: 'Gongrot',
+            storeBranchEng: 'YeonNam',
+            openClosed: true,
+            operatingHour: '24:00',
+            seatsCnt: '80',
+            reviewCnt: '200',
+            pinCnt: '999',
+            distance: '0.6',
+            heart: true
+          },
+          {
+            storeNameKor: '공그로트',
+            storeBranchKor: '연남',
+            category: '카페',
+            storeNameEng: 'Gongrot',
+            storeBranchEng: 'YeonNam',
+            openClosed: true,
+            operatingHour: '24:00',
+            seatsCnt: '80',
+            reviewCnt: '200',
+            pinCnt: '999',
+            distance: '0.6',
+            heart: true
+          },
+          {
+            storeNameKor: '인생카페',
+            storeBranchKor: '종착지',
+            category: '카페',
+            storeNameEng: 'Gongrot',
+            storeBranchEng: 'YeonNam',
+            openClosed: true,
+            operatingHour: '24:00',
+            seatsCnt: '80',
+            reviewCnt: '200',
+            pinCnt: '999',
+            distance: '0.6',
+            heart: true
+          },
         ]
       }
     },
@@ -183,12 +277,16 @@
         })
       },
       closeAllFilter() {
+        console.log('close all !');
         this.filterList.forEach(item => {
           item.isOpen = false
         })
       },
       pageMove(where) {
         this.$router.push({name: where})
+      },
+      pinChange: function (index) {
+        this.storeCards[index].heart = !this.storeCards[index].heart
       }
     },
     mounted() {
