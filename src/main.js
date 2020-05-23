@@ -25,6 +25,7 @@ import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 import MapBottomList from '@/pages/MapBottomList.vue'
 import jhjTest from '@/pages/jhjTest.vue'
+import UpdateMenu from '@/pages/UpdateMenu.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -83,6 +84,11 @@ const routes = [
     path: '/signup', 
     name: 'SignUp', 
     component: SignUp
+  },
+  { 
+    path: '/updatemenu', 
+    name: 'UpdateMenu', 
+    component: UpdateMenu
   },
   { 
     path: '/', 
