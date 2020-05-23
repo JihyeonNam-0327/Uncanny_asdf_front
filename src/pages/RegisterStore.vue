@@ -1,6 +1,6 @@
 <template>
   <div class="register-store-outer">
-    <header-component class="header-component" leftType="historyback" ></header-component>
+    <header-component class="header-component" leftType="historyback" @backButtonClick="backButtonClicked"></header-component>
     
     <div class="register-store-context">
 
@@ -223,6 +223,10 @@
         if (index !== -1) {
           this.storeTotalDeskInfo.splice(index, 1)
         }
+      },
+      backButtonClicked() {
+        console.log('object');
+        this.$router.go(-1)
       }
     }
   }

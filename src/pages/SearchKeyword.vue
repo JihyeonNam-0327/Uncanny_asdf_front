@@ -2,19 +2,15 @@
   <div class="search-keyword-outer">
 
     <div class="search-input-component">
-      <search-input-box v-model="keyword" historybutton></search-input-box>
+      <search-input-box v-model="keyword" :historybutton="true" @back="backButtonClicked" @search="searchButtonClicked"></search-input-box>
     </div>
 
-    <div class="filter-outer">
-      filter - filter - filter - filter - filter - filter - filter - filter
-    </div>
+    <div class="no-result" v-if="searchResult.length === 0">
+      <div class="search-result">
+        검색 결과가 없습니다.
+      </div>
 
-    <div class="search-result">
-      search-result - search-result - search-result
-    </div>
-
-    <div class="regist-button" @click="registButtonClick">
-      장소 신규 등록
+      <basic-button class="regist-button" buttonText="장소 신규 등록" @clicked="registButtonClicked"></basic-button>
     </div>
 
   </div>
@@ -22,31 +18,38 @@
 
 <script>
   import SearchInputBox from '@/components/SearchInputBox'
+  import BasicButton from '@/components/BasicButton'
 
   export default {
     components: {
       SearchInputBox,
+      BasicButton
     },
     data() {
       return {
-        searchString: '',
+        keyword: '',
+        searchResult: []
       }
     },
     watch: {
-      searchString(newValue) {
-        console.log(newValue)
+      searchKeyword(newValue) {
       }
     },    
     methods: {
-      backButtonClick() {
-        console.log('back!')
+      backButtonClicked() {
+        this.pageMove('MapPage')
       },
-      searchButtonClick() {
-        console.log('seartch!')
+      searchButtonClicked() {
+        console.log('search!')
+        // this.$api.search()
       },
-      registButtonClick() {
-        console.log('regist!')      
-      }
+      registButtonClicked() {
+        console.log('object');
+        this.pageMove('RegisterStore')    
+      },
+      pageMove(where) {
+        this.$router.push({name: where})
+      },
     }
   }
 </script>
@@ -58,25 +61,20 @@
     width: 100vw;
     height: 100vh;
     .search-input-component {
+      margin: 50px 15px;
+    }
+    .no-result {
       margin: 0px 15px;
-    }
-    .filter-outer {
-      margin: 15px;
-      text-align: center;
-    }
-    .search-result {
-      margin: 15px;
-      text-align: center;
-    }
-    .regist-button {
-      width: 90vw;
-      height: 40px;
-      text-align: center;
-      margin: 0px 15px;
-      padding-top: 11px;
-      border-radius: 10px;
-      color: white;
-      background-color: #3c3c3c;;
+      .search-result {
+        margin: 15px;
+        text-align: center;
+        color: #CC6A6A;
+        font-size: 14px;
+      }
+      .regist-button {
+        width: 100%;
+        margin-top: 50px;
+      }
     }
   }
 </style>
