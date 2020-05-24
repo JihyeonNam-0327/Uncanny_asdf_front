@@ -7,7 +7,11 @@ import VueScrollTo from 'vue-scrollto';
 import axios from 'axios'
 import API from '@/api.js'
 import vClickOutside from 'v-click-outside'
- 
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+import 'material-icons/iconfont/material-icons.css';
+import feather from 'vue-icon'
+
 // page
 import Apply from '@/pages/Apply.vue'
 import Detail from '@/pages/Detail.vue'
@@ -29,6 +33,9 @@ import UpdateMenu from '@/pages/UpdateMenu.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
+Vue.use(feather, 'v-icon')
+// Loading the plugin into the Vue.
+Vue.use(Vuesax)
 Vue.use(vClickOutside)
 Vue.use(VueRouter)
 Vue.use(VueAgile)
