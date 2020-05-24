@@ -2,17 +2,19 @@
   <div class="store-card-outer">
 
     <div class="picture-outer">
-      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
-      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
-      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
-      <div class="thumbnail" style="background-image:url('https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')"></div>
+      <div class="store-img" v-for="(storeImg, index) in storeCard.storeImgs" :key="index">
+        <img :src=storeImg @click="enlargemenChange(index)">
+      </div>
+      <div class="add-photo-button" v-if="addPhoto">
+        <img src="@/assets/icon/icon_plus_circle.svg" alt="">
+      </div>
     </div>
 
     <div class="information-outer">
       <div class="left-part">
         <div class="line1">
           <span class="title">{{ storeCard.storeNameKor }} </span> 
-          <span class="title">{{ storeCard.storeBranchKor }} </span> 
+          <span class="title">{{ storeCard.storeBranchKor }} </span>
           <span>{{ storeCard.category }}</span>
         </div>
         <div class="line2">
@@ -139,6 +141,10 @@
     props: {
       storeCard: {
       },
+      addPhoto: {
+        type: Boolean,
+        default: false
+      },
       operatingHourArrow: {
         type: Boolean,
         default: false
@@ -150,7 +156,8 @@
     },
     data() {
       return {
-        operatingHourToggle: false
+        operatingHourToggle: false,
+        enlargement: false,
       }
     },
     methods: {
@@ -158,7 +165,10 @@
         this.$emit('pinChange')
       },
       operatingHourToggleChange() {
-        this.operatingHourToggle = !this.operatingHourToggle
+        this.operatingHourToggle = !this.operatingHourToggle5
+      },
+      enlargemenChange(index) {
+        this.$emit('enlargementChange', index)
       }
     }
   }
@@ -175,16 +185,29 @@
 
     .picture-outer {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 15px;
-      :nth-child(n) {
-        width: 20vw;
-        height: 20vw;
+      overflow-y: scroll;
+      margin: 15px;
+
+      .store-img img {
+        width: 100px;
+        height: 100px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+        margin-right: 10px;
       }
+      .add-photo-button {
+        min-width: 100px;
+        height: 100px;
+        background-color: gray;
+        img {
+          display: block;
+          margin: 35px auto;
+       }
+      }
+    }
+    .picture-outer::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
     }
     .information-outer {
       display: flex;
