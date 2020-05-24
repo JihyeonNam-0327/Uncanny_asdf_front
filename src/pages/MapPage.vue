@@ -20,13 +20,13 @@
       <basic-map class="map"></basic-map>
     </div>
 
-    <!-- <swipeable-bottom-sheet class="bottom-sheet" ref="swipeableBottomSheet">
+    <swipeable-bottom-sheet class="bottom-sheet" ref="swipeableBottomSheet">
        <store-card
           v-for="(storeCard, index) in storeCards" :key="index"
           v-bind:storeCard="storeCard"
           @pinChange="pinChange(index)">
         </store-card>         
-      </swipeable-bottom-sheet> -->
+    </swipeable-bottom-sheet>
   </div>
 </template>
 
@@ -34,16 +34,16 @@
   import BasicMap from '@/components/BasicMap'
   import SearchInputBox from '@/components/SearchInputBox'
   import FilterComponent from '@/components/Filter'
-  // import StoreCard from '@/components/StoreCard'
-  // import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
+  import StoreCard from '@/components/StoreCard'
+  import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
 
   export default {
     components: {
       BasicMap,
       SearchInputBox,
       FilterComponent,
-      // StoreCard,
-      // SwipeableBottomSheet
+      StoreCard,
+      SwipeableBottomSheet
     },
     data() {
       return {
@@ -277,7 +277,6 @@
         })
       },
       closeAllFilter() {
-        console.log('close all !');
         this.filterList.forEach(item => {
           item.isOpen = false
         })
