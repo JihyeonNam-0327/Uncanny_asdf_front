@@ -1,43 +1,28 @@
-
 <template>
-  <div class="jhj-test-outer">
-
-    <div class="horizontal-line"></div>
-
-    <store-card 
-      v-bind:storeCard="storeCards"
-      addPhoto
-      detailInformation
-      operatingHourArrow
-      @pinChange="pinChange"
-      @enlargementChange="enlargementSet"
-    ></store-card>
-    
-    <div class="enlargement-outer" v-if="enlargementToggle" @click="enlargementCancle">
+<!-- Make a div wrapped slider,set height and width -->
+<div class="enlargement-outer">
+  <div class="enlargement-content">
+    <div style="width:100%;margin:0 auto;height:400px">
+        <!-- Using the slider component -->
+        <slider ref="slider" :options="options">
+          <!-- slideritem wrapped package with the components you need -->
+          <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
+            <img style="width: 95%" :src=storeImg>
+          </slideritem>
+          <!-- Customizable loading -->
+          <div slot="loading">loading...</div>
+        </slider>
     </div>
-
-    <detail-filter
-      v-bind:storeFilter="storeFilters">
-    </detail-filter>
-
-    <div class="horizontal-line"></div>
-
   </div>
+
+</div> 
 </template>
-
 <script>
-  import StoreCard from '@/components/StoreCard'
-  import DetailFilter from '@/components/DetailFilter'
-
-  export default {
-    components: {
-      StoreCard,
-      DetailFilter,
-    },
-    data() {
+import { slider, slideritem } from 'vue-concise-slider'
+export default {
+   data () {
       return {
-        enlargementToggle: false,
-        storeImg: '',
+        //data list [array]
         storeCards:
           {storeNameKor: '앤트러사이트',
           storeBranchKor: '서교',
@@ -76,35 +61,41 @@
             'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
             'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
           ]},
-        storeFilters:
-          ['주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반']
+
+        someList:[          
+          {
+            html: 'slide1',
+            style: {
+              'background': '#1bbc9b'
+            }
+          },
+          {
+            html: 'slide2',
+            style: {
+              'background': '#4bbfc3'
+            }
+          },
+          {
+            html: 'slide3',
+            style: {
+              'background': '#7baabe'
+            }
+          }
+        ],
+        //Slider configuration [obj]
+        options: {
+          currentPage: 0,
         }
-    },
-    methods: {
-      pinChange: function () {
-        this.storeCards.heart = !this.storeCards.heart
-      },
-      enlargementSet: function (index) {
-        this.enlargementToggle = !this.enlargementToggle
-        this.storeImg = this.storeCards.storeImgs[index]
-      },
-      enlargementCancle: function () {
-        this.enlargementToggle = !this.enlargementToggle
-      },
-      logddd: function () {
-        console.log("oh!");
       }
+    },
+    components: {
+      slider,
+      slideritem
     }
-  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .jhj-test-outer{
-
-    .horizontal-line {
-      height: 10px;
-      background-color: #EBEBEB;
-    }
     .enlargement-outer {
       position: absolute;
       top:0;
@@ -115,11 +106,5 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      .enlargement-content {
-        img {
-          width: 100%;
-        }
-      }
     }
-  }
-</style>
+    </style>
