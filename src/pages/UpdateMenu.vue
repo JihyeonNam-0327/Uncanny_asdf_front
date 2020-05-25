@@ -2,7 +2,7 @@
 /* eslint-disable vue/no-parsing-error */
 <template>
   <div class="update-menu-outer">
-    <header-component class="header-component" leftType="historyback" centerText="메뉴 수정"></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="메뉴 수정" @backButtonClick="back"></header-component>
 
     <div class="horizontal-line"></div>
 
@@ -33,11 +33,8 @@
 
   export default {
     created() {
-      // 이전 페이지에서 넘겨주는 값
       this.signitureMenu = this.$route.params.signitureMenu
       this.wholeMenu = this.$route.params.wholeMenu
-      console.log('this.signitureMenu: ', this.signitureMenu);
-      console.log('this.wholeMenu: ', this.wholeMenu);
     },
     components: {
       HeaderComponent,
@@ -66,6 +63,9 @@
         if (index !== -1) {
           this.menuList.splice(index, 1)
         }
+      },
+      back() {
+        this.$router.go(-1)
       }
     }
   }
