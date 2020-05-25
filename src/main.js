@@ -27,8 +27,9 @@ import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
-import jhjTest from '@/pages/jhjTest.vue'
+import JhjTest from '@/pages/JhjTest.vue'
 import UpdateMenu from '@/pages/UpdateMenu.vue'
+import UpdateFilter from '@/pages/UpdateFilter.vue'
 
 const CLIENT_ID = '5qehk43mhz';
 
@@ -62,9 +63,9 @@ const routes = [
     component: Detail 
   },
   { 
-    path: '/detail', 
-    name: 'Detail', 
-    component: Detail
+    path: '/jhjtest', 
+    name: 'JhjTest', 
+    component: JhjTest
   },
   { 
     path: '/registerstore', 
@@ -82,9 +83,9 @@ const routes = [
     component: SearchKeyword
   },
   { 
-    path: '/searchfiltertag', 
-    name: 'SearchFilterTag', 
-    component: SearchFilterTag
+    path: '/searchfilter', 
+    name: 'SearchFilter', 
+    component: SearchFilter
   },
   { 
     path: '/signup', 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <filter-component></filter-component>
+    <filter-dropdown></filter-dropdown>
 
     <vs-collapse accordion class="menu-collapse">
      <vs-collapse-item>
@@ -28,10 +28,10 @@
 </template>
 
 <script>
-  import FilterComponent from '@/components/Filter'
+  import FilterDropdown from '@/components/FilterDropdown'
   export default {
    components: {
-     FilterComponent
+     FilterDropdown
    } 
   }
 </script>
