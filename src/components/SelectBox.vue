@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <select v-model="selected">
+  <div >
+    <select v-model="selected" >
       <option disabled v-if="label" value="">{{ label }}</option>
       <option v-for="option in options" :value="option.value" :key="option.text">
         {{ option.text }}
@@ -57,6 +57,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    outline: none;
+    outline: 0;
+
   }
 </style>

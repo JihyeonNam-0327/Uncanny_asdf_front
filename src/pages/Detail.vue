@@ -11,13 +11,13 @@
     ></detail-info>
     
     <div class="enlargement-outer" v-if="enlargementToggle" >
-      <div class="enlargement-content" v-click-outside="enlargementCancle">
-        <div style="width:100%;margin:0 auto;height:400px">
+      <div class="enlargement-content" >
+        <div style="width:100%;margin:0 auto;height:fit-content;">
             <!-- Using the slider component -->
-            <slider ref="slider" :options="options">
+            <slider ref="slider" :options="options" v-click-outside="enlargementCancle">
               <!-- slideritem wrapped package with the components you need -->
               <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
-                <img style="width: 95%" :src=storeImg>
+                <img style="width: 95%;" :src=storeImg >
               </slideritem>
               <!-- Customizable loading -->
               <div slot="loading">loading...</div>
@@ -60,16 +60,24 @@
           currentPage: 0,
         },
         storeCards: {
-          storeNameKor: '앤트러사이트',
-          storeBranchKor: '서교',
+          openClosed: true,
+          closingHour: '22:00',          
+
+          storeNameKor: '앤트러사이트 서교',
+          storeNameEng: 'ANTHRACITE Seogyo',
           category: '카페',
-          storeNameEng: 'ANTHRACITE',
-          storeBranchEng: 'Seogyo',
           address: '서울 마포구 월드컵로12길 11',
           floor: '1~3층',
-          phoneNumber: '02-322-7009',
-          openClosed: true,
-          closingHour: '22:00',
+          countryNum: '02',
+          middleNum: '1234',
+          endNum: '5678',
+          storeTotalDeskInfo: [
+            {floor: '지하', floorNum: 1, seatNum: 100},
+            {floor: '지상', floorNum: 1, seatNum: 50},
+            {floor: '지상', floorNum: 2, seatNum: 100},
+            {floor: '지상', floorNum: 3, seatNum: 200},
+          ],
+
           holiday: '매주 월요일 휴무',
           openMon: '', 
           closeMon: '',
@@ -127,15 +135,23 @@
         ]
       }
     },
+    computed: {
+      isOpen() {
+        return !this.enlargementToggle
+      }
+    },
     methods: {
       pinChange: function () {
         this.storeCards.heart = !this.storeCards.heart
       },
       enlargementSet: function (index) {
+        console.log('set');
+        if(this.isOpen) return;
         this.enlargementToggle = !this.enlargementToggle
         this.options.currentPage = index
       },
       enlargementCancle: function () {
+        console.log('cancel');
         this.enlargementToggle = !this.enlargementToggle
       },
       menuEditClicked() {
@@ -164,6 +180,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      z-index: 10;
     }
 
   }

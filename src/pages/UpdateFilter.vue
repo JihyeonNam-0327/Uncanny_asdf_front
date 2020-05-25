@@ -2,56 +2,6 @@
   <div class="search-filter-tag-outer">
 
     <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
-    
-    <div class="horizontal-line"></div>
-
-    <div class="group-outer">
-      <div class="group-name">방문요일/시간</div>
-      <div class="day-of-the-week-container">
-        <filterTag type='radio'
-          v-bind:tagArray="[
-            {name:'월', selected: true},
-            {name:'화', selected: true},
-            {name:'수', selected: false},
-            {name:'목', selected: false},
-            {name:'금', selected: false},
-            {name:'토', selected: false},
-            {name:'일', selected: false}
-          ]"
-          v-model="categories">
-        </filterTag>
-      </div>
-
-      <div class="time-container">
-        <vue-timepicker
-          format="hh:mm A" 
-          input-width="30vw"
-          v-model="startTime"
-          :minute-interval="10"
-          @change = "onChangeStartTime"/>
-        <div class="time-wave">~</div>
-        <vue-timepicker
-          format="hh:mm A" 
-          input-width="30vw"
-          v-model="endTime"
-          :minute-interval="10"
-          @change = "onChangeEndTime"/>
-        <div v-if="todayOrTommorrow === '익일'" class="time-tommorrow">
-          {{ todayOrTommorrow }}</div>
-        <div v-else class="time-today"></div>
-      </div>
-    </div>
-
-    <div class="horizontal-line"></div>
-
-    <div class="group-outer">
-      <div class="group-name">좌석수</div>
-        <div class="seats-container">
-          <vue-slider v-model="seatsValue" v-bind="seatsOptions" 
-            :enable-cross="false" :marks="true" :interval="10" :tooltip="'none'">
-          </vue-slider>
-        </div>
-    </div>
 
     <div class="horizontal-line"></div>
 
@@ -235,9 +185,6 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent'
   import FilterTag from '@/components/FilterTag'
-  import VueTimepicker from 'vue2-timepicker'
-  import VueSlider from 'vue-slider-component'
-  import 'vue-slider-component/theme/default.css'
 
 export default {
     created() {
@@ -247,8 +194,6 @@ export default {
     components: {
       HeaderComponent,
       FilterTag,
-      VueTimepicker,
-      VueSlider,
     },
     data() {
       return {
