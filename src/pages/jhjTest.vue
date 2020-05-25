@@ -4,16 +4,30 @@
 
     <div class="horizontal-line"></div>
 
-    <div>??????????사진슬라이더??????????</div>
-
-    <div class="horizontal-line"></div>
-
     <store-card 
       v-bind:storeCard="storeCards"
       detailInformation
       operatingHourArrow
+      addPhotoButton
       @pinChange="pinChange"
+      @enlargementChange="enlargementSet"
     ></store-card>
+    
+    <div class="enlargement-outer" v-if="enlargementToggle" @click="enlargementCancle">
+      <div class="enlargement-content">
+        <div style="width:100%;margin:0 auto;height:400px">
+            <!-- Using the slider component -->
+            <slider ref="slider" :options="options">
+              <!-- slideritem wrapped package with the components you need -->
+              <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
+                <img style="width: 95%" :src=storeImg>
+              </slideritem>
+              <!-- Customizable loading -->
+              <div slot="loading">loading...</div>
+            </slider>
+        </div>
+      </div>
+    </div>
 
     <detail-filter
       v-bind:storeFilter="storeFilters">
@@ -49,16 +63,24 @@
 <script>
   import StoreCard from '@/components/StoreCard'
   import DetailFilter from '@/components/DetailFilter'
+  import { slider, slideritem } from 'vue-concise-slider'
 
   export default {
     components: {
       StoreCard,
       DetailFilter,
+      slider,
+      slideritem,
     },
     data() {
       return {
-        storeCards:
-          {storeNameKor: '앤트러사이트',
+        enlargementToggle: false,
+        storeImg: '',
+        options: {
+          currentPage: 0,
+        },
+        storeCards: {
+          storeNameKor: '앤트러사이트',
           storeBranchKor: '서교',
           category: '카페',
           storeNameEng: 'ANTHRACITE',
@@ -87,7 +109,15 @@
           reviewCnt: '99',
           pinCnt: '1200',
           distance: '1.2',
-          heart: true},
+          heart: true,
+          storeImgs: [
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
+            'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
+          ]
+        },
         storeFilters:
           ['주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반']
       }
@@ -95,17 +125,35 @@
     methods: {
       pinChange: function () {
         this.storeCards.heart = !this.storeCards.heart
-      }
+      },
+      enlargementSet: function (index) {
+        this.enlargementToggle = !this.enlargementToggle
+        this.options.currentPage = index
+      },
+      enlargementCancle: function () {
+        this.enlargementToggle = !this.enlargementToggle
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .jhj-test-outer{
+
     .horizontal-line {
       height: 10px;
       background-color: #EBEBEB;
     }
+    .enlargement-outer {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba( 49, 49, 49, 0.8 );
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     .menu-collapse {
       outline: none;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
