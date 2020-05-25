@@ -3,10 +3,10 @@
 
     <div class="picture-outer">
       <div class="store-img" v-for="(storeImg, index) in storeCard.storeImgs" :key="index">
-        <img :src=storeImg @click="enlargemenChange(index)">
+        <img :src=storeImg @click="enlargementChange(index)">
       </div>
       <div class="add-photo-button" v-if="addPhoto">
-        <img src="@/assets/icon/icon_plus_circle.svg" alt="">
+        <img src="@/assets/icon/icon_plus_circle2.svg" alt="">
       </div>
     </div>
 
@@ -167,7 +167,7 @@
       operatingHourToggleChange() {
         this.operatingHourToggle = !this.operatingHourToggle5
       },
-      enlargemenChange(index) {
+      enlargementChange(index) {
         this.$emit('enlargementChange', index)
       }
     }

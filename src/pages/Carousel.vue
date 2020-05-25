@@ -18,13 +18,20 @@
 </div> 
 </template>
 <script>
-import { slider, slideritem } from 'vue-concise-slider'
-export default {
-   data () {
+  import { slider, slideritem } from 'vue-concise-slider'
+
+  export default {
+    components: {
+      slider,
+      slideritem
+    },
+    data () {
       return {
-        //data list [array]
-        storeCards:
-          {storeNameKor: '앤트러사이트',
+        options: {
+          currentPage: 0,
+        },
+        storeCards: {
+          storeNameKor: '앤트러사이트',
           storeBranchKor: '서교',
           category: '카페',
           storeNameEng: 'ANTHRACITE',
@@ -60,51 +67,23 @@ export default {
             'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
             'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
             'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
-          ]},
-
-        someList:[          
-          {
-            html: 'slide1',
-            style: {
-              'background': '#1bbc9b'
-            }
-          },
-          {
-            html: 'slide2',
-            style: {
-              'background': '#4bbfc3'
-            }
-          },
-          {
-            html: 'slide3',
-            style: {
-              'background': '#7baabe'
-            }
-          }
-        ],
-        //Slider configuration [obj]
-        options: {
-          currentPage: 0,
-        }
+          ]
+        },
       }
     },
-    components: {
-      slider,
-      slideritem
-    }
-}
+  }
 </script>
 
 <style lang="scss" scoped>
-    .enlargement-outer {
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba( 49, 49, 49, 0.5 );
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    </style>
+  .enlargement-outer {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( 49, 49, 49, 0.5 );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>

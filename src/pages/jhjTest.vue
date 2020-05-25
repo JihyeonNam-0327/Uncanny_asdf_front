@@ -91,9 +91,6 @@
       enlargementCancle: function () {
         this.enlargementToggle = !this.enlargementToggle
       },
-      logddd: function () {
-        console.log("oh!");
-      }
     }
   }
 </script>
