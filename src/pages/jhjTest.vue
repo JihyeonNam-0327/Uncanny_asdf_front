@@ -154,10 +154,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-    .menu-collapse {
-      outline: none;
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-      -webkit-tap-highlight-color: transparent;
+      .menu-collapse {
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+      }
     }
   }
 </style>

@@ -29,7 +29,6 @@ import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilterTag from '@/pages/SearchFilterTag.vue'
 import MapBottomList from '@/pages/MapBottomList.vue'
 import jhjTest from '@/pages/jhjTest.vue'
-import Carousel from '@/pages/Carousel.vue'
 import UpdateMenu from '@/pages/UpdateMenu.vue'
 
 const CLIENT_ID = '5qehk43mhz';
@@ -48,11 +47,6 @@ Vue.prototype.$http = axios
 Vue.prototype.$api = API
 
 const routes = [
-  { 
-    path: '/Carousel', 
-    name: 'Carousel', 
-    component: Carousel 
-  },
   { 
     path: '/apply', 
     name: 'Apply', 
