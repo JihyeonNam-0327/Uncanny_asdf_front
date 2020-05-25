@@ -34,7 +34,10 @@
   export default {
     created() {
       // 이전 페이지에서 넘겨주는 값
-      // this.menuList = this.$route.params.menuList
+      this.signitureMenu = this.$route.params.signitureMenu
+      this.wholeMenu = this.$route.params.wholeMenu
+      console.log('this.signitureMenu: ', this.signitureMenu);
+      console.log('this.wholeMenu: ', this.wholeMenu);
     },
     components: {
       HeaderComponent,
@@ -43,6 +46,8 @@
     data() {
       return {
         test: '',
+        signitureMenu: [],
+        wholeMenu: [],
         menuList: [
           {
             isMain: true,
