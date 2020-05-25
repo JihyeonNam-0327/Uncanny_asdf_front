@@ -73,7 +73,6 @@
     justify-items: stretch;
     .menu-collapse {
       width: 215px;
-      outline: none;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
       -webkit-tap-highlight-color: transparent;
       span {
