@@ -4,14 +4,11 @@
 
     <div class="horizontal-line"></div>
 
-    <store-card 
+    <detail-info
       v-bind:storeCard="storeCards"
-      detailInformation
-      operatingHourArrow
-      addPhotoButton
       @pinChange="pinChange"
       @enlargementChange="enlargementSet"
-    ></store-card>
+    ></detail-info>
     
     <div class="enlargement-outer" v-if="enlargementToggle" @click="enlargementCancle">
       <div class="enlargement-content">
@@ -61,13 +58,13 @@
 </template>
 
 <script>
-  import StoreCard from '@/components/StoreCard'
+  import DetailInfo from '@/components/DetailInfo'
   import DetailFilter from '@/components/DetailFilter'
   import { slider, slideritem } from 'vue-concise-slider'
 
   export default {
     components: {
-      StoreCard,
+      DetailInfo,
       DetailFilter,
       slider,
       slideritem,
