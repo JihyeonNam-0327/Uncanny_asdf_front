@@ -11,7 +11,7 @@
       </div>
       <div class="tag-list" v-click-outside="closeAllFilter">
         <div class="tag-element" v-for="(item, index) in filterList" :key="index">
-          <filter-component :filter="item" @categoryClicked="openFilter(item, index)"></filter-component>
+          <filter-dropdown :filter="item" @categoryClicked="openFilter(item, index)"></filter-dropdown>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 <script>
   import BasicMap from '@/components/BasicMap'
   import SearchInputBox from '@/components/SearchInputBox'
-  import FilterComponent from '@/components/Filter'
+  import FilterDropdown from '@/components/FilterDropdown'
   import StoreCard from '@/components/StoreCard'
   import SwipeableBottomSheet from '@/components/SwipeableBottomSheet'
 
@@ -41,7 +41,7 @@
     components: {
       BasicMap,
       SearchInputBox,
-      FilterComponent,
+      FilterDropdown,
       StoreCard,
       SwipeableBottomSheet
     },
