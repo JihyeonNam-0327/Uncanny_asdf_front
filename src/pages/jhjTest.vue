@@ -13,8 +13,8 @@
       @enlargementChange="enlargementSet"
     ></store-card>
     
-    <div class="enlargement-outer" v-if="enlargementToggle" @click="enlargementCancle">
-      <div class="enlargement-content">
+    <div class="enlargement-outer" v-if="enlargementToggle" >
+      <div class="enlargement-content" v-click-outside="enlargementCancle">
         <div style="width:100%;margin:0 auto;height:400px">
             <!-- Using the slider component -->
             <slider ref="slider" :options="options">
@@ -35,34 +35,16 @@
 
     <div class="horizontal-line"></div>
 
-    <vs-collapse accordion class="menu-collapse">
-      <vs-collapse-item>
-        <div slot="header">
-          Menu
-        </div>
-        <p>
-          아메리카노 ・・・ 4,900원
-        </p>
-        <p>
-          아메리카노 ・・・ 4,900원
-        </p>
-        <p>
-          아메리카노 ・・・ 4,900원
-        </p>
-        <p>
-          아메리카노 ・・・ 4,900원
-        </p>
-        <p>
-          아메리카노 ・・・ 4,900원
-        </p>
-      </vs-collapse-item>
-    </vs-collapse>
+    <detail-menu :signitureMenu="signitureMenu" :wholeMenu="wholeMenu" @edit="menuEditClicked">
+
+    </detail-menu>
   </div>
 </template>
 
 <script>
   import StoreCard from '@/components/StoreCard'
   import DetailFilter from '@/components/DetailFilter'
+  import DetailMenu from '@/components/DetailMenu'
   import { slider, slideritem } from 'vue-concise-slider'
 
   export default {
@@ -71,6 +53,7 @@
       DetailFilter,
       slider,
       slideritem,
+      DetailMenu
     },
     data() {
       return {
@@ -118,8 +101,33 @@
             'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
           ]
         },
-        storeFilters:
-          ['주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반']
+        storeFilters: [
+          '주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반'
+        ],
+        signitureMenu: [
+          {
+            name: '대표메뉴 1',
+            price: 2000
+          },
+          {
+            name: '대표메뉴 2',
+            price: 2000
+          },
+          {
+            name: '대표메뉴 3',
+            price: 2000
+          }
+        ],
+        wholeMenu: [
+          {
+            name: '기타메뉴 1',
+            price: 2000
+          },
+          {
+            name: '기타메뉴 2',
+            price: 2000
+          }
+        ]
       }
     },
     methods: {
@@ -133,13 +141,18 @@
       enlargementCancle: function () {
         this.enlargementToggle = !this.enlargementToggle
       },
+      menuEditClicked() {
+        this.pageMove('UpdateMenu')
+      },
+      pageMove(where) {
+        this.$router.push({name: where, params: {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}})
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .jhj-test-outer{
-
     .horizontal-line {
       height: 10px;
       background-color: #EBEBEB;
@@ -154,11 +167,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      .menu-collapse {
-        outline: none;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        -webkit-tap-highlight-color: transparent;
-      }
     }
+
   }
 </style>
