@@ -114,11 +114,8 @@
       </div>
 
       <div class="right-part">
-        <div class="emoji">
-          <div class="emo">🤔<div>10</div></div>
-          <div class="emo">😐<div>200</div></div>
-          <div class="emo">😊<div>888</div></div>
-          <div class="emo">😍<div>1209</div></div>
+        <div class="store-card-edit-button">
+          수정
         </div>
         <div class="distance-pin">
           <div class="distance">{{ storeCard.distance }} km</div>
@@ -213,9 +210,9 @@
       display: flex;
       padding: 0px 15px 15px 15px;
       .left-part {
-        width: 60vw;
+        width: calc(100vw - 30px);
         .title {
-          font-size: 15px;
+          font-size: 16px;
         }
         .line3 {
           .line3-left {
@@ -255,19 +252,9 @@
         flex-direction: column;
         justify-content: space-between;
         width: 30vw;
-        .emoji {
-          display: flex;
-          justify-content: space-around;
-          .emo {
-            font-size: 10px;
-            text-align: center;
-            width: 25px;
-            .emoji-temp {
-              width: 15px;
-              height: 15px;
-            }
-          }
-         }
+        .store-card-edit-button {
+          align-self: flex-end;        
+        }
         .distance-pin {
           display: flex;
           justify-content: flex-end;
