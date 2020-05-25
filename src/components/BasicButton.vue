@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-button-outer">
+  <div class="basic-button-outer" @click="buttonClicked">
     <div class="button-outline">
       <div class="text-box">
         {{ buttonText }}
@@ -14,6 +14,11 @@
       buttonText: {
         type: String,
         default: '로그인'
+      }
+    },
+    methods: {
+      buttonClicked() {
+        this.$emit('clicked')
       }
     }
   }
