@@ -52,14 +52,14 @@
       </v-tab>
     </v-tabs> -->
     <detail-photo id="photo" :images="storePics"></detail-photo>
-    <detail-info id="info"></detail-info>
+    <detail-info-x-x id="info"></detail-info-x-x>
     <detail-comment id="comment"></detail-comment>
   </div>
 </template>
 
 <script>
   import DetailPhoto from '@/components/DetailPhoto.vue'
-  import DetailInfo from '@/components/DetailInfo.vue'
+  import DetailInfoXX from '@/components/DetailInfoXX.vue'
   import DetailComment from '@/components/DetailComment.vue'
   import HeaderComponent from '@/components/HeaderComponent'
   import HeartButton from '@/components/HeartButton'
@@ -72,7 +72,7 @@
     },
     components: {
       DetailPhoto,
-      DetailInfo,
+      DetailInfoXX,
       DetailComment,
       HeaderComponent,
       HeartButton
