@@ -165,7 +165,7 @@
         this.$emit('pinChange')
       },
       operatingHourToggleChange() {
-        this.operatingHourToggle = !this.operatingHourToggle5
+        this.operatingHourToggle = !this.operatingHourToggle
       },
       enlargementChange(index) {
         this.$emit('enlargementChange', index)
