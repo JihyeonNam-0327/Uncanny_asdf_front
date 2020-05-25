@@ -26,8 +26,7 @@ import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
-import SearchFilterTag from '@/pages/SearchFilterTag.vue'
-import MapBottomList from '@/pages/MapBottomList.vue'
+import SearchFilter from '@/pages/SearchFilter.vue'
 import jhjTest from '@/pages/jhjTest.vue'
 import UpdateMenu from '@/pages/UpdateMenu.vue'
 
@@ -53,14 +52,14 @@ const routes = [
     component: Apply 
   },
   { 
-    path: '/MapBottomList', 
-    name: 'MapBottomList', 
-    component: MapBottomList 
+    path: '/updatefilter', 
+    name: 'UpdateFilter', 
+    component: UpdateFilter 
   },
   { 
-    path: '/jhjTest', 
-    name: 'jhjTest', 
-    component: jhjTest 
+    path: '/detail', 
+    name: 'Detail', 
+    component: Detail 
   },
   { 
     path: '/detail', 

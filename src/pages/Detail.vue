@@ -1,272 +1,170 @@
+
 <template>
-  <div class="detail-outer">
-    <header-component class="header-component" id="header" leftType="historyback"></header-component>
+  <div class="jhj-test-outer">
+
+    <div class="horizontal-line"></div>
+
+    <detail-info
+      v-bind:storeCard="storeCards"
+      @pinChange="pinChange"
+      @enlargementChange="enlargementSet"
+    ></detail-info>
     
-    <div class="asdf-logo">
-      <img src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" />
-      <div class="text-over-img">
-        <div class="asdf">
-          ASDF
-        </div>
-        <div class="bottom-text">
-          <div class="asdf-desc">
-            <p>ADVISE</p>
-            <p>SUITABLE</p>
-            <p>DRINK&amp;</p>
-            <p>FOOD</p>
-          </div>
-          <div class="store-info">
-            <p>ISSUE NO.{{ storeId }}</p>
-            <p>{{ nameEng }}</p>
-          </div>
+    <div class="enlargement-outer" v-if="enlargementToggle" >
+      <div class="enlargement-content" v-click-outside="enlargementCancle">
+        <div style="width:100%;margin:0 auto;height:400px">
+            <!-- Using the slider component -->
+            <slider ref="slider" :options="options">
+              <!-- slideritem wrapped package with the components you need -->
+              <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
+                <img style="width: 95%" :src=storeImg>
+              </slideritem>
+              <!-- Customizable loading -->
+              <div slot="loading">loading...</div>
+            </slider>
         </div>
       </div>
     </div>
 
-    <div class="posting-info">
-      <p class="issue">ISSUE NO.{{ storeId }}</p>
-      <p class="name">{{ nameEng }}</p>
-      <p class="place">{{ place }}</p>
-      <div class="line"></div>
-      <div class="date">
-        <p>Visit. {{ visitDate }}</p>
-        <p>Post. {{ postingDate }}</p>
-      </div>
-    </div>
+    <detail-filter
+      v-bind:storeFilter="storeFilters">
+    </detail-filter>
 
-    <div class="bottom-heart-outer">
-      <heart-button class="heart-button" v-model="bookmarkClicked" :bookmark="true" :totalCount="27"></heart-button>
-    </div>
+    <div class="horizontal-line"></div>
 
-    <!-- <v-tabs class="tab-index"
-      v-model="tab"
-      id="tabIndex"
-      grow
-      :height="30">
-      <v-tab
-        v-for="(item, index) in tabs"
-        :key="index"
-        v-scroll-to="item.anchor"
-        @change="changeTab(index)">
-        {{ item.name }}
-      </v-tab>
-    </v-tabs> -->
-    <detail-photo id="photo" :images="storePics"></detail-photo>
-    <detail-info-x-x id="info"></detail-info-x-x>
-    <detail-comment id="comment"></detail-comment>
+    <detail-menu :signitureMenu="signitureMenu" :wholeMenu="wholeMenu" @edit="menuEditClicked">
+
+    </detail-menu>
   </div>
 </template>
 
 <script>
-  import DetailPhoto from '@/components/DetailPhoto.vue'
-  import DetailInfoXX from '@/components/DetailInfoXX.vue'
-  import DetailComment from '@/components/DetailComment.vue'
-  import HeaderComponent from '@/components/HeaderComponent'
-  import HeartButton from '@/components/HeartButton'
+  import DetailInfo from '@/components/DetailInfo'
+  import DetailFilter from '@/components/DetailFilter'
+  import DetailMenu from '@/components/DetailMenu'
+  import { slider, slideritem } from 'vue-concise-slider'
 
   export default {
-    created() {
-      console.log(this.$route.params);
-      this.storeId = this.$route.params.storeId
-      window.addEventListener('scroll', this.handleScroll);
-    },
     components: {
-      DetailPhoto,
-      DetailInfoXX,
-      DetailComment,
-      HeaderComponent,
-      HeartButton
-    },
-    mounted() {
+      DetailInfo,
+      DetailFilter,
+      slider,
+      slideritem,
+      DetailMenu
     },
     data() {
       return {
-        storeId: '',
-        tab: null,
-        tabs: [
-          {id: 1, name: 'photo', anchor: { el: '#photo', offset: -30 }},
-          {id: 2, name: 'info', anchor: { el: '#info' , offset: -30 }},
-          {id: 3, name: 'comment', anchor: { el: '#comment' , offset: -30 } }
+        enlargementToggle: false,
+        storeImg: '',
+        options: {
+          currentPage: 0,
+        },
+        storeCards: {
+          storeNameKor: '앤트러사이트',
+          storeBranchKor: '서교',
+          category: '카페',
+          storeNameEng: 'ANTHRACITE',
+          storeBranchEng: 'Seogyo',
+          address: '서울 마포구 월드컵로12길 11',
+          floor: '1~3층',
+          phoneNumber: '02-322-7009',
+          openClosed: true,
+          closingHour: '22:00',
+          holiday: '매주 월요일 휴무',
+          openMon: '', 
+          closeMon: '',
+          openTue: '10:00',
+          closeTue: '22:00',
+          openWed: '10:00',
+          closeWed: '22:00',
+          openThu: '10:00',
+          closeThu: '22:00',
+          openFri: '10:00',
+          closeFri: '22:00',
+          openSat: '10:00',
+          closeSat: '22:00',
+          openSun: '10:00',
+          closeSun: '22:00',
+          seatsCnt: '120',
+          reviewCnt: '99',
+          pinCnt: '1200',
+          distance: '1.2',
+          heart: true,
+          storeImgs: [
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
+            'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
+          ]
+        },
+        storeFilters: [
+          '주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반'
         ],
-        nameEng: 'ANTHRACITE Seogyo',
-        place: '망원',
-        visitDate: '2020.02.26.',
-        postingDate: '2020.03.07.',
-        bookmark: true,
-        bookmarkClicked: false,
-        storePics: [
-          {src: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'},
-          {src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'}
+        signitureMenu: [
+          {
+            name: '대표메뉴 1',
+            price: 2000
+          },
+          {
+            name: '대표메뉴 2',
+            price: 2000
+          },
+          {
+            name: '대표메뉴 3',
+            price: 2000
+          }
+        ],
+        wholeMenu: [
+          {
+            name: '기타메뉴 1',
+            price: 2000
+          },
+          {
+            name: '기타메뉴 2',
+            price: 2000
+          }
         ]
       }
     },
     methods: {
-      changeTab(index) {
-        console.log('tab clicked', index);
-        if(index === 0) {
-          // scroll to anchor 1
-        } else if (index === 1) {
-          // scroll to anchor 2
-        } else if (index === 2) {
-          // scroll to anchor 3
-        }
+      pinChange: function () {
+        this.storeCards.heart = !this.storeCards.heart
       },
-      handleScroll () {
-        /* if(window.scrollY < 790) {
-          document.getElementById('tabIndex').removeAttribute('style')
-          document.getElementById('tabIndex').style.position = 'relative'
-        } else {
-          document.getElementById('tabIndex').style.position = 'sticky'
-          document.getElementById('tabIndex').style.top = 0
-        } */
-
-        if(window.scrollY >= 790 && window.scrollY < 1288) {
-          this.tab = 0
-        } else if (window.scrollY >= 1288 && window.scrollY < 1788) {
-          this.tab = 1
-        } else if (window.scrollY >= 1788) {
-          this.tab = 2
-        }
-      }
-    },
-    destroyed () {
-      window.removeEventListener('scroll', this.handleScroll);
+      enlargementSet: function (index) {
+        this.enlargementToggle = !this.enlargementToggle
+        this.options.currentPage = index
+      },
+      enlargementCancle: function () {
+        this.enlargementToggle = !this.enlargementToggle
+      },
+      menuEditClicked() {
+        this.pageMove('UpdateMenu')
+      },
+      pageMove(where) {
+        this.$router.push({name: where, params: {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}})
+      },
     }
   }
 </script>
 
-<style lang="scss">
-  .detail-outer {
-    position: relative;
-    p {
-      margin: 0 !important;
+<style lang="scss" scoped>
+  .jhj-test-outer{
+    .horizontal-line {
+      height: 10px;
+      background-color: #EBEBEB;
     }
-    .header-component {
-      width: calc(100% - 16px);
-      position: relative;
-      margin-bottom: 23px;
-      z-index: 2;
-      background-color: #FFFFFF;
-    }
-    .asdf-logo {
+    .enlargement-outer {
+      position: absolute;
+      top:0;
+      left:0;
       width: 100%;
-      height: 375px;
-      overflow: hidden;
-      position: relative;
-      text-align: center;
-      img {
-        width: 100%;
-        height: 375px;
-      }
-      .text-over-img {
-        z-index: 1;
-        color: #FFFFFF;
-        .asdf {
-          font-family: 'Mosk Ultra';
-          position: absolute;
-          top: 0px;
-          left: 50%;
-          font-size: 65px;
-          font-weight: 900;
-          transform: translate(-50%, 0%);
-          letter-spacing: -3.2px;
-        }
-        .bottom-text {
-          width: 100%;
-          display: flex;
-          position: absolute;
-          top: 0px;
-          height: 100%;
-          .asdf-desc {
-            margin: auto auto 17px 12px;
-            text-align: left;
-            font-size: 12px;
-            line-height: 15px;
-            font-weight: bold;
-          }
-          .store-info {
-            margin: auto 12px 17px auto;
-            text-align: right;
-            p:first-child {
-              font-size: 15px;
-              line-height: 15px;
-              letter-spacing: 0;
-            }
-            p {
-              font-size: 25px;
-              font-weight: bold;
-              line-height: 25px;
-              letter-spacing: 0.2px;
-            }
-          }
-        }
-      }
-    }
-    .posting-info {
-      margin-top: 50px;
-      margin-bottom: 10px;
-      padding-left: 27px;
-      padding-right: 15px;
-      text-align: left;
-      font-size: 15px;
-      color: #343434;
-      line-height: 19px;
-      .issue {
-      }
-      .name {
-        font-size: 25px;
-        font-weight: bold;
-        line-height: 37px;
-      }
-      .place {
-        font-weight: bold;
-      }
-      .date {
-        font-size: 13px;
-        color: #404040;
-        text-align: right;
-      }
-      .line {
-        width: 0px;
-        height: 76px;
-        border: 1px solid #707070;
-        opacity: 1;
-        margin-top: 35px;
-        margin-bottom: 25px;
-      }
-    }
-    .bottom-heart-outer {
-      z-index: 200;
+      height: 100%;
+      background-color: rgba( 49, 49, 49, 0.8 );
       display: flex;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      border: 1px solid #D0D0D0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 45px;
-      .heart-button {
-        width: 16px;
-        height: 30px;
-        margin: auto 21px auto auto;
-      }
+      flex-direction: column;
+      justify-content: center;
     }
-    .tab-index {
-      position: relative;
-      background-color: white;
-      border-bottom: 1px solid grey;
-      z-index: 1;
-      div {
-        text-transform: lowercase;
-      }
-    }
-    .contents {
 
-    }
   }
 </style>
