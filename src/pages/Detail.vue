@@ -9,22 +9,24 @@
       @pinChange="pinChange"
       @enlargementChange="enlargementSet"
     ></detail-info>
-    
-    <div class="enlargement-outer" v-if="enlargementToggle" >
-      <div class="enlargement-content" >
-        <div style="width:100%;margin:0 auto;height:fit-content;">
-            <!-- Using the slider component -->
-            <slider ref="slider" :options="options" v-click-outside="enlargementCancle">
-              <!-- slideritem wrapped package with the components you need -->
-              <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
-                <img style="width: 95%;" :src=storeImg >
-              </slideritem>
-              <!-- Customizable loading -->
-              <div slot="loading">loading...</div>
-            </slider>
+
+    <transition name="fade">
+      <div class="enlargement-outer" v-if="enlargementToggle">
+        <div class="enlargement-content" v-click-outside="enlargementCancel">
+          <div style="width:100%;margin:0 auto;height:fit-content;" >
+              <!-- Using the slider component -->
+              <slider ref="slider" :options="options" >
+                <!-- slideritem wrapped package with the components you need -->
+                <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
+                  <img style="width: 95%;" :src=storeImg >
+                </slideritem>
+                <!-- Customizable loading -->
+                <div slot="loading">loading...</div>
+              </slider>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
 
     <detail-filter
       v-bind:storeFilter="storeFilters">
@@ -103,7 +105,10 @@
             'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
             'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
             'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
-            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://t1.daumcdn.net/cfile/tistory/993B81465D0F93013C',
+            '@/assets/img/test.png'
           ]
         },
         storeFilters: [
@@ -135,23 +140,15 @@
         ]
       }
     },
-    computed: {
-      isOpen() {
-        return !this.enlargementToggle
-      }
-    },
     methods: {
       pinChange: function () {
         this.storeCards.heart = !this.storeCards.heart
       },
       enlargementSet: function (index) {
-        console.log('set');
-        if(this.isOpen) return;
         this.enlargementToggle = !this.enlargementToggle
         this.options.currentPage = index
       },
-      enlargementCancle: function () {
-        console.log('cancel');
+      enlargementCancel: function () {
         this.enlargementToggle = !this.enlargementToggle
       },
       menuEditClicked() {
@@ -166,12 +163,19 @@
 
 <style lang="scss" scoped>
   .jhj-test-outer{
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0;
+    }
     .horizontal-line {
       height: 10px;
       background-color: #EBEBEB;
     }
     .enlargement-outer {
       position: absolute;
+      z-index: 10;
       top:0;
       left:0;
       width: 100%;
@@ -180,8 +184,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      z-index: 10;
     }
-
   }
 </style>
