@@ -14,7 +14,6 @@
         </slider>
     </div>
   </div>
-
 </div> 
 </template>
 <script>

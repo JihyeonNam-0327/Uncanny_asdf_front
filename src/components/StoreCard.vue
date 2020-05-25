@@ -5,7 +5,7 @@
       <div class="store-img" v-for="(storeImg, index) in storeCard.storeImgs" :key="index">
         <img :src=storeImg @click="enlargementChange(index)">
       </div>
-      <div class="add-photo-button" v-if="addPhoto">
+      <div v-if="addPhotoButton" class="add-photo-button">
         <img src="@/assets/icon/icon_plus_circle2.svg" alt="">
       </div>
     </div>
@@ -141,15 +141,15 @@
     props: {
       storeCard: {
       },
-      addPhoto: {
-        type: Boolean,
-        default: false
-      },
       operatingHourArrow: {
         type: Boolean,
         default: false
       },
       detailInformation: {
+        type: Boolean,
+        default: false
+      },
+      addPhotoButton: {
         type: Boolean,
         default: false
       },
