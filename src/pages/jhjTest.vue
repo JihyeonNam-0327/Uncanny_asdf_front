@@ -139,10 +139,11 @@
         this.enlargementToggle = !this.enlargementToggle
       },
       menuEditClicked() {
-        this.pageMove('UpdateMenu')
+        let params = {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}
+        this.pageMove('UpdateMenu', params)
       },
-      pageMove(where) {
-        this.$router.push({name: where, params: {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}})
+      pageMove(where, params) {
+        this.$router.push({name: where, params: params})
       },
     }
   }
