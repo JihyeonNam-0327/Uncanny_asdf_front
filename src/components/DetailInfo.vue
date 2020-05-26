@@ -10,86 +10,51 @@
     <div class="information-outer">
       <div class="left-part">
         <div class="line1">
-          <span class="title">{{ storeCard.storeNameKor }} </span> 
-          <span class="title">{{ storeCard.storeBranchKor }} </span>
+          <span class="store-title">{{ storeCard.storeNameKor }} </span> 
           <span>{{ storeCard.category }}</span>
         </div>
         <div class="line2">
           <span>{{ storeCard.storeNameEng }} </span>
-          <span>{{ storeCard.storeBranchEng }}</span>
         </div>
         <div class="line2-1">
-          <div><span>{{ storeCard.address }}</span><span> {{ storeCard.floor }}</span></div>
-          <div>{{ storeCard.phoneNumber }}</div>
+          <div>{{ storeCard.address }}</div>
+          <div>
+            <span>{{ storeCard.countryNum }}</span>
+            <span> - {{ storeCard.middleNum }}</span>
+            <span> - {{ storeCard.endNum }}</span>
+          </div>
         </div>
-
+        <div>{{ storeCard.url }}</div>
+        <div>@{{ storeCard.instagram }}</div>
 
         <div class="line3">
           <vs-collapse>
             <vs-collapse-item>
               <div slot="header">
-                <span class="openNow" v-if="storeCard.openClosed">
-                  Open Now</span>
-                <span class="closedNow" v-else>
-                  Closed Now</span>
-                <span v-if="!operatingHourToggle" >
+                <div v-if="storeCard.openClosed">
+                  <span class="open-now">Open Now</span>
                   <span> · 영업 종료 </span>
                   <span>{{ storeCard.closingHour }}</span>
-                </span>
+                </div>
+                <span class="closed-now" v-else>Closed Now</span>
               </div>
 
               <div>
-                <span class="operating-title">휴무</span>
-                <span>{{ storeCard.holiday }}</span>
+                <span class="opertaion-left-title">휴무</span>
+                <span>{{ storeCard.holiday }}</span> 
               </div>
-              <div>
-                <span class="operating-title">월요일</span>
-                <span>{{ storeCard.openMon }}</span>
-                <span v-if="storeCard.openMon"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeMon }}</span>
-              </div>
-              <div>
-                <span class="operating-title">화요일</span>
-                <span>{{ storeCard.openTue }}</span>
-                <span v-if="storeCard.openTue"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeTue }}</span>
-              </div>
-              <div>
-                <span class="operating-title">수요일</span>
-                <span>{{ storeCard.openWed }}</span>
-                <span v-if="storeCard.openWed"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeWed }}</span>
-              </div>
-              <div>
-                <span class="operating-title">목요일</span>
-                <span>{{ storeCard.openThu }}</span>
-                <span v-if="storeCard.openThu"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeThu }}</span>
-              </div>
-              <div>
-                <span class="operating-title">금요일</span>
-                <span>{{ storeCard.openFri }}</span>
-                <span v-if="storeCard.openFri"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeFri }}</span>
-              </div>
-              <div>
-                <span class="operating-title">토요일</span>
-                <span>{{ storeCard.openSat }}</span>
-                <span v-if="storeCard.openSat"> ~ </span>
-                <span v-else>휴무</span>
-                <span>{{ storeCard.closeSat }}</span>
-              </div>
-              <div>
-                <span class="operating-title">일요일</span>
-                <span>{{ storeCard.openSun }}</span>
-                <span v-if="storeCard.openSun"> ~ </span>
-                <span v-else>휴무</span>
-              <span>{{ storeCard.closeSun }}</span>
+              <div class="operation-time-outer"
+                v-for="(item, index) in storeCard.weeklyOperationTime" :key="index">
+                <span class="opertaion-left-title">{{ item.day }}요일</span>
+                <span v-if="item.open.HH && item.close.HH">
+                  <span>{{ item.open.HH }} : </span>
+                  <span>{{ item.open.mm }} ~</span>
+                  <span>{{ item.close.HH }} : </span>
+                  <span>{{ item.close.mm }}</span>
+                </span>
+                <span v-else>
+                  휴무
+                </span>
               </div>
 
             </vs-collapse-item>
@@ -155,7 +120,7 @@
 
 <style lang="scss">
   .store-card-outer {
-    font-size: 12px;
+    font-size: .85rem;
 
     .horizontal-line {
       height: 10px;
@@ -166,7 +131,6 @@
       display: flex;
       overflow-y: scroll;
       margin: 15px;
-
       .store-img img {
         width: 100px;
         height: 100px;
@@ -174,15 +138,6 @@
         background-repeat: no-repeat;
         background-position: center center;
         margin-right: 10px;
-      }
-      .add-photo-button {
-        min-width: 100px;
-        height: 100px;
-        background-color: gray;
-        img {
-          display: block;
-          margin: 35px auto;
-       }
       }
     }
     .picture-outer::-webkit-scrollbar {
@@ -193,43 +148,41 @@
       padding: 0px 15px 15px 15px;
       .left-part {
         width: calc(100vw - 30px);
-        .title {
-          font-size: 16px;
+        .store-title {
+          font-size: 1rem;
+          font-weight: bold;
         }
         .line3 {
-          font-size: 12px;
           -webkit-tap-highlight-color: rgba(0,0,0,0);
           -webkit-tap-highlight-color: transparent;
           .vs-collapse {
-            width: 180px;
+            width: 200px;
             padding: 0;
             .vs-collapse-item {
               .vs-collapse-item--header {
                 padding: 0;
               }
+              .opertaion-left-title {
+                  display: inline-block;
+                  width: 50px;
+              }
             }
           }
           .hearder {
             display: inline-block;
-            width:150px;
+            width: 150px;
           }
-          .openNow {
+          .open-now {
             color: #D02121;
             font-weight: bold;
           }
-          .closedNow {
+          .closed-now {
             color: grey;
             font-weight: bold;
           }
           span div div .operating-title[data-v-4fd05711] {
             display: inline-block;
             width: 65px;
-          }
-          .open-button {
-            padding: 0px 10px 0px 10px;
-          }
-          .close-button {
-            padding: 0px 10px 0px 10px;
           }
         }
         .line4 {
@@ -247,7 +200,8 @@
         justify-content: space-between;
         width: 30vw;
         .store-card-edit-button {
-          align-self: flex-end;        
+          align-self: flex-end;
+          font-size: 12px;      
         }
         .distance-pin {
           display: flex;
