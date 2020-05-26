@@ -1,7 +1,7 @@
 <template>
   <div class="search-filter-tag-outer">
 
-<header-component></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="필터태그 수정" @backButtonClick="back"></header-component>
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
