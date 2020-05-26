@@ -9,7 +9,7 @@
     <div class="menu-info-outer">
       <div class="desc">
         <!--eslint-disable-next-line vue/no-parsing-error-->
-        <p>대표메뉴</p>
+        <p>대표메뉴</p>
         <p>메뉴명</p>
         <p>가격</p>
       </div>
@@ -82,7 +82,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .update-menu-outer {
     position: relative;
     width: 100%;
@@ -100,10 +100,10 @@
         display: flex;
         width: 100%;
         p {
-          width: 20%;
+          width: 22%;
         }
         p:nth-child(2) {
-          width: calc((100%-70px)*0.30);
+          width: calc((100%-70px)*0.4);
         }
         p:last-child {
           width: calc((100%-70px)*0.35);
@@ -121,24 +121,21 @@
             margin-top: auto;
           }
         }
+        .input-box-outer .input-box{
+          font-size: 12px;
+        }
         .name {
           margin-top: auto;
-          width: calc((100%-70px)*0.28);;
+          width: calc((100%-70px)*0.38);;
           margin-left: 22px;
           margin-right: 10px;
-          input {
-            height: 30px;
-          }
         }
         .price {
           position: relative;
           margin-top: auto;
-          width: calc((100%-70px)*0.35);
+          width: calc((100%-70px)*0.25);
           margin-left: 10px;
           margin-right: 10px;
-          input {
-            height: 30px;
-          }
         }
         .price:before {
           position: absolute;

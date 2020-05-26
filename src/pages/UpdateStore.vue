@@ -117,7 +117,7 @@
 
   export default {
     created() {
-      this.storeNameKor = this.$route.params.storeNameKor 
+      this.storeNameKor = this.$route.params.storeNameKor
 
     },
     components: {
