@@ -1,7 +1,7 @@
 <template>
   <div class="search-filter-tag-outer">
 
-    <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="필터 검색" @backButtonClick="back"></header-component>
     
     <div class="horizontal-line"></div>
 
@@ -323,7 +323,10 @@ export default {
       },
       applyButtonClick() {
         console.log(this.parking)
-      }
+      },
+      back() {
+        this.$router.go(-1)
+      },
     }
   }
 </script>

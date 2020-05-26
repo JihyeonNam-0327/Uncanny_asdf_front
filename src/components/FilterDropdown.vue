@@ -5,9 +5,9 @@
       <img v-if="filter.option.length > 0" :src="icon" :class="{'arrow-up' : filter.isOpen}"/>
     </div>
 
-    <div v-if="filter.isOpen" class="divider"></div>
+    <div v-if="filter.isOpen && filter.option.length > 0" class="divider"></div>
 
-    <div v-if="filter.isOpen" class="filter-option">
+    <div v-if="filter.isOpen && filter.option.length > 0" class="filter-option">
       <div v-for="(item, index) in filter.option" :key="index" @click="itemClicked(item)"
       :class="item | optionClass"> {{item.name}} </div>
     </div>
@@ -22,7 +22,7 @@
         default () {
           return {
             category: '주차',
-            type: 'selectbox',
+            type: 'checkbox',
             isOpen: false,
             option: [
               {name: '무료', selected: false}, 
@@ -39,9 +39,11 @@
     computed: {
       selectedStatus() {
         let status = false
-        this.filter.option.forEach(item => {
-           if(item.selected) status = true
-        })
+        if(this.filter.option.length > 0) {
+          this.filter.option.forEach(item => {
+             if(item.selected) status = true
+          })
+        }
         return status
       },
       outerClass() {

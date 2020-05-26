@@ -1,6 +1,6 @@
 <template>
   <div class="register-store-outer">
-    <header-component class="header-component" leftType="historyback" centerText="기본정보 수정"></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="기본정보 수정" @backButtonClick="back"></header-component>
     
     <div class="register-store-context">
 
@@ -198,7 +198,10 @@
         if (index !== -1) {
           this.storeInfo.storeTotalDeskInfo.splice(index, 1)
         }
-      }
+      },
+      back() {
+        this.$router.go(-1)
+      },
     }
   }
 </script>

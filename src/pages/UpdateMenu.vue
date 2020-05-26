@@ -35,6 +35,7 @@
     created() {
       this.signitureMenu = this.$route.params.signitureMenu
       this.wholeMenu = this.$route.params.wholeMenu
+      this.getMenuList()
     },
     components: {
       HeaderComponent,
@@ -45,13 +46,7 @@
         test: '',
         signitureMenu: [],
         wholeMenu: [],
-        menuList: [
-          {
-            isMain: true,
-            name: '',
-            price: 0
-          }
-        ]
+        menuList: []
       }
     },
     methods: {
@@ -66,6 +61,22 @@
       },
       back() {
         this.$router.go(-1)
+      },
+      getMenuList() {
+        this.signitureMenu.forEach(item => {
+          this.menuList.push({
+            isMain: true,
+            name: item.name,
+            price: item.price
+          })
+        })
+        this.wholeMenu.forEach(item => {
+          this.menuList.push({
+            isMain: false,
+            name: item.name,
+            price: item.price
+          })
+        })
       }
     }
   }
