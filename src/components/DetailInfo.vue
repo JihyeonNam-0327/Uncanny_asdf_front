@@ -5,9 +5,6 @@
       <div class="store-img" v-for="(storeImg, index) in storeCard.storeImgs" :key="index">
         <img :src=storeImg @click="enlargementChange(index)">
       </div>
-      <div class="add-photo-button">
-        <img src="@/assets/icon/icon_plus_circle2.svg" alt="">
-      </div>
     </div>
 
     <div class="information-outer">
@@ -145,9 +142,6 @@
     methods: {
       pinChange() {
         this.$emit('pinChange')
-      },
-      operatingHourToggleChange() {
-        this.operatingHourToggle = !this.operatingHourToggle
       },
       enlargementChange(index) {
         this.$emit('enlargementChange', index)

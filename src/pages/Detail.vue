@@ -10,22 +10,24 @@
       @enlargementChange="enlargementSet"
       @edit="pageMove('UpdateStore')"
     ></detail-info>
-    
-    <div class="enlargement-outer" v-if="enlargementToggle" >
-      <div class="enlargement-content" v-click-outside="enlargementCancle">
-        <div style="width:100%;margin:0 auto;height:400px">
-            <!-- Using the slider component -->
-            <slider ref="slider" :options="options">
-              <!-- slideritem wrapped package with the components you need -->
-              <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
-                <img style="width: 95%" :src=storeImg>
-              </slideritem>
-              <!-- Customizable loading -->
-              <div slot="loading">loading...</div>
-            </slider>
+
+    <transition name="fade">
+      <div class="enlargement-outer" v-if="enlargementToggle">
+        <div class="enlargement-content" v-click-outside="enlargementCancel">
+          <div style="width:100%;margin:0 auto;height:fit-content;" >
+              <!-- Using the slider component -->
+              <slider ref="slider" :options="options" >
+                <!-- slideritem wrapped package with the components you need -->
+                <slideritem v-for="(storeImg, index) in storeCards.storeImgs" :key="index">
+                  <img style="width: 95%;" :src=storeImg >
+                </slideritem>
+                <!-- Customizable loading -->
+                <div slot="loading">loading...</div>
+              </slider>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
 
     <detail-filter
       v-bind:storeFilter="storeFilters" @edit="pageMove('UpdateFilter')">
@@ -61,16 +63,24 @@
           currentPage: 0,
         },
         storeCards: {
-          storeNameKor: '앤트러사이트',
-          storeBranchKor: '서교',
+          openClosed: true,
+          closingHour: '22:00',          
+
+          storeNameKor: '앤트러사이트 서교',
+          storeNameEng: 'ANTHRACITE Seogyo',
           category: '카페',
-          storeNameEng: 'ANTHRACITE',
-          storeBranchEng: 'Seogyo',
           address: '서울 마포구 월드컵로12길 11',
           floor: '1~3층',
-          phoneNumber: '02-322-7009',
-          openClosed: true,
-          closingHour: '22:00',
+          countryNum: '02',
+          middleNum: '1234',
+          endNum: '5678',
+          storeTotalDeskInfo: [
+            {floor: '지하', floorNum: 1, seatNum: 100},
+            {floor: '지상', floorNum: 1, seatNum: 50},
+            {floor: '지상', floorNum: 2, seatNum: 100},
+            {floor: '지상', floorNum: 3, seatNum: 200},
+          ],
+
           holiday: '매주 월요일 휴무',
           openMon: '', 
           closeMon: '',
@@ -96,7 +106,10 @@
             'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
             'https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
             'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ', 
-            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'        
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
+            'https://t1.daumcdn.net/cfile/tistory/993B81465D0F93013C',
+            '@/assets/img/test.png'
           ]
         },
         storeFilters: [
@@ -136,7 +149,7 @@
         this.enlargementToggle = !this.enlargementToggle
         this.options.currentPage = index
       },
-      enlargementCancle: function () {
+      enlargementCancel: function () {
         this.enlargementToggle = !this.enlargementToggle
       },
       menuEditClicked() {
@@ -152,12 +165,19 @@
 
 <style lang="scss" scoped>
   .jhj-test-outer{
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0;
+    }
     .horizontal-line {
       height: 10px;
       background-color: #EBEBEB;
     }
     .enlargement-outer {
       position: absolute;
+      z-index: 10;
       top:0;
       left:0;
       width: 100%;
@@ -167,6 +187,5 @@
       flex-direction: column;
       justify-content: center;
     }
-
   }
 </style>

@@ -4,11 +4,16 @@
     
     <div class="register-store-context">
 
-      <p>상호명(한글)</p>
-      <input-box placeHolder="상호명(한글)" v-model="nameKor"></input-box>
+      <p>카테고리</p>
+      <div class="select-box-outer">
+        <select-box v-bind:options="categorySelectBoxOption" v-model="category"></select-box>
+      </div>
 
-      <p>상호명(영문)</p>
-      <input-box placeHolder="상호명(영문)" v-model="nameEng"></input-box>
+      <p>상호명+지점명(한글)</p>
+      <input-box placeHolder="상호명(한글)" v-model="storeNameKor"></input-box>
+
+      <p>상호명+지점명(영문)</p>
+      <input-box placeHolder="상호명(한글)" v-model="storeNameEng"></input-box>
 
       <p>주소</p>
       <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." v-model="address"></input-box>
@@ -22,10 +27,7 @@
         <input-box placeHolder="5678" v-model="endNum"></input-box>
       </div>
       
-      <!-- <p>아메리카노 지수</p>
-      <input-box class="price" placeHolder="아메리카노 한 잔 가격을 입력해 주세요." v-model="americanoIndex"></input-box> -->
 
-      <!-- 고정된 필드 -->
       <div class="store-floor-info">
         <div class="desc">
           <p>매장 층</p>
@@ -42,32 +44,6 @@
           <img v-else @click="minusFloorInfo(item)" src="@/assets/icon/icon_minus_circle.svg"/>
         </div>
       </div>
-
-      <!-- 변경되는 필드 -->
-
-      <!--
-      <p>주차 정보</p>
-      <input-box placeHolder="주차 가능/공영 주차장 이용 등 관련 정보를 입력해 주세요." v-model="parking"></input-box>
-
-      <div class="toggle-container">
-        <p>대관 가능 여부</p>
-        <toggle-button class="toggle" v-model="rental" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>와이파이 제공 여부</p>
-        <toggle-button class="toggle" v-model="wifi" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>콘센트 유무</p>
-        <toggle-button class="toggle" v-model="outlet" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div>
-
-      <div class="toggle-container">
-        <p>높은 테이블 유무</p>
-        <toggle-button class="toggle" v-model="deskHeight" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
-      </div> -->
 
       <p>휴무일</p>
       <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="holiday"></input-box>
@@ -149,11 +125,14 @@
     },
     data() {
       return {
+        categorySelectBoxOption: [
+          {text: '카페', value: '카페'},
+          {text: '식당', value: '식당'},
+          {text: '주점', value: '주점'},
+          {text: '전시', value: '전시'},
+          {text: '기타', value: '기타'}
+        ],
         storeImageArray: [],
-        rental: false,
-        wifi: false,
-        outlet: false,
-        deskHeight: false,
         sameOperationgTime: true,
         nameKor: '',
         nameEng: '',
@@ -161,8 +140,11 @@
         countryNum: '',
         middleNum: '',
         endNum: '',
-        americanoIndex: '',
-        parking: '',
+        floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
+        // floor: '지상',
+        storeTotalDeskInfo: [
+          {floor: '지상', floorNum: undefined, deskNum: undefined}
+        ],
         holiday: '',
         url: '',
         instagram: '',
@@ -183,11 +165,6 @@
           {day: '토', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
           {day: '일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
         ],
-        floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
-        // floor: '지상',
-        storeTotalDeskInfo: [
-          {floor: '지상', floorNum: undefined, deskNum: undefined}
-        ]
       }
     },
     computed: {
