@@ -1,8 +1,6 @@
 <template>
   <div class="search-filter-tag-outer">
 
-    <header-component class="header-component" leftType="historyback" centerText="필터 검색"></header-component>
-
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
@@ -268,7 +266,10 @@ export default {
       },
       applyButtonClick() {
         console.log(this.parking)
-      }
+      },
+      back() {
+        this.$router.go(-1)
+      },
     }
   }
 </script>

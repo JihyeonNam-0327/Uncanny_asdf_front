@@ -3,7 +3,7 @@
 
     <div class="group-title">
       <div class="group-name">필터태그</div>
-      <div class="group-edit">수정</div>
+      <div class="group-edit" @click="editButtonClicked">수정</div>
     </div>
 
     <div class="group-filter">
@@ -21,6 +21,11 @@
       storeFilter: {
         type: Array
       },
+    },
+    methods: {
+      editButtonClicked() {
+        this.$emit('edit')
+      }
     }
   }
 </script>

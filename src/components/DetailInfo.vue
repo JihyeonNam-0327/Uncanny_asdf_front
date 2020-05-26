@@ -25,7 +25,7 @@
 
 
         <div class="line3">
-          <vs-collapse accordion class="operating-hour-collapse">
+          <vs-collapse>
             <vs-collapse-item>
               <div slot="header">
                 <span class="openNow" v-if="storeCard.openClosed">
@@ -108,7 +108,7 @@
       </div>
 
       <div class="right-part">
-        <div class="store-card-edit-button">
+        <div class="store-card-edit-button" @click="editButtonClicked">
           수정
         </div>
         <div class="distance-pin">
@@ -145,12 +145,15 @@
       },
       enlargementChange(index) {
         this.$emit('enlargementChange', index)
+      },
+      editButtonClicked() {
+        this.$emit('edit')
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .store-card-outer {
     font-size: 12px;
 
@@ -195,6 +198,17 @@
         }
         .line3 {
           font-size: 12px;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-tap-highlight-color: transparent;
+          .vs-collapse {
+            width: 180px;
+            padding: 0;
+            .vs-collapse-item {
+              .vs-collapse-item--header {
+                padding: 0;
+              }
+            }
+          }
           .hearder {
             display: inline-block;
             width:150px;
