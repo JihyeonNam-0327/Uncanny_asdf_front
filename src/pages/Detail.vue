@@ -8,6 +8,7 @@
       v-bind:storeCard="storeCards"
       @pinChange="pinChange"
       @enlargementChange="enlargementSet"
+      @edit="pageMove('UpdateStore')"
     ></detail-info>
     
     <div class="enlargement-outer" v-if="enlargementToggle" >
@@ -27,7 +28,7 @@
     </div>
 
     <detail-filter
-      v-bind:storeFilter="storeFilters">
+      v-bind:storeFilter="storeFilters" @edit="pageMove('UpdateFilter')">
     </detail-filter>
 
     <div class="horizontal-line"></div>
@@ -139,10 +140,11 @@
         this.enlargementToggle = !this.enlargementToggle
       },
       menuEditClicked() {
-        this.pageMove('UpdateMenu')
+        let params = {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}
+        this.pageMove('UpdateMenu', params)
       },
-      pageMove(where) {
-        this.$router.push({name: where, params: {signitureMenu: this.signitureMenu, wholeMenu: this.wholeMenu}})
+      pageMove(where, params) {
+        this.$router.push({name: where, params: params})
       },
     }
   }

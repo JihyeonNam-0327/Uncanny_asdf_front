@@ -18,7 +18,7 @@
             {name:'토', selected: false},
             {name:'일', selected: false}
           ]"
-          v-model="categories">
+          v-model="visitDate">
         </filterTag>
       </div>
 
@@ -55,26 +55,24 @@
 
     <div class="horizontal-line"></div>
 
-    <div class="group-outer">
-      <div class="group-name">카테고리</div>
-      <div class="group-container">
-        <filterTag type='checkbox'
-          v-bind:tagArray="[
-            {name:'카페', selected: true},
-            {name:'차', selected: true},
-            {name:'디저트', selected: false},
-            {name:'식당', selected: false},
-            {name:'주점', selected: false},
-            {name:'문화', selected: false},
-            {name:'기타', selected: false}
-          ]"
-          v-model="categories">
-        </filterTag>
+    <div v-for="(item, index) in filterList" :key="index">
+      <div class="group-outer" >
+        <div class="group-name">{{item.category}}</div>
+        <div class="group-container">
+          <filterTag :type="item.type"
+            v-bind:tagArray="item.option"
+            :category="item.category"
+            @input="change"
+            >
+            <!-- v-model="categories" -->
+          </filterTag>
+        </div>
       </div>
+      
+      <div class="horizontal-line"></div>
     </div>
-    
-    <div class="horizontal-line"></div>
 
+    <!--
     <div class="group-outer">
       <div class="group-name">주차정보</div>
       <div class="group-container">
@@ -106,16 +104,23 @@
             {name:'배달가능', selected: false},
             {name:'드라이브스루', selected: false},
             {name:'애견동반', selected: false},
+            {name:'대관가능', selected: true}
          ]"
          v-model="deliveryType">
         </filterTag>
+      </div>
+    </div>
+
+    <div class="group-outer">
+      <div class="group-name">유아</div>
+      <div class="group-container">
         <filterTag type='radio' 
           groupName="kids"
           v-bind:tagArray="[
             {name:'노키즈존', selected: false},
             {name:'유아의자', selected: false},
-         ]"
-         v-model="kids">
+          ]"
+          v-model="kids">
         </filterTag>
       </div>
     </div>
@@ -185,21 +190,14 @@
     <div class="group-outer">
       <div class="group-name">화장실</div>
       <div class="group-container">
-        <filterTag type='radio' 
-          groupName="toiletLocation"
+        <filterTag type='checkbox' 
+          groupName="toilet"
           v-bind:tagArray="[
             {name:'내부', selected: false},
-            {name:'외부', selected: false} 
-         ]"
-         v-model="toiletLocation">
-        </filterTag>
-        <filterTag type='radio'
-        groupName="toiletGender"
-          v-bind:tagArray="[
-            {name:'남녀공용', selected: false},
+            {name:'외부', selected: false},
             {name:'남녀구분', selected: false}
          ]"
-         v-model="toiletGender">
+         v-model="toilet">
         </filterTag>
       </div>
     </div>
@@ -220,6 +218,7 @@
     </div>
 
     <div class="horizontal-line"></div>
+    -->
 
     <div style="padding-bottom:110px;"></div>
 
@@ -262,6 +261,121 @@ export default {
           max: 90,
         },
 
+        filterList: [
+          {
+            category: '카테고리',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'카페', selected: false},
+              {name:'차', selected: false},
+              {name:'디저트', selected: false},
+              {name:'식당', selected: false},
+              {name:'주점', selected: false},
+              {name:'문화', selected: false},
+              {name:'기타', selected: false}
+            ]
+          },
+          {
+            category: '주차정보',
+            type: 'radio',
+            isOpen: false,
+            option: [
+              {name:'주차불가', selected: false},
+              {name:'무료주차', selected: false},
+              {name:'유료주차', selected: false},
+              {name:'무료발렛', selected: false},
+              {name:'유료발렛', selected: false}
+            ]
+          },
+          {
+            category: '유형',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'포장/테이크아웃', selected: false},
+              {name:'배달가능', selected: false},
+              {name:'드라이브스루', selected: false},
+              {name:'애견동반', selected: false},
+              {name:'대관가능', selected: false}
+            ]
+          },
+          {
+            category: '유아',
+            type: 'radio',
+            isOpen: false,
+            option: [
+              {name:'노키즈존', selected: false},
+              {name:'유아의자', selected: false}
+            ]
+          },
+          {
+            category: '공간',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'혼밥가능', selected: false},
+              {name:'단체석', selected: false},
+              {name:'룸', selected: false},
+              {name:'높은테이블', selected: false},
+              {name:'콘센트', selected: false},
+              {name:'무료 Wi-Fi', selected: false},
+              {name:'테라스', selected: false},
+              {name:'루프탑', selected: false},
+              {name:'흡연시설', selected: false}
+            ]
+          },
+          {
+            category: 'Good for',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'아침', selected: false},
+              {name:'브런치', selected: false},
+              {name:'점심', selected: false},
+              {name:'저녁', selected: false},
+              {name:'늦은저녁', selected: false},
+              {name:'디카페인', selected: false},
+              {name:'비건', selected: false},
+              {name:'할랄', selected: false}
+            ]
+          },
+          {
+            category: '지불방법',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'카드불가', selected: false},
+              {name:'현금불가', selected: false},
+              {name:'카카오페이', selected: false},
+              {name:'네이버페이', selected: false},
+              {name:'지역상품권', selected: false},
+              {name:'긴급재난지원금', selected: false}
+            ]
+          },
+          {
+            category: '화장실',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'내부', selected: false},
+              {name:'외부', selected: false},
+              {name:'남녀구분', selected: false}
+            ]
+          },
+          {
+            category: '기타',
+            type: 'checkbox',
+            isOpen: false,
+            option: [
+              {name:'해피아워', selected: false},
+              // {name:'지역상품권', selected: false},
+              // {name:'긴급재난지원금', selected: false},
+            ]
+          },
+        ],
+
+        visitDate: '',
         categories: [],
         parking: '',
         parkingTip: '',
@@ -270,8 +384,7 @@ export default {
         spaceType: [],
         goodFor: [],
         payInfo: [],
-        toiletLocation: '',
-        toiletGender: '',
+        toilet: '',
         etcInfo: []
       }
     },
@@ -323,6 +436,17 @@ export default {
       },
       applyButtonClick() {
         console.log(this.parking)
+      },
+      change(selected, category) {
+        console.log('selected : ', selected, 'category :', category);
+        this.filterList.forEach(filter => {
+          if(filter.category === category) {
+            filter.option.forEach(option => {
+              if(option.name === selected)
+              option.selected = true
+            })
+          }
+        })
       }
     }
   }
