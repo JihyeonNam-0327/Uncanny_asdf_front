@@ -27,7 +27,6 @@ import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
-import JhjTest from '@/pages/JhjTest.vue'
 import UpdateMenu from '@/pages/UpdateMenu.vue'
 import UpdateFilter from '@/pages/UpdateFilter.vue'
 
@@ -61,11 +60,6 @@ const routes = [
     path: '/detail', 
     name: 'Detail', 
     component: Detail 
-  },
-  { 
-    path: '/jhjtest', 
-    name: 'JhjTest', 
-    component: JhjTest
   },
   { 
     path: '/registerstore', 

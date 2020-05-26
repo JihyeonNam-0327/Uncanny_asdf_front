@@ -1,6 +1,7 @@
 <template>
   <div class="search-filter-tag-outer">
 
+<header-component></header-component>
     <div class="horizontal-line"></div>
 
     <div class="group-outer">
