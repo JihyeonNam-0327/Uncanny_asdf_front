@@ -32,7 +32,7 @@
         <div class="desc">
           <p>매장 층</p>
           <p>좌석 수</p>
-          <p>(총 좌석수: {{totalDeskNum}})</p>
+          <p>(총 좌석수: {{seatsCnt}})</p>
         </div>
         <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
           <div class="select-box-outer">
@@ -134,8 +134,9 @@
         ],
         storeImageArray: [],
         sameOperationgTime: true,
-        nameKor: '',
-        nameEng: '',
+        storeNameKor: '',
+        storeNameEng: '',
+        category:'',
         address: '',
         countryNum: '',
         middleNum: '',
@@ -168,7 +169,7 @@
       }
     },
     computed: {
-      totalDeskNum() {
+      seatsCnt() {
         let totalNum = 0
         this.storeTotalDeskInfo.forEach((item) => {
           if(item.deskNum) {
@@ -192,7 +193,7 @@
         }
       },
       plusFloorInfo() {
-        if(this.storeTotalDeskInfo.length > 3) return
+        if(this.storeTotalDeskInfo.length > 4) return
         this.storeTotalDeskInfo.push({floor: '지상', floorNum: 0, deskNum: 0})
       },
       minusFloorInfo(item) {
@@ -202,7 +203,6 @@
         }
       },
       backButtonClicked() {
-        console.log('object');
         this.$router.go(-1)
       }
     }

@@ -437,16 +437,30 @@ export default {
       applyButtonClick() {
         console.log(this.parking)
       },
-      change(selected, category) {
+      change(selected, category, type) {
         console.log('selected : ', selected, 'category :', category);
-        this.filterList.forEach(filter => {
-          if(filter.category === category) {
-            filter.option.forEach(option => {
-              if(option.name === selected)
-              option.selected = true
-            })
-          }
-        })
+        if(type === 'radio') {
+          this.filterList.forEach(filter => {
+            if(filter.category === category) {
+              filter.option.forEach(option => {
+                if(option.name === selected) {
+                  option.selected = true
+                } else {
+                  option.selected = false
+                }
+              })
+            }
+          })
+        } else if (type === 'checkbox') {
+          this.filterList.forEach(filter => {
+            if(filter.category === category) {
+              selected.forEach(select => {
+                let optionIndex = filter.option.findIndex(option => option === select)
+                filter.option[optionIndex].selected = true
+              })
+            }
+          })
+        }
       }
     }
   }
