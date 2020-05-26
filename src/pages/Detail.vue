@@ -10,7 +10,7 @@
       v-bind:storeCard="storeCard"
       @pinChange="pinChange"
       @enlargementChange="enlargementSet"
-      @edit="pageMove('UpdateStore')"
+      @edit="storeInfoEditClicked('UpdateStore')"
     ></detail-info>
 
     <transition name="fade">
@@ -101,7 +101,7 @@
             'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
             'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
             'https://t1.daumcdn.net/cfile/tistory/993B81465D0F93013C',
-            '@/assets/img/test.png'
+            require('@/assets/img/test.png')
           ],
 
           openClosed: true,
