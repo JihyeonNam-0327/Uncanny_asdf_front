@@ -105,10 +105,8 @@
             'https://t1.daumcdn.net/cfile/tistory/993B81465D0F93013C',
             require('@/assets/img/test.png')
           ],
-
           openClosed: true,
           closingHour: '22:00',
-          seatsCnt: '120',
           reviewCnt: '99',
           pinCnt: '1200',
           distance: '1.2',

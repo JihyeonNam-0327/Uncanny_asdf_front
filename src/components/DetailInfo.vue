@@ -64,7 +64,7 @@
 
         <div class="line4">
           <span><img src="@/assets/icon/Icon_seats_cnt.svg"/></span>
-          <span> {{ storeCard.seatsCnt }} · </span>
+          <span> {{ seatsCnt }} · </span>
           <span><img src="@/assets/icon/Icon_review_cnt.svg"/></span>
           <span> {{ storeCard.reviewCnt }} · </span>
           <span><img src="@/assets/icon/Icon_heart_cnt.svg"/></span>
@@ -102,6 +102,17 @@
       return {
         operatingHourToggle: false,
         enlargement: false,
+      }
+    },
+    computed: {
+      seatsCnt() {
+        let totalNum = 0
+        this.storeCard.storeTotalDeskInfo.forEach((item) => {
+          if(item.deskNum) {
+            totalNum += Number(item.deskNum)
+          }
+        })
+        return totalNum
       }
     },
     methods: {

@@ -32,7 +32,7 @@
         <div class="desc">
           <p>매장 층</p>
           <p>좌석 수</p>
-          <p>(총 좌석수: {{  }})</p>
+          <p>(총 좌석수: {{ seatsCnt }})</p>
         </div>
         <div class="total-desk-info" v-for="(item, index) in storeCard.storeTotalDeskInfo" :key="index">
           <div class="select-box-outer">
@@ -173,7 +173,7 @@
     computed: {
       seatsCnt() {
         let totalNum = 0
-        this.storeTotalDeskInfo.forEach((item) => {
+        this.storeCard.storeTotalDeskInfo.forEach((item) => {
           if(item.deskNum) {
             totalNum += Number(item.deskNum)
           }
