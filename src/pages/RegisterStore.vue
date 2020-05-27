@@ -6,25 +6,25 @@
 
       <p>카테고리</p>
       <div class="select-box-outer">
-        <select-box v-bind:options="categorySelectBoxOption" v-model="category"></select-box>
+        <select-box v-bind:options="categorySelectBoxOption" v-model="storeCard.category"></select-box>
       </div>
 
       <p>상호명+지점명(한글)</p>
-      <input-box placeHolder="상호명(한글)" v-model="storeNameKor"></input-box>
+      <input-box placeHolder="상호명(한글)" v-model="storeCard.storeNameKor"></input-box>
 
       <p>상호명+지점명(영문)</p>
-      <input-box placeHolder="상호명(한글)" v-model="storeNameEng"></input-box>
+      <input-box placeHolder="상호명(한글)" v-model="storeCard.storeNameEng"></input-box>
 
       <p>주소</p>
-      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." v-model="address"></input-box>
+      <input-box placeHolder="매장 층수가 포함된 주소를 입력해 주세요." v-model="storeCard.address"></input-box>
 
       <p>전화번호</p>
       <div class="call-info">
-        <input-box placeHolder="02" v-model="countryNum"></input-box>
+        <input-box placeHolder="02" v-model="storeCard.countryNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="1234" v-model="middleNum"></input-box>
+        <input-box placeHolder="1234" v-model="storeCard.middleNum"></input-box>
         <div>-</div>
-        <input-box placeHolder="5678" v-model="endNum"></input-box>
+        <input-box placeHolder="5678" v-model="storeCard.endNum"></input-box>
       </div>
       
 
@@ -32,11 +32,11 @@
         <div class="desc">
           <p>매장 층</p>
           <p>좌석 수</p>
-          <p>(총 좌석수: {{seatsCnt}})</p>
+          <p>(총 좌석수: {{  }})</p>
         </div>
-        <div class="total-desk-info" v-for="(item, index) in storeTotalDeskInfo" :key="index">
+        <div class="total-desk-info" v-for="(item, index) in storeCard.storeTotalDeskInfo" :key="index">
           <div class="select-box-outer">
-            <select-box v-model="item.floor" :options="floorInfo"></select-box>
+            <select-box v-model="item.floor" :options="storeCard.floorInfo"></select-box>
           </div>
           <input-box class="floor-num" placeHolder="숫자만" inputType="number" v-model="item.floorNum"></input-box>
           <input-box class="desk-num" placeHolder="좌석수" inputType="number" v-model="item.deskNum"></input-box>
@@ -46,28 +46,28 @@
       </div>
 
       <p>휴무일</p>
-      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="holiday"></input-box>
+      <input-box placeHolder="매주 월요일 휴무/설날 당일 휴무 등 정보를 입력해 주세요." v-model="storeCard.holiday"></input-box>
 
       <p>운영 시간</p>
 
       <div class="toggle-container">
         <p>매일 동일</p>
-        <toggle-button class="toggle" v-model="sameOperationgTime" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
+        <toggle-button class="toggle" v-model="storeCard.sameOperationgTime" :width="45" :height="24" :color="{checked: '#37ABDA', unchecked: '#E5E5E5'}"/>
       </div>
 
-      <div v-if="sameOperationgTime" class="operation-time">
+      <div v-if="storeCard.sameOperationgTime" class="operation-time">
         <div class="am">
-          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="everydayOpen"></vue-timepicker>
+          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="storeCard.everydayOpen"></vue-timepicker>
         </div>
         <div class="bar">
           -
         </div>
         <div class="pm">
-          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="everydayClose"></vue-timepicker>
+          <vue-timepicker :minute-interval="10" format="HH:mm" v-model="storeCard.everydayClose"></vue-timepicker>
         </div>
       </div>
       <div v-else class="operation-time multiple">
-        <div v-for="(item, index) in weeklyOperationTime" :key="index" class="time">
+        <div v-for="(item, index) in storeCard.weeklyOperationTime" :key="index" class="time">
           <p>{{item.day}}</p>
           <div class="am">
             <vue-timepicker :minute-interval="10" format="HH:mm" v-model="item.open"></vue-timepicker>
@@ -82,10 +82,10 @@
       </div>
 
       <p>홈페이지 주소</p>
-      <input-box placeHolder="www.mycafe.me" v-model="url"></input-box>
+      <input-box placeHolder="www.mycafe.me" v-model="storeCard.url"></input-box>
 
       <p>인스타그램 계정</p>
-      <input-box placeHolder="asdf_official" v-model="instagram"></input-box>
+      <input-box placeHolder="asdf_official" v-model="storeCard.instagram"></input-box>
 
       <div class="file-input-container">
         <p>사진 업로드</p>
@@ -97,7 +97,7 @@
       </div>
 
       <div class="store-images-container">      
-        <div class="store-images" v-for="(item, index) in storeImageArray" :key="index">
+        <div class="store-images" v-for="(item, index) in storeCard.storeImageArray" :key="index">
           <img class="image" :src="item.src"/>
           <img class="cancel-icon" src="@/assets/icon/icon_cancel.svg" @click="removeItem(item)"/>
         </div>
@@ -132,40 +132,42 @@
           {text: '전시', value: '전시'},
           {text: '기타', value: '기타'}
         ],
-        storeImageArray: [],
-        sameOperationgTime: true,
-        storeNameKor: '',
-        storeNameEng: '',
-        category:'',
-        address: '',
-        countryNum: '',
-        middleNum: '',
-        endNum: '',
-        floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
-        // floor: '지상',
-        storeTotalDeskInfo: [
-          {floor: '지상', floorNum: undefined, deskNum: undefined}
-        ],
-        holiday: '',
-        url: '',
-        instagram: '',
-        everydayOpen: {
-          HH: '10',
-          mm: '00'
-        },
-        everydayClose: {
-          HH: '22',
-          mm: '00'
-        },
-        weeklyOperationTime: [
-          {day: '월', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '화', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '수', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '목', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '금', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '토', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
-          {day: '일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
-        ],
+        storeCard: {
+          storeImageArray: [],
+          sameOperationgTime: true,
+          storeNameKor: '',
+          storeNameEng: '',
+          category:'',
+          address: '',
+          countryNum: '',
+          middleNum: '',
+          endNum: '',
+          floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
+          // floor: '지상',
+          storeTotalDeskInfo: [
+            {floor: '지상', floorNum: undefined, deskNum: undefined}
+          ],
+          holiday: '',
+          url: '',
+          instagram: '',
+          everydayOpen: {
+            HH: '10',
+            mm: '00'
+          },
+          everydayClose: {
+            HH: '22',
+            mm: '00'
+          },
+          weeklyOperationTime: [
+            {day: '월', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '화', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '수', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '목', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '금', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '토', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}},
+            {day: '일', open: {HH: '10', mm: '00'}, close: {HH: '22', mm: '00'}}
+          ],
+        }
       }
     },
     computed: {
@@ -183,13 +185,13 @@
       loadFile() {
         let storeImages = Array.from(this.$refs.storeImage.files);
         storeImages.forEach((item) => {
-          this.storeImageArray.push({item: item, src: URL.createObjectURL(item)})
+          this.storeCard.storeImageArray.push({item: item, src: URL.createObjectURL(item)})
         })
       },
       removeItem(item) {
-        var index = this.storeImageArray.indexOf(item);
+        var index = this.storeCard.storeImageArray.indexOf(item);
         if (index !== -1) {
-          this.storeImageArray.splice(index, 1)
+          this.storeCard.storeImageArray.splice(index, 1)
         }
       },
       plusFloorInfo() {

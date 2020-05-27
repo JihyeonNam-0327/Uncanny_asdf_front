@@ -10,8 +10,8 @@
       v-bind:storeCard="storeCard"
       @pinChange="pinChange"
       @enlargementChange="enlargementSet"
-      @edit="storeInfoEditClicked('UpdateStore')"
-    ></detail-info>
+      @edit="storeInfoEditClicked('UpdateStore')">
+    </detail-info>
 
     <transition name="fade">
       <div class="enlargement-outer" v-if="enlargementToggle">
@@ -32,13 +32,15 @@
     </transition>
 
     <detail-filter
-      v-bind:storeFilter="storeFilters" @edit="storeInfoEditClicked">
+      v-bind:storeFilter="storeFilters" 
+      @edit="filterEditClicked">
     </detail-filter>
 
     <div class="horizontal-line"></div>
 
-    <detail-menu :signitureMenu="signitureMenu" :wholeMenu="wholeMenu" @edit="menuEditClicked">
-
+    <detail-menu 
+      :signitureMenu="signitureMenu" :wholeMenu="wholeMenu" 
+      @edit="menuEditClicked">
     </detail-menu>
   </div>
 </template>
@@ -75,7 +77,7 @@
           middleNum: '1234',
           endNum: '5678',
           url: 'uncanny.asdf.com',
-          instagram: 'xoxojihyeon',
+          instagram: 'xoxoinstagram',
           // seatsCnt 연동?
           storeTotalDeskInfo: [ 
             {floor: '지하', floorNum: 1, seatNum: 100},
@@ -113,31 +115,39 @@
           heart: true,
         },
         storeFilters: [
-          '주차가능', '드라이브스루', '혼밥가능', '애견동반', '주차가능', '드라이브스루', '혼밥가능', '애견동반'
+          '주차가능', '드라이브스루', '혼밥가능', '애견동반', '단체석', '무료Wi-Fi', '지역상품권', '긴급재난지원금'
         ],
         signitureMenu: [
           {
             name: '피스타치오 프라푸치노',
-            price: 2000
+            price: 6500
           },
           {
-            name: '대표메뉴 2',
-            price: 2000
+            name: '자몽허니블랙티',
+            price: 5700
           },
           {
-            name: '대표메뉴 3',
-            price: 2000
+            name: '블랙아인슈페너',
+            price: 5900
           }
         ],
         wholeMenu: [
           {
-            name: '스트로베리 프라푸치노',
-            price: 2000
+            name: '아메리카노 ICE',
+            price: 2500
           },
           {
-            name: '기타메뉴 2',
-            price: 2000
-          }
+            name: '카페라떼 ICE',
+            price: 3500
+          },
+          {
+            name: '카페모카 ICE',
+            price: 3500
+          },
+          {
+            name: '그린티라떼 ICE',
+            price: 4000
+          },
         ]
       }
     },
@@ -154,9 +164,13 @@
       },
       storeInfoEditClicked() {
         let params = {
-          storeNameKor: this.storeCard.storeNameKor
+          storeCard: this.storeCard
         }
         this.pageMove('UpdateStore', params)
+      },
+      filterEditClicked() {
+        let params = {}
+        this.pageMove('UpdateFilter', params) //TEST
       },
       menuEditClicked() {
         let params = {

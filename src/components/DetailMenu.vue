@@ -74,6 +74,11 @@
     .menu-collapse {
       -webkit-tap-highlight-color: rgba(0,0,0,0);
       -webkit-tap-highlight-color: transparent;
+      .vs-collapse-item{
+        .vs-collapse-item--header{
+          width:110%;          
+        }
+      }
       span {
         position: absolute;
         top: 20% !important;

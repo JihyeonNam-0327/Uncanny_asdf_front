@@ -156,7 +156,7 @@
           -webkit-tap-highlight-color: rgba(0,0,0,0);
           -webkit-tap-highlight-color: transparent;
           .vs-collapse {
-            width: 200px;
+            width: 80%;
             padding: 0;
             .vs-collapse-item {
               .vs-collapse-item--header {
