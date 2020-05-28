@@ -26,6 +26,7 @@ import SignUp from '@/pages/SignUp.vue'
 import Home from '@/pages/Home.vue'
 import TestPage from '@/pages/TestPage.vue'
 import NjhTestPage from '@/pages/NjhTestPage.vue'
+import JhjTestPage from '@/pages/JhjTestPage.vue'
 import SearchFilter from '@/pages/SearchFilter.vue'
 import UpdateMenu from '@/pages/UpdateMenu.vue'
 import UpdateFilter from '@/pages/UpdateFilter.vue'
@@ -50,6 +51,11 @@ const routes = [
     path: '/apply', 
     name: 'Apply', 
     component: Apply 
+  },
+  { 
+    path: '/jhjtestpage', 
+    name: 'JhjTestPage', 
+    component: JhjTestPage
   },
   { 
     path: '/updatefilter', 

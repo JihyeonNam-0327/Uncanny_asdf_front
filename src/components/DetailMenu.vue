@@ -3,7 +3,7 @@
     <vs-collapse class="menu-collapse">
       <vs-collapse-item>
         <div slot="header" class="header">
-          Menu
+          메뉴
           <div v-if="signitureMenu.length > 0">
             <p v-for="(item, index) in signitureMenu" :key="index" class="signiture-menu">
               {{item.name}} <span class="dot">・・・</span> {{item.price | priceFilter}}

@@ -145,7 +145,7 @@
           floorInfo: [{text: '지상', value: '지상'}, {text: '지하', value: '지하'}],
           // floor: '지상',
           storeTotalDeskInfo: [
-            {floor: '지상', floorNum: undefined, deskNum: undefined}
+            {floor: '지상', floorNum: undefined, seatNum: undefined}
           ],
           holiday: '',
           url: '',

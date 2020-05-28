@@ -108,8 +108,8 @@
       seatsCnt() {
         let totalNum = 0
         this.storeCard.storeTotalDeskInfo.forEach((item) => {
-          if(item.deskNum) {
-            totalNum += Number(item.deskNum)
+          if(item.seatNum) {
+            totalNum += Number(item.seatNum)
           }
         })
         return totalNum

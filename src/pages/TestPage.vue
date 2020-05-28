@@ -13,10 +13,6 @@
     <button @click="openModal">열기</button>
     <div @click="openModal">열기22</div>
 
-  
-
-
-
   </div>
 </template>
 

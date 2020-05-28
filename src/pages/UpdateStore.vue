@@ -1,6 +1,6 @@
 <template>
   <div class="register-store-outer">
-    <header-component class="header-component" leftType="historyback" @backButtonClick="backButtonClicked"></header-component>
+    <header-component class="header-component" leftType="historyback" centerText="필터태그 수정" @backButtonClick="backButtonClicked"></header-component>
     
     <div class="register-store-context">
 
@@ -143,8 +143,8 @@
       seatsCnt() {
         let totalNum = 0
         this.storeCard.storeTotalDeskInfo.forEach((item) => {
-          if(item.deskNum) {
-            totalNum += Number(item.deskNum)
+          if(item.seatNum) {
+            totalNum += Number(item.seatNum)
           }
         })
         return totalNum
@@ -165,7 +165,7 @@
       },
       plusFloorInfo() {
         if(this.storeTotalDeskInfo.length > 4) return
-        this.storeTotalDeskInfo.push({floor: '지상', floorNum: 0, deskNum: 0})
+        this.storeTotalDeskInfo.push({floor: '지상', floorNum: 0, seatNum: 0})
       },
       minusFloorInfo(item) {
         var index = this.storeTotalDeskInfo.indexOf(item);
