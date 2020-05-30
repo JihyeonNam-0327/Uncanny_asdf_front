@@ -397,43 +397,59 @@ export default {
         this.endTime.A = this.startTime.A
       },
       onChangeEndTime(event) {
-        switch (this.startTime.A) {
-          case 'AM':
-            if (this.endTime.A == 'AM') {
-              if (this.startTime.hh > this.endTime.hh) {
-                this.todayOrTommorrow = '익일'
-              } else if (this.startTime.hh == this.endTime.hh) {
-                if (this.startTime.mm > this.endTime.mm) {
-                  this.todayOrTommorrow = '익일'
-                } else {
-                  this.todayOrTommorrow = '당일'
-                }
-              } else { 
-                this.todayOrTommorrow = '당일'
-              }
-            } else {
-              this.todayOrTommorrow = '당일'
-            }
-            break;            
-          case "PM":
-            if (this.endTime.A == 'AM') {
-              this.todayOrTommorrow = '익일'
-            } else {
-              if (this.startTime.hh > this.endTime.hh) {
-                this.todayOrTommorrow = '익일'
-              } else if (this.startTime.hh == this.endTime.hh) {
-                if (this.startTime.mm > this.endTime.mm) {
-                  this.todayOrTommorrow = '익일'
-                } else {
-                  this.todayOrTommorrow = '당일'
-                }
-              } else { 
-                this.todayOrTommorrow = '당일'
-              }
-            }
-            break;
+        if (this.startTime.A == this.endTime.A) {
+          if (this.startTime.hh > this.endTime.hh) {
+            this.todayOrTommorrow = '익일'
+          } else if (this.startTime.hh < this.endTime.hh) {
+            this.todayOrTommorrow = '당일'
+          } else {
+            (this.startTime.mm <= this.endTime.mm) ? this.todayOrTommorrow = '당일' : this.todayOrTommorrow = '익일'
+          }
+        }
+        else {
+          (this.startTime.A == "AM") ? this.todayOrTommorrow = '당일' : this.todayOrTommorrow = '익일'
         }
       },
+
+//    onChangeEndTime(event) {
+//         switch (this.startTime.A) {
+//           case 'AM':
+//             if (this.endTime.A == 'AM') {
+//               if (this.startTime.hh > this.endTime.hh) {
+//                 this.todayOrTommorrow = '익일'
+//               } else if (this.startTime.hh == this.endTime.hh) {
+//                 if (this.startTime.mm > this.endTime.mm) {
+//                   this.todayOrTommorrow = '익일'
+//                 } else {
+//                   this.todayOrTommorrow = '당일'
+//                 }
+//               } else { 
+//                 this.todayOrTommorrow = '당일'
+//               }
+//             } else {
+//               this.todayOrTommorrow = '당일'
+//             }
+//             break;            
+//           case "PM":
+//             if (this.endTime.A == 'AM') {
+//               this.todayOrTommorrow = '익일'
+//             } else {
+//               if (this.startTime.hh > this.endTime.hh) {
+//                 this.todayOrTommorrow = '익일'
+//               } else if (this.startTime.hh == this.endTime.hh) {
+//                 if (this.startTime.mm > this.endTime.mm) {
+//                   this.todayOrTommorrow = '익일'
+//                 } else {
+//                   this.todayOrTommorrow = '당일'
+//                 }
+//               } else { 
+//                 this.todayOrTommorrow = '당일'
+//               }
+//             }
+//             break;
+//         }
+//       },
+
       applyButtonClick() {
         console.log(this.parking)
       },
